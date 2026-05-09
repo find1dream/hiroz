@@ -11,6 +11,7 @@ publish = false
 [dependencies]
 hiroz = { path = "../hiroz", default-features = false, features = ["protobuf"] }
 hiroz-msgs = { path = "../hiroz-msgs", default-features = false, optional = true }
+hiroz-tf = { path = "../hiroz-tf", default-features = false, optional = true }
 hiroz-cdr = { path = "../hiroz-cdr" }
 hiroz-schema = { path = "../hiroz-schema" }
 protobuf_demo = { path = "../hiroz/examples/protobuf_demo" }
@@ -58,7 +59,16 @@ humble-jazzy-bridge-tests = [
 # This enables testing hiroz with DDS-based ROS 2 nodes via zenoh-bridge-ros2dds
 ros2dds-interop = ["ros-msgs", "hiroz/ros2dds", "hiroz/rmw-zenoh"]
 
-# ROS 2 distro compatibility - propagate to hiroz and hiroz-msgs
+# TF integration tests
+tf-tests = [
+  "dep:hiroz-tf",
+  "dep:hiroz-msgs",
+  "hiroz-msgs/tf2_msgs",
+  "hiroz-msgs/geometry_msgs",
+  "hiroz-tf/jazzy",
+]
+
+# ROS 2 distro compatibility - propagate to hiroz, hiroz-msgs, and hiroz-tf
 humble = ["hiroz/humble", "hiroz-msgs/humble"]
 jazzy = ["hiroz/jazzy", "hiroz-msgs/jazzy"]
 rolling = ["hiroz/rolling", "hiroz-msgs/rolling"]
