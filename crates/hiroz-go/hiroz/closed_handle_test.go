@@ -88,7 +88,7 @@ func TestPublisherPublishOnClosed(t *testing.T) {
 	if err == nil {
 		t.Fatal("Publish on closed publisher: expected error, got nil")
 	}
-	// Closed-handle errors are plain errors, not wrapped RoszErrors —
+	// Closed-handle errors are plain errors, not wrapped HirozErrors —
 	// matches ServiceClient.callRaw and ActionClient.SendGoal.
 	var rerr HirozError
 	if errors.As(err, &rerr) {
