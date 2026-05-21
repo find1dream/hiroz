@@ -1668,6 +1668,30 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Actions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#goal-status" class="md-nav__link">
+    <span class="md-ellipsis">
+      Goal status
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cooperative-cancellation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cooperative cancellation
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -2194,6 +2218,30 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Actions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#goal-status" class="md-nav__link">
+    <span class="md-ellipsis">
+      Goal status
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cooperative-cancellation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cooperative cancellation
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -2386,7 +2434,7 @@ Artifacts are named <code>libros_z-{distro}-{target}.a</code> (e.g. <code>libros
 </span></code></pre></div>
 <p>The <code>#cgo LDFLAGS</code> in <code>rosz/context.go</code> resolves the library via <code>${SRCDIR}</code> — no extra <code>CGO_LDFLAGS</code> needed with a <code>replace</code> directive.</p>
 <p><strong>Generate message types</strong> (no ROS 2 install needed for bundled types):</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>just<span class="w"> </span>-f<span class="w"> </span>crates/ros-z-go/justfile<span class="w"> </span>codegen-bundled<span class="w">   </span><span class="c1"># std_msgs, geometry_msgs</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>just<span class="w"> </span>-f<span class="w"> </span>crates/ros-z-go/justfile<span class="w"> </span>codegen-bundled<span class="w">   </span><span class="c1"># std_msgs, geometry_msgs, example_interfaces</span>
 </span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>just<span class="w"> </span>-f<span class="w"> </span>crates/ros-z-go/justfile<span class="w"> </span>codegen<span class="w">            </span><span class="c1"># full set from a ROS 2 installation</span>
 </span></code></pre></div>
 <hr />
@@ -2511,45 +2559,137 @@ accDescr: Go code calls through CGO into a C FFI layer that bridges to the Rust 
 <p>Apply QoS with <code>.WithQoS(rosz.QosSensorData())</code> on either builder.</p>
 <hr />
 <h2 id="services">Services<a class="headerlink" href="#services" title="Permanent link">&para;</a></h2>
-<blockquote>
-<p><strong>Coming in v0.2.</strong> Service client and server support arrives in the next release.</p>
-</blockquote>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="c1">// Server</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="nx">server</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">node</span><span class="p">.</span><span class="nx">CreateServiceServer</span><span class="p">(</span><span class="s">&quot;add_two_ints&quot;</span><span class="p">).</span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="w">    </span><span class="nx">Build</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">example_interfaces</span><span class="p">.</span><span class="nx">AddTwoInts</span><span class="p">{},</span><span class="w"> </span><span class="kd">func</span><span class="p">(</span><span class="nx">reqBytes</span><span class="w"> </span><span class="p">[]</span><span class="kt">byte</span><span class="p">)</span><span class="w"> </span><span class="p">([]</span><span class="kt">byte</span><span class="p">,</span><span class="w"> </span><span class="kt">error</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="w">        </span><span class="kd">var</span><span class="w"> </span><span class="nx">req</span><span class="w"> </span><span class="nx">example_interfaces</span><span class="p">.</span><span class="nx">AddTwoIntsRequest</span>
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="w">        </span><span class="nx">req</span><span class="p">.</span><span class="nx">DeserializeCDR</span><span class="p">(</span><span class="nx">reqBytes</span><span class="p">)</span>
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="p">(</span><span class="o">&amp;</span><span class="nx">example_interfaces</span><span class="p">.</span><span class="nx">AddTwoIntsResponse</span><span class="p">{</span><span class="nx">Sum</span><span class="p">:</span><span class="w"> </span><span class="nx">req</span><span class="p">.</span><span class="nx">A</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">req</span><span class="p">.</span><span class="nx">B</span><span class="p">}).</span><span class="nx">SerializeCDR</span><span class="p">()</span>
+</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="w">    </span><span class="p">})</span>
+</span><span id="__span-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a>
+</span><span id="__span-9-9"><a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a><span class="c1">// Client</span>
+</span><span id="__span-9-10"><a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a><span class="nx">client</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">node</span><span class="p">.</span><span class="nx">CreateServiceClient</span><span class="p">(</span><span class="s">&quot;add_two_ints&quot;</span><span class="p">).</span>
+</span><span id="__span-9-11"><a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a><span class="w">    </span><span class="nx">Build</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">example_interfaces</span><span class="p">.</span><span class="nx">AddTwoInts</span><span class="p">{})</span>
+</span><span id="__span-9-12"><a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a><span class="nx">respBytes</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">client</span><span class="p">.</span><span class="nx">Call</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">example_interfaces</span><span class="p">.</span><span class="nx">AddTwoIntsRequest</span><span class="p">{</span><span class="nx">A</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="nx">B</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">})</span>
+</span><span id="__span-9-13"><a id="__codelineno-9-13" name="__codelineno-9-13" href="#__codelineno-9-13"></a><span class="c1">// client.CallWithTimeout(req, 10*time.Second) for a custom timeout</span>
+</span><span id="__span-9-14"><a id="__codelineno-9-14" name="__codelineno-9-14" href="#__codelineno-9-14"></a><span class="kd">var</span><span class="w"> </span><span class="nx">resp</span><span class="w"> </span><span class="nx">example_interfaces</span><span class="p">.</span><span class="nx">AddTwoIntsResponse</span>
+</span><span id="__span-9-15"><a id="__codelineno-9-15" name="__codelineno-9-15" href="#__codelineno-9-15"></a><span class="k">if</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">resp</span><span class="p">.</span><span class="nx">DeserializeCDR</span><span class="p">(</span><span class="nx">respBytes</span><span class="p">);</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-9-16"><a id="__codelineno-9-16" name="__codelineno-9-16" href="#__codelineno-9-16"></a><span class="w">    </span><span class="c1">// handle error</span>
+</span><span id="__span-9-17"><a id="__codelineno-9-17" name="__codelineno-9-17" href="#__codelineno-9-17"></a><span class="p">}</span>
+</span><span id="__span-9-18"><a id="__codelineno-9-18" name="__codelineno-9-18" href="#__codelineno-9-18"></a><span class="c1">// use resp.Sum</span>
+</span></code></pre></div>
 <hr />
 <h2 id="actions">Actions<a class="headerlink" href="#actions" title="Permanent link">&para;</a></h2>
-<blockquote>
-<p><strong>Coming in v0.2.</strong> Action client and server support, including cooperative cancellation and feedback streaming, arrives in the next release.</p>
-</blockquote>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="c1">// Server</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="nx">server</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">node</span><span class="p">.</span><span class="nx">CreateActionServer</span><span class="p">(</span><span class="s">&quot;fibonacci&quot;</span><span class="p">).</span><span class="nx">Build</span><span class="p">(</span>
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="w">    </span><span class="o">&amp;</span><span class="nx">example_interfaces</span><span class="p">.</span><span class="nx">Fibonacci</span><span class="p">{},</span>
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="w">    </span><span class="kd">func</span><span class="p">(</span><span class="nx">goalBytes</span><span class="w"> </span><span class="p">[]</span><span class="kt">byte</span><span class="p">)</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="p">{</span><span class="w">         </span><span class="c1">// accept / reject</span>
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="w">        </span><span class="kd">var</span><span class="w"> </span><span class="nx">g</span><span class="w"> </span><span class="nx">example_interfaces</span><span class="p">.</span><span class="nx">FibonacciGoal</span>
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="w">        </span><span class="nx">g</span><span class="p">.</span><span class="nx">DeserializeCDR</span><span class="p">(</span><span class="nx">goalBytes</span><span class="p">)</span>
+</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nx">g</span><span class="p">.</span><span class="nx">Order</span><span class="w"> </span><span class="p">&gt;</span><span class="w"> </span><span class="mi">0</span>
+</span><span id="__span-10-8"><a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a><span class="w">    </span><span class="p">},</span>
+</span><span id="__span-10-9"><a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a><span class="w">    </span><span class="kd">func</span><span class="p">(</span><span class="nx">h</span><span class="w"> </span><span class="o">*</span><span class="nx">rosz</span><span class="p">.</span><span class="nx">ServerGoalHandle</span><span class="p">,</span><span class="w"> </span><span class="nx">goalBytes</span><span class="w"> </span><span class="p">[]</span><span class="kt">byte</span><span class="p">)</span><span class="w"> </span><span class="p">([]</span><span class="kt">byte</span><span class="p">,</span><span class="w"> </span><span class="kt">error</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-10-10"><a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a><span class="w">        </span><span class="kd">var</span><span class="w"> </span><span class="nx">g</span><span class="w"> </span><span class="nx">example_interfaces</span><span class="p">.</span><span class="nx">FibonacciGoal</span>
+</span><span id="__span-10-11"><a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a><span class="w">        </span><span class="nx">g</span><span class="p">.</span><span class="nx">DeserializeCDR</span><span class="p">(</span><span class="nx">goalBytes</span><span class="p">)</span>
+</span><span id="__span-10-12"><a id="__codelineno-10-12" name="__codelineno-10-12" href="#__codelineno-10-12"></a><span class="w">        </span><span class="nx">seq</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="p">[]</span><span class="kt">int32</span><span class="p">{</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">}</span>
+</span><span id="__span-10-13"><a id="__codelineno-10-13" name="__codelineno-10-13" href="#__codelineno-10-13"></a><span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="p">&lt;</span><span class="w"> </span><span class="nb">int</span><span class="p">(</span><span class="nx">g</span><span class="p">.</span><span class="nx">Order</span><span class="p">);</span><span class="w"> </span><span class="nx">i</span><span class="o">++</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-10-14"><a id="__codelineno-10-14" name="__codelineno-10-14" href="#__codelineno-10-14"></a><span class="w">            </span><span class="nx">seq</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">append</span><span class="p">(</span><span class="nx">seq</span><span class="p">,</span><span class="w"> </span><span class="nx">seq</span><span class="p">[</span><span class="nx">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="nx">seq</span><span class="p">[</span><span class="nx">i</span><span class="o">-</span><span class="mi">2</span><span class="p">])</span>
+</span><span id="__span-10-15"><a id="__codelineno-10-15" name="__codelineno-10-15" href="#__codelineno-10-15"></a><span class="w">            </span><span class="nx">h</span><span class="p">.</span><span class="nx">PublishFeedback</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">example_interfaces</span><span class="p">.</span><span class="nx">FibonacciFeedback</span><span class="p">{</span><span class="nx">Sequence</span><span class="p">:</span><span class="w"> </span><span class="nx">seq</span><span class="p">})</span>
+</span><span id="__span-10-16"><a id="__codelineno-10-16" name="__codelineno-10-16" href="#__codelineno-10-16"></a><span class="w">        </span><span class="p">}</span>
+</span><span id="__span-10-17"><a id="__codelineno-10-17" name="__codelineno-10-17" href="#__codelineno-10-17"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="p">(</span><span class="o">&amp;</span><span class="nx">example_interfaces</span><span class="p">.</span><span class="nx">FibonacciResult</span><span class="p">{</span><span class="nx">Sequence</span><span class="p">:</span><span class="w"> </span><span class="nx">seq</span><span class="p">}).</span><span class="nx">SerializeCDR</span><span class="p">()</span>
+</span><span id="__span-10-18"><a id="__codelineno-10-18" name="__codelineno-10-18" href="#__codelineno-10-18"></a><span class="w">    </span><span class="p">},</span>
+</span><span id="__span-10-19"><a id="__codelineno-10-19" name="__codelineno-10-19" href="#__codelineno-10-19"></a><span class="p">)</span>
+</span><span id="__span-10-20"><a id="__codelineno-10-20" name="__codelineno-10-20" href="#__codelineno-10-20"></a>
+</span><span id="__span-10-21"><a id="__codelineno-10-21" name="__codelineno-10-21" href="#__codelineno-10-21"></a><span class="c1">// Client</span>
+</span><span id="__span-10-22"><a id="__codelineno-10-22" name="__codelineno-10-22" href="#__codelineno-10-22"></a><span class="nx">client</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">node</span><span class="p">.</span><span class="nx">CreateActionClient</span><span class="p">(</span><span class="s">&quot;fibonacci&quot;</span><span class="p">).</span>
+</span><span id="__span-10-23"><a id="__codelineno-10-23" name="__codelineno-10-23" href="#__codelineno-10-23"></a><span class="w">    </span><span class="nx">Build</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">example_interfaces</span><span class="p">.</span><span class="nx">Fibonacci</span><span class="p">{})</span>
+</span><span id="__span-10-24"><a id="__codelineno-10-24" name="__codelineno-10-24" href="#__codelineno-10-24"></a><span class="nx">handle</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">client</span><span class="p">.</span><span class="nx">SendGoal</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">example_interfaces</span><span class="p">.</span><span class="nx">FibonacciGoal</span><span class="p">{</span><span class="nx">Order</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">})</span>
+</span><span id="__span-10-25"><a id="__codelineno-10-25" name="__codelineno-10-25" href="#__codelineno-10-25"></a><span class="nx">resultBytes</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">handle</span><span class="p">.</span><span class="nx">GetResult</span><span class="p">()</span>
+</span></code></pre></div>
+<h3 id="goal-status">Goal status<a class="headerlink" href="#goal-status" title="Permanent link">&para;</a></h3>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="nx">handle</span><span class="p">.</span><span class="nx">GetStatus</span><span class="p">()</span><span class="w">    </span><span class="c1">// GoalStatusAccepted → GoalStatusSucceeded</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="nx">handle</span><span class="p">.</span><span class="nx">IsActive</span><span class="p">()</span><span class="w">     </span><span class="c1">// true while executing</span>
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="nx">handle</span><span class="p">.</span><span class="nx">IsTerminal</span><span class="p">()</span><span class="w">   </span><span class="c1">// true when finished</span>
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="nx">handle</span><span class="p">.</span><span class="nx">Cancel</span><span class="p">()</span><span class="w">       </span><span class="c1">// request cancellation</span>
+</span></code></pre></div>
+<h3 id="cooperative-cancellation">Cooperative cancellation<a class="headerlink" href="#cooperative-cancellation" title="Permanent link">&para;</a></h3>
+<p>The execute callback runs in its own goroutine. Poll <code>IsCancelRequested()</code> at safe points:</p>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="kd">func</span><span class="p">(</span><span class="nx">h</span><span class="w"> </span><span class="o">*</span><span class="nx">rosz</span><span class="p">.</span><span class="nx">ServerGoalHandle</span><span class="p">,</span><span class="w"> </span><span class="nx">goalBytes</span><span class="w"> </span><span class="p">[]</span><span class="kt">byte</span><span class="p">)</span><span class="w"> </span><span class="p">([]</span><span class="kt">byte</span><span class="p">,</span><span class="w"> </span><span class="kt">error</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="w">    </span><span class="c1">// ...</span>
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="p">&lt;</span><span class="w"> </span><span class="nb">int</span><span class="p">(</span><span class="nx">g</span><span class="p">.</span><span class="nx">Order</span><span class="p">);</span><span class="w"> </span><span class="nx">i</span><span class="o">++</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="nx">h</span><span class="p">.</span><span class="nx">IsCancelRequested</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a><span class="w">            </span><span class="c1">// return partial result and acknowledge cancel</span>
+</span><span id="__span-12-6"><a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a><span class="w">            </span><span class="nx">h</span><span class="p">.</span><span class="nx">Canceled</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">example_interfaces</span><span class="p">.</span><span class="nx">FibonacciResult</span><span class="p">{</span><span class="nx">Sequence</span><span class="p">:</span><span class="w"> </span><span class="nx">seq</span><span class="p">})</span>
+</span><span id="__span-12-7"><a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a><span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="p">(</span><span class="o">&amp;</span><span class="nx">example_interfaces</span><span class="p">.</span><span class="nx">FibonacciResult</span><span class="p">{</span><span class="nx">Sequence</span><span class="p">:</span><span class="w"> </span><span class="nx">seq</span><span class="p">}).</span><span class="nx">SerializeCDR</span><span class="p">()</span>
+</span><span id="__span-12-8"><a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a><span class="w">        </span><span class="p">}</span>
+</span><span id="__span-12-9"><a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a><span class="w">        </span><span class="c1">// ... compute step</span>
+</span><span id="__span-12-10"><a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a><span class="w">        </span><span class="nx">time</span><span class="p">.</span><span class="nx">Sleep</span><span class="p">(</span><span class="mi">50</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nx">time</span><span class="p">.</span><span class="nx">Millisecond</span><span class="p">)</span>
+</span><span id="__span-12-11"><a id="__codelineno-12-11" name="__codelineno-12-11" href="#__codelineno-12-11"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-12-12"><a id="__codelineno-12-12" name="__codelineno-12-12" href="#__codelineno-12-12"></a><span class="w">    </span><span class="c1">// ...</span>
+</span><span id="__span-12-13"><a id="__codelineno-12-13" name="__codelineno-12-13" href="#__codelineno-12-13"></a><span class="p">}</span>
+</span></code></pre></div>
 <hr />
 <h2 id="typed-api">Typed API<a class="headerlink" href="#typed-api" title="Permanent link">&para;</a></h2>
 <p>The typed helpers eliminate manual <code>SerializeCDR</code> / <code>DeserializeCDR</code> calls.</p>
 <h3 id="subscriber">Subscriber<a class="headerlink" href="#subscriber" title="Permanent link">&para;</a></h3>
-<div class="language-go highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="c1">// Typed callback</span>
-</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="nx">sub</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">rosz</span><span class="p">.</span><span class="nx">BuildWithTypedCallback</span><span class="p">(</span>
-</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="w">    </span><span class="nx">node</span><span class="p">.</span><span class="nx">CreateSubscriber</span><span class="p">(</span><span class="s">&quot;chatter&quot;</span><span class="p">),</span>
-</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="w">    </span><span class="kd">func</span><span class="p">(</span><span class="nx">msg</span><span class="w"> </span><span class="o">*</span><span class="nx">std_msgs</span><span class="p">.</span><span class="nx">String</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">log</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">msg</span><span class="p">.</span><span class="nx">Data</span><span class="p">)</span><span class="w"> </span><span class="p">},</span>
-</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="p">)</span>
-</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>
-</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="c1">// Channel — range over messages</span>
-</span><span id="__span-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a><span class="nx">sub</span><span class="p">,</span><span class="w"> </span><span class="nx">ch</span><span class="p">,</span><span class="w"> </span><span class="nx">cleanup</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">rosz</span><span class="p">.</span><span class="nx">SubscriberWithChannel</span><span class="p">[</span><span class="o">*</span><span class="nx">std_msgs</span><span class="p">.</span><span class="nx">String</span><span class="p">](</span>
-</span><span id="__span-9-9"><a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a><span class="w">    </span><span class="nx">node</span><span class="p">.</span><span class="nx">CreateSubscriber</span><span class="p">(</span><span class="s">&quot;chatter&quot;</span><span class="p">),</span><span class="w"> </span><span class="mi">10</span><span class="w"> </span><span class="cm">/* buffer */</span><span class="p">)</span>
-</span><span id="__span-9-10"><a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a><span class="k">defer</span><span class="w"> </span><span class="nx">cleanup</span><span class="p">();</span><span class="w"> </span><span class="k">defer</span><span class="w"> </span><span class="nx">sub</span><span class="p">.</span><span class="nx">Close</span><span class="p">()</span>
-</span><span id="__span-9-11"><a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a><span class="k">for</span><span class="w"> </span><span class="nx">msg</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="k">range</span><span class="w"> </span><span class="nx">ch</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">log</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">msg</span><span class="p">.</span><span class="nx">Data</span><span class="p">)</span><span class="w"> </span><span class="p">}</span>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="c1">// Typed callback</span>
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="nx">sub</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">rosz</span><span class="p">.</span><span class="nx">BuildWithTypedCallback</span><span class="p">(</span>
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="w">    </span><span class="nx">node</span><span class="p">.</span><span class="nx">CreateSubscriber</span><span class="p">(</span><span class="s">&quot;chatter&quot;</span><span class="p">),</span>
+</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="w">    </span><span class="kd">func</span><span class="p">(</span><span class="nx">msg</span><span class="w"> </span><span class="o">*</span><span class="nx">std_msgs</span><span class="p">.</span><span class="nx">String</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">log</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">msg</span><span class="p">.</span><span class="nx">Data</span><span class="p">)</span><span class="w"> </span><span class="p">},</span>
+</span><span id="__span-13-5"><a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a><span class="p">)</span>
+</span><span id="__span-13-6"><a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a>
+</span><span id="__span-13-7"><a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a><span class="c1">// Channel — range over messages</span>
+</span><span id="__span-13-8"><a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a><span class="nx">sub</span><span class="p">,</span><span class="w"> </span><span class="nx">ch</span><span class="p">,</span><span class="w"> </span><span class="nx">cleanup</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">rosz</span><span class="p">.</span><span class="nx">SubscriberWithChannel</span><span class="p">[</span><span class="o">*</span><span class="nx">std_msgs</span><span class="p">.</span><span class="nx">String</span><span class="p">](</span>
+</span><span id="__span-13-9"><a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a><span class="w">    </span><span class="nx">node</span><span class="p">.</span><span class="nx">CreateSubscriber</span><span class="p">(</span><span class="s">&quot;chatter&quot;</span><span class="p">),</span><span class="w"> </span><span class="mi">10</span><span class="w"> </span><span class="cm">/* buffer */</span><span class="p">)</span>
+</span><span id="__span-13-10"><a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a><span class="k">defer</span><span class="w"> </span><span class="nx">cleanup</span><span class="p">();</span><span class="w"> </span><span class="k">defer</span><span class="w"> </span><span class="nx">sub</span><span class="p">.</span><span class="nx">Close</span><span class="p">()</span>
+</span><span id="__span-13-11"><a id="__codelineno-13-11" name="__codelineno-13-11" href="#__codelineno-13-11"></a><span class="k">for</span><span class="w"> </span><span class="nx">msg</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="k">range</span><span class="w"> </span><span class="nx">ch</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">log</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">msg</span><span class="p">.</span><span class="nx">Data</span><span class="p">)</span><span class="w"> </span><span class="p">}</span>
 </span></code></pre></div>
 <p>Use <code>rosz.NewRingChannel</code> (drops oldest on full) or <code>rosz.NewFifoChannel</code> (blocks on full) with <code>SubscriberWithHandler</code> for explicit buffering control.</p>
 <h3 id="service">Service<a class="headerlink" href="#service" title="Permanent link">&para;</a></h3>
-<blockquote>
-<p><strong>Coming in v0.2.</strong></p>
-</blockquote>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="c1">// Typed server</span>
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="nx">server</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">rosz</span><span class="p">.</span><span class="nx">BuildTypedServiceServer</span><span class="p">(</span>
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="w">    </span><span class="nx">node</span><span class="p">.</span><span class="nx">CreateServiceServer</span><span class="p">(</span><span class="s">&quot;add_two_ints&quot;</span><span class="p">),</span>
+</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="w">    </span><span class="o">&amp;</span><span class="nx">example_interfaces</span><span class="p">.</span><span class="nx">AddTwoInts</span><span class="p">{},</span>
+</span><span id="__span-14-5"><a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a><span class="w">    </span><span class="kd">func</span><span class="p">(</span><span class="nx">req</span><span class="w"> </span><span class="o">*</span><span class="nx">example_interfaces</span><span class="p">.</span><span class="nx">AddTwoIntsRequest</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="o">*</span><span class="nx">example_interfaces</span><span class="p">.</span><span class="nx">AddTwoIntsResponse</span><span class="p">,</span><span class="w"> </span><span class="kt">error</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-14-6"><a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="o">&amp;</span><span class="nx">example_interfaces</span><span class="p">.</span><span class="nx">AddTwoIntsResponse</span><span class="p">{</span><span class="nx">Sum</span><span class="p">:</span><span class="w"> </span><span class="nx">req</span><span class="p">.</span><span class="nx">A</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">req</span><span class="p">.</span><span class="nx">B</span><span class="p">},</span><span class="w"> </span><span class="kc">nil</span>
+</span><span id="__span-14-7"><a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a><span class="w">    </span><span class="p">},</span>
+</span><span id="__span-14-8"><a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a><span class="p">)</span>
+</span><span id="__span-14-9"><a id="__codelineno-14-9" name="__codelineno-14-9" href="#__codelineno-14-9"></a>
+</span><span id="__span-14-10"><a id="__codelineno-14-10" name="__codelineno-14-10" href="#__codelineno-14-10"></a><span class="c1">// Typed call</span>
+</span><span id="__span-14-11"><a id="__codelineno-14-11" name="__codelineno-14-11" href="#__codelineno-14-11"></a><span class="nx">resp</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="o">&amp;</span><span class="nx">example_interfaces</span><span class="p">.</span><span class="nx">AddTwoIntsResponse</span><span class="p">{}</span>
+</span><span id="__span-14-12"><a id="__codelineno-14-12" name="__codelineno-14-12" href="#__codelineno-14-12"></a><span class="nx">err</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">rosz</span><span class="p">.</span><span class="nx">CallTyped</span><span class="p">(</span><span class="nx">client</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="nx">example_interfaces</span><span class="p">.</span><span class="nx">AddTwoIntsRequest</span><span class="p">{</span><span class="nx">A</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="nx">B</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">},</span><span class="w"> </span><span class="nx">resp</span><span class="p">)</span>
+</span><span id="__span-14-13"><a id="__codelineno-14-13" name="__codelineno-14-13" href="#__codelineno-14-13"></a><span class="c1">// rosz.CallTypedWithTimeout(client, req, resp, 10*time.Second)</span>
+</span></code></pre></div>
 <h3 id="action">Action<a class="headerlink" href="#action" title="Permanent link">&para;</a></h3>
-<blockquote>
-<p><strong>Coming in v0.2.</strong></p>
-</blockquote>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="c1">// Typed server</span>
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="nx">server</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">rosz</span><span class="p">.</span><span class="nx">BuildTypedActionServer</span><span class="p">(</span>
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="w">    </span><span class="nx">node</span><span class="p">.</span><span class="nx">CreateActionServer</span><span class="p">(</span><span class="s">&quot;fibonacci&quot;</span><span class="p">),</span><span class="w"> </span><span class="o">&amp;</span><span class="nx">example_interfaces</span><span class="p">.</span><span class="nx">Fibonacci</span><span class="p">{},</span>
+</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a><span class="w">    </span><span class="kd">func</span><span class="p">(</span><span class="nx">g</span><span class="w"> </span><span class="o">*</span><span class="nx">example_interfaces</span><span class="p">.</span><span class="nx">FibonacciGoal</span><span class="p">)</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="nx">g</span><span class="p">.</span><span class="nx">Order</span><span class="w"> </span><span class="p">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">},</span>
+</span><span id="__span-15-5"><a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a><span class="w">    </span><span class="kd">func</span><span class="p">(</span><span class="nx">h</span><span class="w"> </span><span class="o">*</span><span class="nx">rosz</span><span class="p">.</span><span class="nx">ServerGoalHandle</span><span class="p">,</span><span class="w"> </span><span class="nx">g</span><span class="w"> </span><span class="o">*</span><span class="nx">example_interfaces</span><span class="p">.</span><span class="nx">FibonacciGoal</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="o">*</span><span class="nx">example_interfaces</span><span class="p">.</span><span class="nx">FibonacciResult</span><span class="p">,</span><span class="w"> </span><span class="kt">error</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-15-6"><a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a><span class="w">        </span><span class="nx">seq</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="p">[]</span><span class="kt">int32</span><span class="p">{</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">}</span>
+</span><span id="__span-15-7"><a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a><span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="p">&lt;</span><span class="w"> </span><span class="nb">int</span><span class="p">(</span><span class="nx">g</span><span class="p">.</span><span class="nx">Order</span><span class="p">);</span><span class="w"> </span><span class="nx">i</span><span class="o">++</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-15-8"><a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a><span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="nx">h</span><span class="p">.</span><span class="nx">IsCancelRequested</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-15-9"><a id="__codelineno-15-9" name="__codelineno-15-9" href="#__codelineno-15-9"></a><span class="w">                </span><span class="k">return</span><span class="w"> </span><span class="o">&amp;</span><span class="nx">example_interfaces</span><span class="p">.</span><span class="nx">FibonacciResult</span><span class="p">{</span><span class="nx">Sequence</span><span class="p">:</span><span class="w"> </span><span class="nx">seq</span><span class="p">},</span><span class="w"> </span><span class="kc">nil</span>
+</span><span id="__span-15-10"><a id="__codelineno-15-10" name="__codelineno-15-10" href="#__codelineno-15-10"></a><span class="w">            </span><span class="p">}</span>
+</span><span id="__span-15-11"><a id="__codelineno-15-11" name="__codelineno-15-11" href="#__codelineno-15-11"></a><span class="w">            </span><span class="nx">seq</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">append</span><span class="p">(</span><span class="nx">seq</span><span class="p">,</span><span class="w"> </span><span class="nx">seq</span><span class="p">[</span><span class="nx">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="nx">seq</span><span class="p">[</span><span class="nx">i</span><span class="o">-</span><span class="mi">2</span><span class="p">])</span>
+</span><span id="__span-15-12"><a id="__codelineno-15-12" name="__codelineno-15-12" href="#__codelineno-15-12"></a><span class="w">        </span><span class="p">}</span>
+</span><span id="__span-15-13"><a id="__codelineno-15-13" name="__codelineno-15-13" href="#__codelineno-15-13"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="o">&amp;</span><span class="nx">example_interfaces</span><span class="p">.</span><span class="nx">FibonacciResult</span><span class="p">{</span><span class="nx">Sequence</span><span class="p">:</span><span class="w"> </span><span class="nx">seq</span><span class="p">},</span><span class="w"> </span><span class="kc">nil</span>
+</span><span id="__span-15-14"><a id="__codelineno-15-14" name="__codelineno-15-14" href="#__codelineno-15-14"></a><span class="w">    </span><span class="p">},</span>
+</span><span id="__span-15-15"><a id="__codelineno-15-15" name="__codelineno-15-15" href="#__codelineno-15-15"></a><span class="p">)</span>
+</span><span id="__span-15-16"><a id="__codelineno-15-16" name="__codelineno-15-16" href="#__codelineno-15-16"></a>
+</span><span id="__span-15-17"><a id="__codelineno-15-17" name="__codelineno-15-17" href="#__codelineno-15-17"></a><span class="c1">// Typed client</span>
+</span><span id="__span-15-18"><a id="__codelineno-15-18" name="__codelineno-15-18" href="#__codelineno-15-18"></a><span class="nx">client</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">rosz</span><span class="p">.</span><span class="nx">BuildTypedActionClient</span><span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">CreateActionClient</span><span class="p">(</span><span class="s">&quot;fibonacci&quot;</span><span class="p">),</span><span class="w"> </span><span class="o">&amp;</span><span class="nx">example_interfaces</span><span class="p">.</span><span class="nx">Fibonacci</span><span class="p">{})</span>
+</span><span id="__span-15-19"><a id="__codelineno-15-19" name="__codelineno-15-19" href="#__codelineno-15-19"></a><span class="nx">handle</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">rosz</span><span class="p">.</span><span class="nx">SendTypedGoal</span><span class="p">(</span><span class="nx">client</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="nx">example_interfaces</span><span class="p">.</span><span class="nx">FibonacciGoal</span><span class="p">{</span><span class="nx">Order</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">})</span>
+</span><span id="__span-15-20"><a id="__codelineno-15-20" name="__codelineno-15-20" href="#__codelineno-15-20"></a><span class="nx">result</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="o">&amp;</span><span class="nx">example_interfaces</span><span class="p">.</span><span class="nx">FibonacciResult</span><span class="p">{}</span>
+</span><span id="__span-15-21"><a id="__codelineno-15-21" name="__codelineno-15-21" href="#__codelineno-15-21"></a><span class="nx">err</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nx">rosz</span><span class="p">.</span><span class="nx">GetTypedResult</span><span class="p">(</span><span class="nx">handle</span><span class="p">,</span><span class="w"> </span><span class="nx">result</span><span class="p">)</span>
+</span></code></pre></div>
 <hr />
 <h2 id="qos">QoS<a class="headerlink" href="#qos" title="Permanent link">&para;</a></h2>
-<div class="language-go highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="nx">rosz</span><span class="p">.</span><span class="nx">QosDefault</span><span class="p">()</span><span class="w">          </span><span class="c1">// Reliable, Volatile, KeepLast(10)</span>
-</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="nx">rosz</span><span class="p">.</span><span class="nx">QosSensorData</span><span class="p">()</span><span class="w">       </span><span class="c1">// BestEffort, Volatile, KeepLast(5) — high-rate streams</span>
-</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="nx">rosz</span><span class="p">.</span><span class="nx">QosTransientLocal</span><span class="p">()</span><span class="w">   </span><span class="c1">// Reliable, TransientLocal, KeepLast(1) — /tf_static, /robot_description</span>
-</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="nx">rosz</span><span class="p">.</span><span class="nx">QosKeepAll</span><span class="p">()</span><span class="w">          </span><span class="c1">// Reliable, Volatile, KeepAll</span>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="nx">rosz</span><span class="p">.</span><span class="nx">QosDefault</span><span class="p">()</span><span class="w">          </span><span class="c1">// Reliable, Volatile, KeepLast(10)</span>
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="nx">rosz</span><span class="p">.</span><span class="nx">QosSensorData</span><span class="p">()</span><span class="w">       </span><span class="c1">// BestEffort, Volatile, KeepLast(5) — high-rate streams</span>
+</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="nx">rosz</span><span class="p">.</span><span class="nx">QosServicesDefault</span><span class="p">()</span><span class="w">  </span><span class="c1">// Reliable, Volatile, KeepLast(10)</span>
+</span><span id="__span-16-4"><a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a><span class="nx">rosz</span><span class="p">.</span><span class="nx">QosTransientLocal</span><span class="p">()</span><span class="w">   </span><span class="c1">// Reliable, TransientLocal, KeepLast(1) — /tf_static, /robot_description</span>
+</span><span id="__span-16-5"><a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a><span class="nx">rosz</span><span class="p">.</span><span class="nx">QosKeepAll</span><span class="p">()</span><span class="w">          </span><span class="c1">// Reliable, Volatile, KeepAll</span>
 </span></code></pre></div>
 <p>Apply with <code>.WithQoS(profile)</code> on the publisher or subscriber builder.</p>
 <div class="admonition tip">
@@ -2558,9 +2698,10 @@ accDescr: Go code calls through CGO into a C FFI layer that bridges to the Rust 
 </div>
 <hr />
 <h2 id="graph-introspection">Graph Introspection<a class="headerlink" href="#graph-introspection" title="Permanent link">&para;</a></h2>
-<div class="language-go highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="nx">topics</span><span class="p">,</span><span class="w"> </span><span class="nx">_</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">node</span><span class="p">.</span><span class="nx">GetTopicNamesAndTypes</span><span class="p">()</span><span class="w">    </span><span class="c1">// []TopicInfo</span>
-</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="nx">names</span><span class="p">,</span><span class="w"> </span><span class="nx">_</span><span class="w">  </span><span class="o">:=</span><span class="w"> </span><span class="nx">node</span><span class="p">.</span><span class="nx">GetNodeNames</span><span class="p">()</span><span class="w">             </span><span class="c1">// []NodeInfo</span>
-</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="nx">exists</span><span class="p">,</span><span class="w"> </span><span class="nx">_</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">node</span><span class="p">.</span><span class="nx">NodeExists</span><span class="p">(</span><span class="s">&quot;talker&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;/&quot;</span><span class="p">)</span>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="nx">topics</span><span class="p">,</span><span class="w"> </span><span class="nx">_</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">node</span><span class="p">.</span><span class="nx">GetTopicNamesAndTypes</span><span class="p">()</span><span class="w">    </span><span class="c1">// map[string][]string</span>
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="nx">names</span><span class="p">,</span><span class="w"> </span><span class="nx">_</span><span class="w">  </span><span class="o">:=</span><span class="w"> </span><span class="nx">node</span><span class="p">.</span><span class="nx">GetNodeNames</span><span class="p">()</span><span class="w">             </span><span class="c1">// []string</span>
+</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a><span class="nx">services</span><span class="p">,</span><span class="w"> </span><span class="nx">_</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">node</span><span class="p">.</span><span class="nx">GetServiceNamesAndTypes</span><span class="p">()</span>
+</span><span id="__span-17-4"><a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a><span class="nx">exists</span><span class="p">,</span><span class="w"> </span><span class="nx">_</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">node</span><span class="p">.</span><span class="nx">NodeExists</span><span class="p">(</span><span class="s">&quot;talker&quot;</span><span class="p">)</span>
 </span></code></pre></div>
 <p>Requires a Zenoh router and a brief settling time after nodes come online.</p>
 <hr />
@@ -2578,15 +2719,37 @@ accDescr: Go code calls through CGO into a C FFI layer that bridges to the Rust 
 <td><code>rosz.ErrBuildFailed</code></td>
 <td><code>Build()</code> failed — FFI returned nil</td>
 </tr>
+<tr>
+<td><code>rosz.ErrTimeout</code></td>
+<td>Service call timed out</td>
+</tr>
+<tr>
+<td><code>rosz.ErrGoalRejected</code></td>
+<td>Action server rejected the goal</td>
+</tr>
+<tr>
+<td><code>rosz.ErrResultFailed</code></td>
+<td>Could not retrieve action result</td>
+</tr>
+<tr>
+<td><code>rosz.ErrCancelFailed</code></td>
+<td>Cancellation request failed</td>
+</tr>
 </tbody>
 </table>
-<div class="language-go highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="k">if</span><span class="w"> </span><span class="nx">errors</span><span class="p">.</span><span class="nx">Is</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span><span class="w"> </span><span class="nx">rosz</span><span class="p">.</span><span class="nx">ErrBuildFailed</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="cm">/* construction failed */</span><span class="w"> </span><span class="p">}</span>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="k">if</span><span class="w"> </span><span class="nx">errors</span><span class="p">.</span><span class="nx">Is</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span><span class="w"> </span><span class="nx">rosz</span><span class="p">.</span><span class="nx">ErrBuildFailed</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="cm">/* construction failed */</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="k">if</span><span class="w"> </span><span class="nx">errors</span><span class="p">.</span><span class="nx">Is</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span><span class="w"> </span><span class="nx">rosz</span><span class="p">.</span><span class="nx">ErrTimeout</span><span class="p">)</span><span class="w">     </span><span class="p">{</span><span class="w"> </span><span class="cm">/* no server responded */</span><span class="w"> </span><span class="p">}</span>
 </span></code></pre></div>
 <p>Inspect the error code directly when you need fine-grained handling:</p>
-<div class="language-go highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="kd">var</span><span class="w"> </span><span class="nx">e</span><span class="w"> </span><span class="nx">rosz</span><span class="p">.</span><span class="nx">RoszError</span>
-</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="k">if</span><span class="w"> </span><span class="nx">errors</span><span class="p">.</span><span class="nx">As</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="nx">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="w">    </span><span class="nx">log</span><span class="p">.</span><span class="nx">Fatalf</span><span class="p">(</span><span class="s">&quot;FFI error %d: %s&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">e</span><span class="p">.</span><span class="nx">Code</span><span class="p">(),</span><span class="w"> </span><span class="nx">e</span><span class="p">.</span><span class="nx">Message</span><span class="p">())</span>
-</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="p">}</span>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="kd">var</span><span class="w"> </span><span class="nx">e</span><span class="w"> </span><span class="nx">rosz</span><span class="p">.</span><span class="nx">RoszError</span>
+</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="k">if</span><span class="w"> </span><span class="nx">errors</span><span class="p">.</span><span class="nx">As</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="nx">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-19-3"><a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a><span class="w">    </span><span class="k">switch</span><span class="w"> </span><span class="nx">e</span><span class="p">.</span><span class="nx">Code</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-19-4"><a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a><span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="nx">rosz</span><span class="p">.</span><span class="nx">ErrorCodeServiceTimeout</span><span class="p">:</span>
+</span><span id="__span-19-5"><a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a><span class="w">        </span><span class="c1">// retry</span>
+</span><span id="__span-19-6"><a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a><span class="w">    </span><span class="k">default</span><span class="p">:</span>
+</span><span id="__span-19-7"><a id="__codelineno-19-7" name="__codelineno-19-7" href="#__codelineno-19-7"></a><span class="w">        </span><span class="nx">log</span><span class="p">.</span><span class="nx">Fatalf</span><span class="p">(</span><span class="s">&quot;FFI error %d: %s&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">e</span><span class="p">.</span><span class="nx">Code</span><span class="p">(),</span><span class="w"> </span><span class="nx">e</span><span class="p">.</span><span class="nx">Message</span><span class="p">())</span>
+</span><span id="__span-19-8"><a id="__codelineno-19-8" name="__codelineno-19-8" href="#__codelineno-19-8"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-19-9"><a id="__codelineno-19-9" name="__codelineno-19-9" href="#__codelineno-19-9"></a><span class="p">}</span>
 </span></code></pre></div>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
@@ -2595,10 +2758,10 @@ accDescr: Go code calls through CGO into a C FFI layer that bridges to the Rust 
 <hr />
 <h2 id="logging-debugging">Logging &amp; Debugging<a class="headerlink" href="#logging-debugging" title="Permanent link">&para;</a></h2>
 <p>Set <code>ROSZ_LOG</code> to control the rosz package log level:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="nv">ROSZ_LOG</span><span class="o">=</span>debug<span class="w"> </span>go<span class="w"> </span>run<span class="w"> </span>main.go<span class="w">   </span><span class="c1"># all callbacks, CDR lengths, FFI calls</span>
-</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="nv">ROSZ_LOG</span><span class="o">=</span>info<span class="w">  </span>go<span class="w"> </span>run<span class="w"> </span>main.go<span class="w">   </span><span class="c1"># lifecycle events</span>
-</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="nv">ROSZ_LOG</span><span class="o">=</span>warn<span class="w">  </span>go<span class="w"> </span>run<span class="w"> </span>main.go<span class="w">   </span><span class="c1"># default — silent in production</span>
-</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="nv">ROSZ_LOG</span><span class="o">=</span>error<span class="w"> </span>go<span class="w"> </span>run<span class="w"> </span>main.go<span class="w">   </span><span class="c1"># errors only</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="nv">ROSZ_LOG</span><span class="o">=</span>debug<span class="w"> </span>go<span class="w"> </span>run<span class="w"> </span>main.go<span class="w">   </span><span class="c1"># all callbacks, CDR lengths, FFI calls</span>
+</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a><span class="nv">ROSZ_LOG</span><span class="o">=</span>info<span class="w">  </span>go<span class="w"> </span>run<span class="w"> </span>main.go<span class="w">   </span><span class="c1"># lifecycle events</span>
+</span><span id="__span-20-3"><a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a><span class="nv">ROSZ_LOG</span><span class="o">=</span>warn<span class="w">  </span>go<span class="w"> </span>run<span class="w"> </span>main.go<span class="w">   </span><span class="c1"># default — silent in production</span>
+</span><span id="__span-20-4"><a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a><span class="nv">ROSZ_LOG</span><span class="o">=</span>error<span class="w"> </span>go<span class="w"> </span>run<span class="w"> </span>main.go<span class="w">   </span><span class="c1"># errors only</span>
 </span></code></pre></div>
 <p>Logs go to stderr via Go's <code>log/slog</code> structured text format. For Zenoh-level tracing add <code>WithLogging()</code> to the context builder and set <code>RUST_LOG=zenoh=debug</code>.</p>
 <hr />
@@ -2623,15 +2786,47 @@ accDescr: Go code calls through CGO into a C FFI layer that bridges to the Rust 
 <td><code>subscriber_channel/</code></td>
 <td>Channel-based, <code>range</code>-friendly</td>
 </tr>
+<tr>
+<td><code>service_server/</code></td>
+<td>AddTwoInts server</td>
+</tr>
+<tr>
+<td><code>service_client/</code></td>
+<td>Synchronous call</td>
+</tr>
+<tr>
+<td><code>service_client_errors/</code></td>
+<td>Timeouts, retries, sentinel errors</td>
+</tr>
+<tr>
+<td><code>action_server/</code></td>
+<td>Fibonacci server with feedback</td>
+</tr>
+<tr>
+<td><code>action_client/</code></td>
+<td>Send goal · monitor feedback · get result</td>
+</tr>
+<tr>
+<td><code>action_client_errors/</code></td>
+<td>Rejected goals, cancellation</td>
+</tr>
+<tr>
+<td><code>production_service/</code></td>
+<td>Graceful shutdown, circuit breaker, metrics</td>
+</tr>
 </tbody>
 </table>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>just<span class="w"> </span>-f<span class="w"> </span>crates/ros-z-go/justfile<span class="w"> </span>run-example<span class="w"> </span>&lt;name&gt;
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>just<span class="w"> </span>-f<span class="w"> </span>crates/ros-z-go/justfile<span class="w"> </span>run-example<span class="w"> </span>&lt;name&gt;
 </span></code></pre></div>
+<p>See <code>crates/ros-z-go/examples/production_service/README.md</code> for the production walkthrough.</p>
 <hr />
 <h2 id="further-reading">Further Reading<a class="headerlink" href="#further-reading" title="Permanent link">&para;</a></h2>
 <ul>
 <li><strong><a href="../../core-concepts/pubsub/">Pub/Sub</a></strong> — QoS theory, ROS 2 interop requirements</li>
+<li><strong><a href="../../core-concepts/services/">Services</a></strong> — Service concepts</li>
+<li><strong><a href="../../core-concepts/actions/">Actions</a></strong> — Action lifecycle</li>
 <li><strong><a href="../../user-guide/message-generation/">Message Generation</a></strong> — Generating types from IDL</li>
+<li><strong><a href="../../user-guide/go_interop_tests/">Interop Tests</a></strong> — Test suite details</li>
 </ul>
 
 

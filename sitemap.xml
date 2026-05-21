@@ -5,6 +5,10 @@
          <lastmod>1980-01-01</lastmod>
     </url>
     <url>
+         <loc>https://zettascalelabs.github.io/ros-z/MDBOOK_INTEGRATION/</loc>
+         <lastmod>1980-01-01</lastmod>
+    </url>
+    <url>
          <loc>https://zettascalelabs.github.io/ros-z/bindings/go-quick-start/</loc>
          <lastmod>1980-01-01</lastmod>
     </url>
@@ -81,6 +85,10 @@
          <lastmod>1980-01-01</lastmod>
     </url>
     <url>
+         <loc>https://zettascalelabs.github.io/ros-z/mdbook/go_bindings_mdbook/</loc>
+         <lastmod>1980-01-01</lastmod>
+    </url>
+    <url>
          <loc>https://zettascalelabs.github.io/ros-z/reference/feature-comparison/</loc>
          <lastmod>1980-01-01</lastmod>
     </url>
@@ -118,6 +126,10 @@
     </url>
     <url>
          <loc>https://zettascalelabs.github.io/ros-z/user-guide/examples/</loc>
+         <lastmod>1980-01-01</lastmod>
+    </url>
+    <url>
+         <loc>https://zettascalelabs.github.io/ros-z/user-guide/go_interop_tests/</loc>
          <lastmod>1980-01-01</lastmod>
     </url>
     <url>
