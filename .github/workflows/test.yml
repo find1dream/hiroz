@@ -132,7 +132,7 @@ jobs:
 
       - name: Build Rust FFI library + example binaries
         run: |
-          FEATURES="ffi,${{ matrix.ros_z_feature }},rmw-zenoh"
+          FEATURES="ffi,${{ matrix.hiroz_feature }},rmw-zenoh"
           cargo build --release --no-default-features --features "$FEATURES" \
             --lib --example z_pubsub --example z_srvcli --example zenoh_router
 
