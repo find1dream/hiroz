@@ -12,7 +12,7 @@ import (
 // Example:
 //
 //	resp := &example_interfaces.AddTwoIntsResponse{}
-//	err := rosz.CallTyped(client, &example_interfaces.AddTwoIntsRequest{A: 1, B: 2}, resp)
+//	err := hiroz.CallTyped(client, &example_interfaces.AddTwoIntsRequest{A: 1, B: 2}, resp)
 //	fmt.Println(resp.Sum)
 func CallTyped[Resp Message](client *ServiceClient, request Message, response Resp) error {
 	respBytes, err := client.call(request)
@@ -30,7 +30,7 @@ func CallTyped[Resp Message](client *ServiceClient, request Message, response Re
 // Example:
 //
 //	resp := &example_interfaces.AddTwoIntsResponse{}
-//	err := rosz.CallTypedWithTimeout(client, req, resp, 10*time.Second)
+//	err := hiroz.CallTypedWithTimeout(client, req, resp, 10*time.Second)
 func CallTypedWithTimeout[Resp Message](client *ServiceClient, request Message, response Resp, timeout time.Duration) error {
 	respBytes, err := client.callWithTimeout(request, timeout)
 	if err != nil {
@@ -47,7 +47,7 @@ func CallTypedWithTimeout[Resp Message](client *ServiceClient, request Message, 
 //
 // Example:
 //
-//	server, err := rosz.BuildTypedServiceServer(
+//	server, err := hiroz.BuildTypedServiceServer(
 //	    node.CreateServiceServer("add_two_ints"),
 //	    &example_interfaces.AddTwoInts{},
 //	    func(req *example_interfaces.AddTwoIntsRequest) (*example_interfaces.AddTwoIntsResponse, error) {

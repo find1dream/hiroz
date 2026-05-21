@@ -9,11 +9,11 @@ import "fmt"
 //
 // Example:
 //
-//	server, err := rosz.BuildTypedActionServer(
+//	server, err := hiroz.BuildTypedActionServer(
 //	    node.CreateActionServer("fibonacci"),
 //	    &example_interfaces.Fibonacci{},
 //	    func(goal *example_interfaces.FibonacciGoal) bool { return true },
-//	    func(h *rosz.ServerGoalHandle, goal *example_interfaces.FibonacciGoal) (*example_interfaces.FibonacciResult, error) {
+//	    func(h *hiroz.ServerGoalHandle, goal *example_interfaces.FibonacciGoal) (*example_interfaces.FibonacciResult, error) {
 //	        seq := []int32{0, 1}
 //	        for i := 2; i < int(goal.Order); i++ {
 //	            if h.IsCancelRequested() { return &example_interfaces.FibonacciResult{Sequence: seq}, nil }
@@ -56,7 +56,7 @@ func BuildTypedActionServer[Goal, Result Message](
 // Example:
 //
 //	result := &example_interfaces.FibonacciResult{}
-//	err := rosz.GetTypedResult(handle, result)
+//	err := hiroz.GetTypedResult(handle, result)
 func GetTypedResult[Result Message](handle *GoalHandle, result Result) error {
 	resultBytes, err := handle.GetResult()
 	if err != nil {

@@ -166,7 +166,7 @@ func (c *ServiceClient) callRaw(requestBytes []byte, timeoutMs uint64) ([]byte, 
 
 // call makes a synchronous service call with a default timeout of DefaultServiceTimeout.
 // The request is serialized via CDR, sent, and the raw response bytes are returned.
-// For typed responses use rosz.CallTyped(client, req, &resp).
+// For typed responses use hiroz.CallTyped(client, req, &resp).
 func (c *ServiceClient) call(request Message) ([]byte, error) {
 	reqBytes, err := request.SerializeCDR()
 	if err != nil {

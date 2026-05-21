@@ -90,9 +90,9 @@ func TestPublisherPublishOnClosed(t *testing.T) {
 	}
 	// Closed-handle errors are plain errors, not wrapped RoszErrors —
 	// matches ServiceClient.callRaw and ActionClient.SendGoal.
-	var rerr RoszError
+	var rerr HirozError
 	if errors.As(err, &rerr) {
-		t.Errorf("closed publisher should not surface a RoszError, got: %v", err)
+		t.Errorf("closed publisher should not surface a HirozError, got: %v", err)
 	}
 }
 

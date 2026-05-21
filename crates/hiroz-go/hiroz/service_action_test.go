@@ -111,7 +111,7 @@ func TestWaitForServiceClosedClient(t *testing.T) {
 		t.Fatal("expected error from WaitForService on closed client, got nil")
 	}
 	// Closed-client error should not be wrapped as a service timeout.
-	var rerr RoszError
+	var rerr HirozError
 	if errors.As(err, &rerr) && rerr.Code() == ErrorCodeServiceTimeout {
 		t.Errorf("closed client should not surface ServiceTimeout, got: %v", err)
 	}
