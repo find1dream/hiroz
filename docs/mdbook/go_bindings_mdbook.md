@@ -813,7 +813,7 @@ cd crates/hiroz-go && go build ./...         # Build Go packages
 
 ## References
 
-- **Source**: [`hiroz-go/hiroz/`](https://github.com/ZettaScaleLabs/ros-z/tree/main/crates/hiroz-go/hiroz)
-- **Examples**: [`hiroz-go/examples/`](https://github.com/ZettaScaleLabs/ros-z/tree/main/crates/hiroz-go/examples)
-- **Tests**: [`hiroz-go/hiroz/*_test.go`](https://github.com/ZettaScaleLabs/ros-z/tree/main/crates/hiroz-go/hiroz)
-- **FFI Layer**: [`hiroz/src/ffi/`](https://github.com/ZettaScaleLabs/ros-z/tree/main/crates/hiroz/src/ffi)
+- **Source**: [`hiroz-go/hiroz/`](https://github.com/ZettaScaleLabs/hiroz/tree/main/crates/hiroz-go/hiroz)
+- **Examples**: [`hiroz-go/examples/`](https://github.com/ZettaScaleLabs/hiroz/tree/main/crates/hiroz-go/examples)
+- **Tests**: [`hiroz-go/hiroz/*_test.go`](https://github.com/ZettaScaleLabs/hiroz/tree/main/crates/hiroz-go/hiroz)
+- **FFI Layer**: [`hiroz/src/ffi/`](https://github.com/ZettaScaleLabs/hiroz/tree/main/crates/hiroz/src/ffi)

@@ -48,7 +48,7 @@ Integration tests live in `crates/hiroz-go/interop_tests/` and use the Go `integ
 - Stops the process via `t.Cleanup` — no manual teardown needed
 - `router.Config()` returns the `ZENOH_CONFIG_OVERRIDE`-format string for Go contexts
 - `getROS2Env(router)` returns env vars for ROS 2 processes: `RMW_IMPLEMENTATION=rmw_zenoh_cpp` and the matching `ZENOH_CONFIG_OVERRIDE`
-- `rustEnv(router)` returns env vars for Rust hiroz processes: `ROSZ_CONFIG_OVERRIDE` pointing at the test router
+- `rustEnv(router)` returns env vars for Rust hiroz processes: `ZENOH_CONFIG_OVERRIDE` pointing at the test router
 
 **Availability checks** run before tests that need external tools:
 
@@ -95,7 +95,7 @@ Tests skip gracefully when the Rust example binary is missing — build it first
 just -f crates/hiroz-go/justfile build-rust-examples
 ```
 
-**How Rust processes are configured:** `ZContextBuilder` in the Rust examples reads `ROSZ_CONFIG_OVERRIDE` (same `key=value;key=value` format as `ZENOH_CONFIG_OVERRIDE` for rmw) and applies those keys on top of the default ROS session config.  The test injects this variable to point the Rust process at the per-test router.
+**How Rust processes are configured:** `ZContextBuilder` in the Rust examples reads `ZENOH_CONFIG_OVERRIDE` (same `key=value;key=value` format as `ZENOH_CONFIG_OVERRIDE` for rmw) and applies those keys on top of the default ROS session config.  The test injects this variable to point the Rust process at the per-test router.
 
 ## Adding a New Integration Test
 

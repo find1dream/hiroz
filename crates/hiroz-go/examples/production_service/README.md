@@ -1,6 +1,6 @@
 <!--
 DO NOT EXPAND THIS README
-Documentation source: docs/ - Published: https://zettascalelabs.github.io/ros-z/
+Documentation source: docs/ - Published: https://zettascalelabs.github.io/hiroz/
 Keep this file minimal. Point readers to the book.
 -->
 
@@ -8,4 +8,4 @@ Keep this file minimal. Point readers to the book.
 
 Production-ready patterns for building robust ROS 2 services with hiroz-go.
 
-**📚 [Full Documentation](https://zettascalelabs.github.io/ros-z/bindings/go/)**
+**📚 [Full Documentation](https://zettascalelabs.github.io/hiroz/bindings/go/)**

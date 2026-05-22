@@ -310,7 +310,7 @@ func (s *ProductionServiceServer) Shutdown() {
 	// Signal goroutines to stop
 	s.cancel()
 
-	// Close ROS-Z resources
+	// Close hiroz resources
 	if s.server != nil {
 		s.server.Close()
 		s.logger.Info("Service server closed")
