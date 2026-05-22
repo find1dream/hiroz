@@ -22,7 +22,7 @@ package main
 // A subtle codegen regression — emitting `offset += 4` before a bounds check,
 // swapping `buf` and `data` variable names, an off-by-one in the alignment
 // formula — would pass every string-matching test but fail this one at
-// runtime. See https://github.com/ZettaScaleLabs/ros-z/issues/182.
+// runtime. See https://github.com/ZettaScaleLabs/hiroz/issues/182.
 
 import (
 	"os"
