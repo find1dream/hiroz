@@ -6,11 +6,11 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Native Rust ROS 2 implementation built on Zenoh">
+        <meta name="description" content="High-performance Interoperable Robotics on Zenoh">
       
       
       
-        <link rel="canonical" href="https://zettascalelabs.github.io/ros-z/bindings/python-codegen/">
+        <link rel="canonical" href="https://zettascalelabs.github.io/hiroz/bindings/python-codegen/">
       
       
         <link rel="prev" href="../python/">
@@ -24,7 +24,7 @@
     
     
       
-        <title>Codegen Internals - ros-z</title>
+        <title>Codegen Internals - HIROZ</title>
       
     
     
@@ -96,7 +96,7 @@
 
 <header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="ros-z" class="md-header__button md-logo" aria-label="ros-z" data-md-component="logo">
+    <a href="../.." title="HIROZ" class="md-header__button md-logo" aria-label="HIROZ" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 163" overflow="hidden"><path d="M67.5,0 C70.5,10.015361 71.5,23.0353303 70.5,39.0599078 C87.5,23.5360983 102.5,15.7741935 115.5,15.7741935 C108,23.2857143 108.272452,33.9711351 112.5,33.0506912 C124,30.546851 136.5,32.5499232 150,39.0599078 L150,153.269585 C150,165.695992 139.926407,175.769585 127.5,175.769585 L61.1792721,175.769585 C54.9660687,175.769585 49.9292721,170.732789 49.9292721,164.519585 C49.9292721,162.825588 50.3118282,161.153461 51.0483941,159.627979 C55.1904226,151.049532 63.9242912,142.158178 77.25,132.953917 C99,117.930876 107.25,107.414747 107.25,87.8847926 C107.25,76.6175115 101.235622,69.7933468 93,69.1059908 C84,68.3548387 77.25,72.8617512 77.25,79.6221198 C77.25,83.1274962 78.25,86.1321045 80.25,88.6359447 L45,114.175115 C42.5,117.680492 41.25,121.686636 41.25,126.193548 C31.75,126.193548 26.5,120.935484 25.5,110.419355 L30.5,74.1136713 C24.1666667,69.2729135 19.25,63.5140809 15.75,56.8371736 C21.5833333,59.8417819 27.3527952,61.6613272 33.0583855,62.2958096 L36,43.5668203 C38.5,30.546851 41.75,22.0337942 45.75,18.0276498 C45.25,27.0414747 46.25,38.0583717 48.75,51.078341 C59.25,35.5545315 65.5,18.5284178 67.5,0 Z M55.5,59.3410138 C54.8493151,62.5994361 52.5050666,67.1299821 48.4672671,72.9331549 C49.3254255,73.6214254 49.875,74.6796138 49.875,75.8663594 C49.875,77.9406086 48.1960678,79.6221198 46.125,79.6221198 C45.3413993,79.6221198 44.6139341,79.3814062 44.0134198,78.9679649 C42.9192012,80.380157 41.7480613,81.8501288 40.5,83.3778802 C48.0409322,84.7516633 53.0409322,83.2493592 55.5,78.8709677 C58.5613983,73.4201217 58.5,65.3502304 55.5,59.3410138 Z"/></svg>
@@ -110,7 +110,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            ros-z
+            HIROZ
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -198,13 +198,13 @@
     
     
       <div class="md-header__source">
-        <a href="https://github.com/ZettaScaleLabs/ros-z" title="Go to repository" class="md-source" data-md-component="source">
+        <a href="https://github.com/ZettaScaleLabs/hiroz" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
   </div>
   <div class="md-source__repository">
-    ZettaScaleLabs/ros-z
+    ZettaScaleLabs/hiroz
   </div>
 </a>
       </div>
@@ -418,23 +418,23 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="ros-z" class="md-nav__button md-logo" aria-label="ros-z" data-md-component="logo">
+    <a href="../.." title="HIROZ" class="md-nav__button md-logo" aria-label="HIROZ" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 163" overflow="hidden"><path d="M67.5,0 C70.5,10.015361 71.5,23.0353303 70.5,39.0599078 C87.5,23.5360983 102.5,15.7741935 115.5,15.7741935 C108,23.2857143 108.272452,33.9711351 112.5,33.0506912 C124,30.546851 136.5,32.5499232 150,39.0599078 L150,153.269585 C150,165.695992 139.926407,175.769585 127.5,175.769585 L61.1792721,175.769585 C54.9660687,175.769585 49.9292721,170.732789 49.9292721,164.519585 C49.9292721,162.825588 50.3118282,161.153461 51.0483941,159.627979 C55.1904226,151.049532 63.9242912,142.158178 77.25,132.953917 C99,117.930876 107.25,107.414747 107.25,87.8847926 C107.25,76.6175115 101.235622,69.7933468 93,69.1059908 C84,68.3548387 77.25,72.8617512 77.25,79.6221198 C77.25,83.1274962 78.25,86.1321045 80.25,88.6359447 L45,114.175115 C42.5,117.680492 41.25,121.686636 41.25,126.193548 C31.75,126.193548 26.5,120.935484 25.5,110.419355 L30.5,74.1136713 C24.1666667,69.2729135 19.25,63.5140809 15.75,56.8371736 C21.5833333,59.8417819 27.3527952,61.6613272 33.0583855,62.2958096 L36,43.5668203 C38.5,30.546851 41.75,22.0337942 45.75,18.0276498 C45.25,27.0414747 46.25,38.0583717 48.75,51.078341 C59.25,35.5545315 65.5,18.5284178 67.5,0 Z M55.5,59.3410138 C54.8493151,62.5994361 52.5050666,67.1299821 48.4672671,72.9331549 C49.3254255,73.6214254 49.875,74.6796138 49.875,75.8663594 C49.875,77.9406086 48.1960678,79.6221198 46.125,79.6221198 C45.3413993,79.6221198 44.6139341,79.3814062 44.0134198,78.9679649 C42.9192012,80.380157 41.7480613,81.8501288 40.5,83.3778802 C48.0409322,84.7516633 53.0409322,83.2493592 55.5,78.8709677 C58.5613983,73.4201217 58.5,65.3502304 55.5,59.3410138 Z"/></svg>
 
     </a>
-    ros-z
+    HIROZ
   </label>
   
     <div class="md-nav__source">
-      <a href="https://github.com/ZettaScaleLabs/ros-z" title="Go to repository" class="md-source" data-md-component="source">
+      <a href="https://github.com/ZettaScaleLabs/hiroz" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
   </div>
   <div class="md-source__repository">
-    ZettaScaleLabs/ros-z
+    ZettaScaleLabs/hiroz
   </div>
 </a>
     </div>
@@ -1258,7 +1258,7 @@
   
   
   <span class="md-ellipsis">
-    ros-z-console
+    hiroz-console
     
   </span>
   
@@ -1927,12 +1927,12 @@
   
   
     <li class="md-nav__item">
-      <a href="../../reference/ros2-to-rosz/" class="md-nav__link">
+      <a href="../../reference/ros2-to-hiroz/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    ROS 2 → ros-z API Mapping
+    ROS 2 → hiroz API Mapping
     
   </span>
   
@@ -2290,7 +2290,7 @@
 
 
   
-    <a href="https://github.com/ZettaScaleLabs/ros-z/edit/main/docs/bindings/python-codegen.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
+    <a href="https://github.com/ZettaScaleLabs/hiroz/edit/main/docs/bindings/python-codegen.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
     </a>
@@ -2299,14 +2299,14 @@
 
 
 <h1 id="python-code-generation-internals">Python Code Generation Internals<a class="headerlink" href="#python-code-generation-internals" title="Permanent link">&para;</a></h1>
-<p>This chapter explains how ros-z generates Python bindings for ROS 2 messages, including the architecture, generated code structure, and design rationale.</p>
+<p>This chapter explains how hiroz generates Python bindings for ROS 2 messages, including the architecture, generated code structure, and design rationale.</p>
 <h2 id="architecture-overview">Architecture Overview<a class="headerlink" href="#architecture-overview" title="Permanent link">&para;</a></h2>
-<p>ros-z uses a <strong>hybrid approach</strong>: Python classes for ergonomics, Rust for serialization performance. The architecture uses <strong>derive macros</strong> for automatic Python-Rust conversion of arbitrarily nested message types.</p>
+<p>hiroz uses a <strong>hybrid approach</strong>: Python classes for ergonomics, Rust for serialization performance. The architecture uses <strong>derive macros</strong> for automatic Python-Rust conversion of arbitrarily nested message types.</p>
 <pre class="mermaid"><code>graph TB
 accTitle: Python bindings code generation architecture from msg files to runtime
-accDescr: At build time ros-z-codegen parses msg files, resolves dependencies, and generates both Python msgspec structs and Rust PyO3 bindings; at runtime Python objects are converted to Rust structs and serialized to CDR bytes via derive macros.
+accDescr: At build time hiroz-codegen parses msg files, resolves dependencies, and generates both Python msgspec structs and Rust PyO3 bindings; at runtime Python objects are converted to Rust structs and serialized to CDR bytes via derive macros.
     subgraph "Build Time (cargo build)"
-        ROS[".msg/.srv files"] --&gt; Parser["ros-z-codegen&lt;br/&gt;Parser"]
+        ROS[".msg/.srv files"] --&gt; Parser["hiroz-codegen&lt;br/&gt;Parser"]
         Parser --&gt; Resolver["Dependency&lt;br/&gt;Resolver"]
         Resolver --&gt; PyGen["Python Generator"]
         Resolver --&gt; RsGen["Rust Generator"]
@@ -2315,7 +2315,7 @@ accDescr: At build time ros-z-codegen parses msg files, resolves dependencies, a
         RsGen --&gt; PyO3File["python_bindings.rs&lt;br/&gt;(serialize/deserialize)"]
     end
 
-    subgraph "Derive Macros (ros-z-derive)"
+    subgraph "Derive Macros (hiroz-derive)"
         Derive["FromPyMessage&lt;br/&gt;IntoPyMessage"]
         Derive --&gt;|"generates"| Extract["Field extraction code"]
         Derive --&gt;|"generates"| Construct["Object construction code"]
@@ -2324,7 +2324,7 @@ accDescr: At build time ros-z-codegen parses msg files, resolves dependencies, a
     subgraph "Runtime"
         PyFiles --&gt; PyObj["Python Object"]
         PyObj --&gt;|"FromPyMessage::from_py()"| RsStruct["Rust Struct"]
-        RsStruct --&gt;|"ros-z-cdr::to_vec()"| CDR["CDR Bytes"]
+        RsStruct --&gt;|"hiroz-cdr::to_vec()"| CDR["CDR Bytes"]
         CDR --&gt;|"Eclipse Zenoh"| Network["Network"]
     end</code></pre>
 <h3 id="key-components">Key Components<a class="headerlink" href="#key-components" title="Permanent link">&para;</a></h3>
@@ -2339,43 +2339,43 @@ accDescr: At build time ros-z-codegen parses msg files, resolves dependencies, a
 <tbody>
 <tr>
 <td><strong>Python Generator</strong></td>
-<td><code>ros-z-codegen/src/generator/python.rs</code></td>
+<td><code>hiroz-codegen/src/generator/python.rs</code></td>
 <td>Generates msgspec struct classes</td>
 </tr>
 <tr>
 <td><strong>Rust Generator</strong></td>
-<td><code>ros-z-codegen/src/generator/rust.rs</code></td>
+<td><code>hiroz-codegen/src/generator/rust.rs</code></td>
 <td>Generates Rust structs with derive attributes</td>
 </tr>
 <tr>
 <td><strong>PyO3 Generator</strong></td>
-<td><code>ros-z-codegen/src/python_msgspec_generator.rs</code></td>
+<td><code>hiroz-codegen/src/python_msgspec_generator.rs</code></td>
 <td>Generates serialize/deserialize wrapper functions</td>
 </tr>
 <tr>
 <td><strong>Derive Macros</strong></td>
-<td><code>ros-z-derive/src/lib.rs</code></td>
+<td><code>hiroz-derive/src/lib.rs</code></td>
 <td><code>FromPyMessage</code> and <code>IntoPyMessage</code> derive macros</td>
 </tr>
 <tr>
 <td><strong>Bridge Traits</strong></td>
-<td><code>ros-z/src/python_bridge.rs</code></td>
+<td><code>hiroz/src/python_bridge.rs</code></td>
 <td>Core traits for Python-Rust conversion</td>
 </tr>
 <tr>
 <td><strong>Build Script</strong></td>
-<td><code>ros-z-msgs/build.rs</code></td>
+<td><code>hiroz-msgs/build.rs</code></td>
 <td>Orchestrates code generation at build time</td>
 </tr>
 <tr>
 <td><strong>Generated Python</strong></td>
-<td><code>ros-z-msgs/python/ros_z_msgs_py/types/*.py</code></td>
+<td><code>hiroz-msgs/python/hiroz_msgs_py/types/*.py</code></td>
 <td>One file per ROS package</td>
 </tr>
 <tr>
 <td><strong>Generated Rust</strong></td>
 <td><code>$OUT_DIR/python_bindings.rs</code></td>
-<td>Compiled into <code>ros-z-msgs</code> crate</td>
+<td>Compiled into <code>hiroz-msgs</code> crate</td>
 </tr>
 </tbody>
 </table>
@@ -2418,8 +2418,8 @@ accDescr: At build time ros-z-codegen parses msg files, resolves dependencies, a
 <p>The Rust code generator adds derive attributes to message structs:</p>
 <div class="language-rust highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1">// Generated from std_msgs/msg/String.msg</span>
 </span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="cp">#[derive(Debug, Clone, Default, ::serde::Serialize, ::serde::Deserialize)]</span>
-</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="cp">#[cfg_attr(feature = </span><span class="s">&quot;python_registry&quot;</span><span class="cp">, derive(::ros_z_derive::FromPyMessage, ::ros_z_derive::IntoPyMessage))]</span>
-</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="cp">#[cfg_attr(feature = </span><span class="s">&quot;python_registry&quot;</span><span class="cp">, ros_msg(module = </span><span class="s">&quot;ros_z_msgs_py.types.std_msgs&quot;</span><span class="cp">))]</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="cp">#[cfg_attr(feature = </span><span class="s">&quot;python_registry&quot;</span><span class="cp">, derive(::hiroz_derive::FromPyMessage, ::hiroz_derive::IntoPyMessage))]</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="cp">#[cfg_attr(feature = </span><span class="s">&quot;python_registry&quot;</span><span class="cp">, ros_msg(module = </span><span class="s">&quot;hiroz_msgs_py.types.std_msgs&quot;</span><span class="cp">))]</span>
 </span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="k">pub</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nb">String</span><span class="w"> </span><span class="p">{</span>
 </span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">    </span><span class="k">pub</span><span class="w"> </span><span class="n">data</span><span class="p">:</span><span class="w"> </span><span class="nc">std</span><span class="p">::</span><span class="n">string</span><span class="p">::</span><span class="nb">String</span><span class="p">,</span>
 </span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="p">}</span>
@@ -2427,8 +2427,8 @@ accDescr: At build time ros-z-codegen parses msg files, resolves dependencies, a
 <p>For nested messages with optional fields:</p>
 <div class="language-rust highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1">// Generated from geometry_msgs/msg/Twist.msg</span>
 </span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="cp">#[derive(Debug, Clone, Default, ::serde::Serialize, ::serde::Deserialize)]</span>
-</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="cp">#[cfg_attr(feature = </span><span class="s">&quot;python_registry&quot;</span><span class="cp">, derive(::ros_z_derive::FromPyMessage, ::ros_z_derive::IntoPyMessage))]</span>
-</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="cp">#[cfg_attr(feature = </span><span class="s">&quot;python_registry&quot;</span><span class="cp">, ros_msg(module = </span><span class="s">&quot;ros_z_msgs_py.types.geometry_msgs&quot;</span><span class="cp">))]</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="cp">#[cfg_attr(feature = </span><span class="s">&quot;python_registry&quot;</span><span class="cp">, derive(::hiroz_derive::FromPyMessage, ::hiroz_derive::IntoPyMessage))]</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="cp">#[cfg_attr(feature = </span><span class="s">&quot;python_registry&quot;</span><span class="cp">, ros_msg(module = </span><span class="s">&quot;hiroz_msgs_py.types.geometry_msgs&quot;</span><span class="cp">))]</span>
 </span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="k">pub</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">Twist</span><span class="w"> </span><span class="p">{</span>
 </span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="w">    </span><span class="k">pub</span><span class="w"> </span><span class="n">linear</span><span class="p">:</span><span class="w"> </span><span class="nc">Vector3</span><span class="p">,</span>
 </span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="w">    </span><span class="k">pub</span><span class="w"> </span><span class="n">angular</span><span class="p">:</span><span class="w"> </span><span class="nc">Vector3</span><span class="p">,</span>
@@ -2468,13 +2468,13 @@ accDescr: At build time ros-z-codegen parses msg files, resolves dependencies, a
 </span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="cp">#[pyfunction]</span>
 </span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="k">pub</span><span class="w"> </span><span class="k">fn</span><span class="w"> </span><span class="nf">serialize_string</span><span class="p">(</span><span class="n">py</span><span class="p">:</span><span class="w"> </span><span class="nc">Python</span><span class="p">,</span><span class="w"> </span><span class="n">msg</span><span class="p">:</span><span class="w"> </span><span class="kp">&amp;</span><span class="nc">Bound</span><span class="o">&lt;&#39;</span><span class="nb">_</span><span class="p">,</span><span class="w"> </span><span class="n">PyAny</span><span class="o">&gt;</span><span class="p">)</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="nc">PyResult</span><span class="o">&lt;</span><span class="nb">Vec</span><span class="o">&lt;</span><span class="kt">u8</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="p">{</span>
 </span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="w">    </span><span class="k">use</span><span class="w"> </span><span class="p">::</span><span class="n">pyo3</span><span class="p">::</span><span class="n">types</span><span class="p">::</span><span class="n">PyAnyMethods</span><span class="p">;</span>
-</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="w">    </span><span class="k">use</span><span class="w"> </span><span class="p">::</span><span class="n">ros_z</span><span class="p">::</span><span class="n">python_bridge</span><span class="p">::</span><span class="n">FromPyMessage</span><span class="p">;</span>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="w">    </span><span class="k">use</span><span class="w"> </span><span class="p">::</span><span class="n">hiroz</span><span class="p">::</span><span class="n">python_bridge</span><span class="p">::</span><span class="n">FromPyMessage</span><span class="p">;</span>
 </span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>
 </span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="w">    </span><span class="c1">// Derive macro handles all field extraction recursively</span>
 </span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">rust_msg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&lt;</span><span class="n">ros</span><span class="p">::</span><span class="n">std_msgs</span><span class="p">::</span><span class="nb">String</span><span class="o">&gt;</span><span class="p">::</span><span class="n">from_py</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span><span class="o">?</span><span class="p">;</span>
 </span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a>
 </span><span id="__span-7-10"><a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a><span class="w">    </span><span class="c1">// CDR serialization with 4-byte encapsulation header</span>
-</span><span id="__span-7-11"><a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="k">mut</span><span class="w"> </span><span class="n">cdr_data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ros_z_cdr</span><span class="p">::</span><span class="n">to_vec</span><span class="p">::</span><span class="o">&lt;</span><span class="n">_</span><span class="p">,</span><span class="w"> </span><span class="n">ros_z_cdr</span><span class="p">::</span><span class="n">LittleEndian</span><span class="o">&gt;</span><span class="p">(</span><span class="o">&amp;</span><span class="n">rust_msg</span><span class="p">,</span><span class="w"> </span><span class="mi">256</span><span class="p">)</span>
+</span><span id="__span-7-11"><a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="k">mut</span><span class="w"> </span><span class="n">cdr_data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">hiroz_cdr</span><span class="p">::</span><span class="n">to_vec</span><span class="p">::</span><span class="o">&lt;</span><span class="n">_</span><span class="p">,</span><span class="w"> </span><span class="n">hiroz_cdr</span><span class="p">::</span><span class="n">LittleEndian</span><span class="o">&gt;</span><span class="p">(</span><span class="o">&amp;</span><span class="n">rust_msg</span><span class="p">,</span><span class="w"> </span><span class="mi">256</span><span class="p">)</span>
 </span><span id="__span-7-12"><a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a><span class="w">        </span><span class="p">.</span><span class="n">map_err</span><span class="p">(</span><span class="o">|</span><span class="n">e</span><span class="o">|</span><span class="w"> </span><span class="n">pyo3</span><span class="p">::</span><span class="n">exceptions</span><span class="p">::</span><span class="n">PyValueError</span><span class="p">::</span><span class="n">new_err</span><span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">to_string</span><span class="p">()))</span><span class="o">?</span><span class="p">;</span>
 </span><span id="__span-7-13"><a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="k">mut</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="fm">vec!</span><span class="p">[</span><span class="mh">0x00</span><span class="p">,</span><span class="w"> </span><span class="mh">0x01</span><span class="p">,</span><span class="w"> </span><span class="mh">0x00</span><span class="p">,</span><span class="w"> </span><span class="mh">0x00</span><span class="p">];</span><span class="w"> </span><span class="c1">// CDR encapsulation header</span>
 </span><span id="__span-7-14"><a id="__codelineno-7-14" name="__codelineno-7-14" href="#__codelineno-7-14"></a><span class="w">    </span><span class="n">result</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="o">&amp;</span><span class="k">mut</span><span class="w"> </span><span class="n">cdr_data</span><span class="p">);</span>
@@ -2484,11 +2484,11 @@ accDescr: At build time ros-z-codegen parses msg files, resolves dependencies, a
 </span><span id="__span-7-18"><a id="__codelineno-7-18" name="__codelineno-7-18" href="#__codelineno-7-18"></a><span class="c1">// Generated deserialize function - uses IntoPyMessage trait</span>
 </span><span id="__span-7-19"><a id="__codelineno-7-19" name="__codelineno-7-19" href="#__codelineno-7-19"></a><span class="cp">#[pyfunction]</span>
 </span><span id="__span-7-20"><a id="__codelineno-7-20" name="__codelineno-7-20" href="#__codelineno-7-20"></a><span class="k">pub</span><span class="w"> </span><span class="k">fn</span><span class="w"> </span><span class="nf">deserialize_string</span><span class="p">(</span><span class="n">py</span><span class="p">:</span><span class="w"> </span><span class="nc">Python</span><span class="p">,</span><span class="w"> </span><span class="n">bytes</span><span class="p">:</span><span class="w"> </span><span class="kp">&amp;</span><span class="p">[</span><span class="kt">u8</span><span class="p">])</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="nc">PyResult</span><span class="o">&lt;</span><span class="n">PyObject</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-7-21"><a id="__codelineno-7-21" name="__codelineno-7-21" href="#__codelineno-7-21"></a><span class="w">    </span><span class="k">use</span><span class="w"> </span><span class="p">::</span><span class="n">ros_z</span><span class="p">::</span><span class="n">python_bridge</span><span class="p">::</span><span class="n">IntoPyMessage</span><span class="p">;</span>
+</span><span id="__span-7-21"><a id="__codelineno-7-21" name="__codelineno-7-21" href="#__codelineno-7-21"></a><span class="w">    </span><span class="k">use</span><span class="w"> </span><span class="p">::</span><span class="n">hiroz</span><span class="p">::</span><span class="n">python_bridge</span><span class="p">::</span><span class="n">IntoPyMessage</span><span class="p">;</span>
 </span><span id="__span-7-22"><a id="__codelineno-7-22" name="__codelineno-7-22" href="#__codelineno-7-22"></a>
 </span><span id="__span-7-23"><a id="__codelineno-7-23" name="__codelineno-7-23" href="#__codelineno-7-23"></a><span class="w">    </span><span class="c1">// Skip 4-byte CDR encapsulation header</span>
 </span><span id="__span-7-24"><a id="__codelineno-7-24" name="__codelineno-7-24" href="#__codelineno-7-24"></a><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">cdr_data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">bytes</span><span class="p">[</span><span class="mi">4</span><span class="o">..</span><span class="p">];</span>
-</span><span id="__span-7-25"><a id="__codelineno-7-25" name="__codelineno-7-25" href="#__codelineno-7-25"></a><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="p">(</span><span class="n">rust_msg</span><span class="p">,</span><span class="w"> </span><span class="n">_</span><span class="p">):</span><span class="w"> </span><span class="p">(</span><span class="n">ros</span><span class="p">::</span><span class="n">std_msgs</span><span class="p">::</span><span class="nb">String</span><span class="p">,</span><span class="w"> </span><span class="n">_</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ros_z_cdr</span><span class="p">::</span><span class="n">from_bytes</span><span class="p">::</span><span class="o">&lt;</span><span class="n">_</span><span class="p">,</span><span class="w"> </span><span class="n">ros_z_cdr</span><span class="p">::</span><span class="n">LittleEndian</span><span class="o">&gt;</span><span class="p">(</span><span class="n">cdr_data</span><span class="p">)</span>
+</span><span id="__span-7-25"><a id="__codelineno-7-25" name="__codelineno-7-25" href="#__codelineno-7-25"></a><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="p">(</span><span class="n">rust_msg</span><span class="p">,</span><span class="w"> </span><span class="n">_</span><span class="p">):</span><span class="w"> </span><span class="p">(</span><span class="n">ros</span><span class="p">::</span><span class="n">std_msgs</span><span class="p">::</span><span class="nb">String</span><span class="p">,</span><span class="w"> </span><span class="n">_</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">hiroz_cdr</span><span class="p">::</span><span class="n">from_bytes</span><span class="p">::</span><span class="o">&lt;</span><span class="n">_</span><span class="p">,</span><span class="w"> </span><span class="n">hiroz_cdr</span><span class="p">::</span><span class="n">LittleEndian</span><span class="o">&gt;</span><span class="p">(</span><span class="n">cdr_data</span><span class="p">)</span>
 </span><span id="__span-7-26"><a id="__codelineno-7-26" name="__codelineno-7-26" href="#__codelineno-7-26"></a><span class="w">        </span><span class="p">.</span><span class="n">map_err</span><span class="p">(</span><span class="o">|</span><span class="n">e</span><span class="o">|</span><span class="w"> </span><span class="n">pyo3</span><span class="p">::</span><span class="n">exceptions</span><span class="p">::</span><span class="n">PyValueError</span><span class="p">::</span><span class="n">new_err</span><span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">to_string</span><span class="p">()))</span><span class="o">?</span><span class="p">;</span>
 </span><span id="__span-7-27"><a id="__codelineno-7-27" name="__codelineno-7-27" href="#__codelineno-7-27"></a>
 </span><span id="__span-7-28"><a id="__codelineno-7-28" name="__codelineno-7-28" href="#__codelineno-7-28"></a><span class="w">    </span><span class="c1">// Derive macro handles all field construction recursively</span>
@@ -2613,17 +2613,17 @@ accDescr: Zenoh delivers CDR bytes which are zero-copy deserialized into a Rust 
 <h3 id="step-by-step-flow">Step-by-step Flow<a class="headerlink" href="#step-by-step-flow" title="Permanent link">&para;</a></h3>
 <pre class="mermaid"><code>flowchart TD
 accTitle: Python bindings build process from cargo build to compiled output
-accDescr: Running cargo build triggers build.rs which discovers ROS packages, parses msg files, resolves dependencies, then generates both Python type files and a Rust PyO3 module compiled into ros-z-msgs.
-    A["cargo build ros-z-msgs&lt;br/&gt;--features python_registry"] --&gt; B["build.rs executes"]
+accDescr: Running cargo build triggers build.rs which discovers ROS packages, parses msg files, resolves dependencies, then generates both Python type files and a Rust PyO3 module compiled into hiroz-msgs.
+    A["cargo build hiroz-msgs&lt;br/&gt;--features python_registry"] --&gt; B["build.rs executes"]
     B --&gt; C["Discover ROS packages&lt;br/&gt;(AMENT_PREFIX_PATH or bundled)"]
     C --&gt; D["Parse .msg/.srv files"]
     D --&gt; E["Resolve dependencies&lt;br/&gt;(type hashes, nested types)"]
     E --&gt; F["Generate Python files"]
     E --&gt; G["Generate Rust PyO3 module"]
-    F --&gt; H["ros-z-msgs/python/&lt;br/&gt;ros_z_msgs_py/types/*.py"]
+    F --&gt; H["hiroz-msgs/python/&lt;br/&gt;hiroz_msgs_py/types/*.py"]
     G --&gt; I["$OUT_DIR/python_bindings.rs"]
     I --&gt; J["include!() in lib.rs"]
-    J --&gt; K["Compiled into ros-z-msgs"]</code></pre>
+    J --&gt; K["Compiled into hiroz-msgs"]</code></pre>
 <h3 id="output-locations">Output Locations<a class="headerlink" href="#output-locations" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
@@ -2636,12 +2636,12 @@ accDescr: Running cargo build triggers build.rs which discovers ROS packages, pa
 <tbody>
 <tr>
 <td>Python msgspec classes</td>
-<td><code>ros-z-msgs/python/ros_z_msgs_py/types/*.py</code></td>
+<td><code>hiroz-msgs/python/hiroz_msgs_py/types/*.py</code></td>
 <td>Yes</td>
 </tr>
 <tr>
 <td>Rust PyO3 bindings</td>
-<td><code>target/.../ros-z-msgs-.../out/python_bindings.rs</code></td>
+<td><code>target/.../hiroz-msgs-.../out/python_bindings.rs</code></td>
 <td>No (generated)</td>
 </tr>
 </tbody>
@@ -2652,7 +2652,7 @@ accDescr: Running cargo build triggers build.rs which discovers ROS packages, pa
 </span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="cp">#[cfg(feature = </span><span class="s">&quot;python_registry&quot;</span><span class="cp">)]</span>
 </span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="fm">include!</span><span class="p">(</span><span class="fm">concat!</span><span class="p">(</span><span class="fm">env!</span><span class="p">(</span><span class="s">&quot;OUT_DIR&quot;</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;/python_bindings.rs&quot;</span><span class="p">));</span>
 </span></code></pre></div>
-<p>The <code>ros-z-derive</code> crate provides the derive macros, and <code>ros-z/python</code> enables the <code>FromPyMessage</code> and <code>IntoPyMessage</code> traits.</p>
+<p>The <code>hiroz-derive</code> crate provides the derive macros, and <code>hiroz/python</code> enables the <code>FromPyMessage</code> and <code>IntoPyMessage</code> traits.</p>
 
 
 

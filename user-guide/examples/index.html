@@ -6,11 +6,11 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Native Rust ROS 2 implementation built on Zenoh">
+        <meta name="description" content="High-performance Interoperable Robotics on Zenoh">
       
       
       
-        <link rel="canonical" href="https://zettascalelabs.github.io/ros-z/user-guide/examples/">
+        <link rel="canonical" href="https://zettascalelabs.github.io/hiroz/user-guide/examples/">
       
       
         <link rel="prev" href="../../getting-started/quick-start/">
@@ -24,7 +24,7 @@
     
     
       
-        <title>Running Examples - ros-z</title>
+        <title>Running Examples - HIROZ</title>
       
     
     
@@ -96,7 +96,7 @@
 
 <header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="ros-z" class="md-header__button md-logo" aria-label="ros-z" data-md-component="logo">
+    <a href="../.." title="HIROZ" class="md-header__button md-logo" aria-label="HIROZ" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 163" overflow="hidden"><path d="M67.5,0 C70.5,10.015361 71.5,23.0353303 70.5,39.0599078 C87.5,23.5360983 102.5,15.7741935 115.5,15.7741935 C108,23.2857143 108.272452,33.9711351 112.5,33.0506912 C124,30.546851 136.5,32.5499232 150,39.0599078 L150,153.269585 C150,165.695992 139.926407,175.769585 127.5,175.769585 L61.1792721,175.769585 C54.9660687,175.769585 49.9292721,170.732789 49.9292721,164.519585 C49.9292721,162.825588 50.3118282,161.153461 51.0483941,159.627979 C55.1904226,151.049532 63.9242912,142.158178 77.25,132.953917 C99,117.930876 107.25,107.414747 107.25,87.8847926 C107.25,76.6175115 101.235622,69.7933468 93,69.1059908 C84,68.3548387 77.25,72.8617512 77.25,79.6221198 C77.25,83.1274962 78.25,86.1321045 80.25,88.6359447 L45,114.175115 C42.5,117.680492 41.25,121.686636 41.25,126.193548 C31.75,126.193548 26.5,120.935484 25.5,110.419355 L30.5,74.1136713 C24.1666667,69.2729135 19.25,63.5140809 15.75,56.8371736 C21.5833333,59.8417819 27.3527952,61.6613272 33.0583855,62.2958096 L36,43.5668203 C38.5,30.546851 41.75,22.0337942 45.75,18.0276498 C45.25,27.0414747 46.25,38.0583717 48.75,51.078341 C59.25,35.5545315 65.5,18.5284178 67.5,0 Z M55.5,59.3410138 C54.8493151,62.5994361 52.5050666,67.1299821 48.4672671,72.9331549 C49.3254255,73.6214254 49.875,74.6796138 49.875,75.8663594 C49.875,77.9406086 48.1960678,79.6221198 46.125,79.6221198 C45.3413993,79.6221198 44.6139341,79.3814062 44.0134198,78.9679649 C42.9192012,80.380157 41.7480613,81.8501288 40.5,83.3778802 C48.0409322,84.7516633 53.0409322,83.2493592 55.5,78.8709677 C58.5613983,73.4201217 58.5,65.3502304 55.5,59.3410138 Z"/></svg>
@@ -110,7 +110,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            ros-z
+            HIROZ
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -198,13 +198,13 @@
     
     
       <div class="md-header__source">
-        <a href="https://github.com/ZettaScaleLabs/ros-z" title="Go to repository" class="md-source" data-md-component="source">
+        <a href="https://github.com/ZettaScaleLabs/hiroz" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
   </div>
   <div class="md-source__repository">
-    ZettaScaleLabs/ros-z
+    ZettaScaleLabs/hiroz
   </div>
 </a>
       </div>
@@ -416,23 +416,23 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="ros-z" class="md-nav__button md-logo" aria-label="ros-z" data-md-component="logo">
+    <a href="../.." title="HIROZ" class="md-nav__button md-logo" aria-label="HIROZ" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 163" overflow="hidden"><path d="M67.5,0 C70.5,10.015361 71.5,23.0353303 70.5,39.0599078 C87.5,23.5360983 102.5,15.7741935 115.5,15.7741935 C108,23.2857143 108.272452,33.9711351 112.5,33.0506912 C124,30.546851 136.5,32.5499232 150,39.0599078 L150,153.269585 C150,165.695992 139.926407,175.769585 127.5,175.769585 L61.1792721,175.769585 C54.9660687,175.769585 49.9292721,170.732789 49.9292721,164.519585 C49.9292721,162.825588 50.3118282,161.153461 51.0483941,159.627979 C55.1904226,151.049532 63.9242912,142.158178 77.25,132.953917 C99,117.930876 107.25,107.414747 107.25,87.8847926 C107.25,76.6175115 101.235622,69.7933468 93,69.1059908 C84,68.3548387 77.25,72.8617512 77.25,79.6221198 C77.25,83.1274962 78.25,86.1321045 80.25,88.6359447 L45,114.175115 C42.5,117.680492 41.25,121.686636 41.25,126.193548 C31.75,126.193548 26.5,120.935484 25.5,110.419355 L30.5,74.1136713 C24.1666667,69.2729135 19.25,63.5140809 15.75,56.8371736 C21.5833333,59.8417819 27.3527952,61.6613272 33.0583855,62.2958096 L36,43.5668203 C38.5,30.546851 41.75,22.0337942 45.75,18.0276498 C45.25,27.0414747 46.25,38.0583717 48.75,51.078341 C59.25,35.5545315 65.5,18.5284178 67.5,0 Z M55.5,59.3410138 C54.8493151,62.5994361 52.5050666,67.1299821 48.4672671,72.9331549 C49.3254255,73.6214254 49.875,74.6796138 49.875,75.8663594 C49.875,77.9406086 48.1960678,79.6221198 46.125,79.6221198 C45.3413993,79.6221198 44.6139341,79.3814062 44.0134198,78.9679649 C42.9192012,80.380157 41.7480613,81.8501288 40.5,83.3778802 C48.0409322,84.7516633 53.0409322,83.2493592 55.5,78.8709677 C58.5613983,73.4201217 58.5,65.3502304 55.5,59.3410138 Z"/></svg>
 
     </a>
-    ros-z
+    HIROZ
   </label>
   
     <div class="md-nav__source">
-      <a href="https://github.com/ZettaScaleLabs/ros-z" title="Go to repository" class="md-source" data-md-component="source">
+      <a href="https://github.com/ZettaScaleLabs/hiroz" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
   </div>
   <div class="md-source__repository">
-    ZettaScaleLabs/ros-z
+    ZettaScaleLabs/hiroz
   </div>
 </a>
     </div>
@@ -598,9 +598,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#from-the-ros-z-repository" class="md-nav__link">
+  <a href="#from-the-hiroz-repository" class="md-nav__link">
     <span class="md-ellipsis">
-      From the ros-z Repository
+      From the hiroz Repository
     </span>
   </a>
   
@@ -1417,7 +1417,7 @@
   
   
   <span class="md-ellipsis">
-    ros-z-console
+    hiroz-console
     
   </span>
   
@@ -1848,12 +1848,12 @@
   
   
     <li class="md-nav__item">
-      <a href="../../reference/ros2-to-rosz/" class="md-nav__link">
+      <a href="../../reference/ros2-to-hiroz/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    ROS 2 → ros-z API Mapping
+    ROS 2 → hiroz API Mapping
     
   </span>
   
@@ -2022,9 +2022,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#from-the-ros-z-repository" class="md-nav__link">
+  <a href="#from-the-hiroz-repository" class="md-nav__link">
     <span class="md-ellipsis">
-      From the ros-z Repository
+      From the hiroz Repository
     </span>
   </a>
   
@@ -2142,7 +2142,7 @@
 
 
   
-    <a href="https://github.com/ZettaScaleLabs/ros-z/edit/main/docs/user-guide/examples.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
+    <a href="https://github.com/ZettaScaleLabs/hiroz/edit/main/docs/user-guide/examples.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
     </a>
@@ -2153,15 +2153,15 @@
 <h1 id="running-examples">Running Examples<a class="headerlink" href="#running-examples" title="Permanent link">&para;</a></h1>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>The examples described here are part of the ros-z repository. To run them, you must first clone the repository.</p>
+<p>The examples described here are part of the hiroz repository. To run them, you must first clone the repository.</p>
 </div>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/ZettaScaleLabs/ros-z.git
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="nb">cd</span><span class="w"> </span>ros-z
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/ZettaScaleLabs/hiroz.git
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="nb">cd</span><span class="w"> </span>hiroz
 </span></code></pre></div>
 <h2 id="start-the-eclipse-zenoh-router">Start the Eclipse Zenoh Router<a class="headerlink" href="#start-the-eclipse-zenoh-router" title="Permanent link">&para;</a></h2>
-<p>All examples require a Zenoh router to be running first (see <a href="../networking/">Networking</a> for why ros-z uses router-based architecture by default).</p>
-<h2 id="from-the-ros-z-repository">From the ros-z Repository<a class="headerlink" href="#from-the-ros-z-repository" title="Permanent link">&para;</a></h2>
-<p>If you're working in the ros-z repository, use the included router example:</p>
+<p>All examples require a Zenoh router to be running first (see <a href="../networking/">Networking</a> for why hiroz uses router-based architecture by default).</p>
+<h2 id="from-the-hiroz-repository">From the hiroz Repository<a class="headerlink" href="#from-the-hiroz-repository" title="Permanent link">&para;</a></h2>
+<p>If you're working in the hiroz repository, use the included router example:</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>cargo<span class="w"> </span>run<span class="w"> </span>--example<span class="w"> </span>zenoh_router
 </span></code></pre></div>
 <h2 id="from-your-own-project">From Your Own Project<a class="headerlink" href="#from-your-own-project" title="Permanent link">&para;</a></h2>
@@ -2185,7 +2185,7 @@
 </div>
 <hr />
 <h2 id="available-examples">Available Examples<a class="headerlink" href="#available-examples" title="Permanent link">&para;</a></h2>
-<p>Leave the router running in a separate terminal, then run any example from the ros-z repository root:</p>
+<p>Leave the router running in a separate terminal, then run any example from the hiroz repository root:</p>
 <table>
 <thead>
 <tr>
@@ -2207,7 +2207,7 @@
 </tr>
 <tr>
 <td><code>z_custom_message</code></td>
-<td>Custom <code>.msg</code> types without <code>ros-z-msgs</code>; shows the codegen workflow</td>
+<td>Custom <code>.msg</code> types without <code>hiroz-msgs</code>; shows the codegen workflow</td>
 <td><code>cargo run --example z_custom_message -- --mode status-pub</code></td>
 </tr>
 <tr>
@@ -2249,7 +2249,7 @@
 </table>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
-<p>For a detailed walkthrough of creating your own project with ros-z (not using the repository examples), see the <a href="../../getting-started/quick-start/#option-2-create-your-own-project">Quick Start</a> guide.</p>
+<p>For a detailed walkthrough of creating your own project with hiroz (not using the repository examples), see the <a href="../../getting-started/quick-start/#option-2-create-your-own-project">Quick Start</a> guide.</p>
 </div>
 <hr />
 <h2 id="demo-nodes">Demo Nodes<a class="headerlink" href="#demo-nodes" title="Permanent link">&para;</a></h2>
@@ -2497,19 +2497,19 @@
 <h2 id="custom-messages-demo">Custom Messages Demo<a class="headerlink" href="#custom-messages-demo" title="Permanent link">&para;</a></h2>
 <p>This example demonstrates how to generate Rust types from user-defined ROS 2 message definitions. See the <a href="../custom-messages/">Custom Messages</a> chapter for comprehensive documentation.</p>
 <p><strong>Quick start:</strong></p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="nb">cd</span><span class="w"> </span>crates/ros-z/examples/custom_msgs_demo
-</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="nv">ROS_Z_MSG_PATH</span><span class="o">=</span><span class="s2">&quot;./my_robot_msgs&quot;</span><span class="w"> </span>cargo<span class="w"> </span>build
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="nb">cd</span><span class="w"> </span>crates/hiroz/examples/custom_msgs_demo
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="nv">HIROZ_MSG_PATH</span><span class="o">=</span><span class="s2">&quot;./my_robot_msgs&quot;</span><span class="w"> </span>cargo<span class="w"> </span>build
 </span></code></pre></div>
 <hr />
 <h2 id="protobuf-demo">Protobuf Demo<a class="headerlink" href="#protobuf-demo" title="Permanent link">&para;</a></h2>
-<p>This example demonstrates using protobuf serialization with ros-z, both for ROS messages and custom protobuf messages. See the <a href="../protobuf/">Protobuf Serialization</a> chapter for comprehensive documentation.</p>
+<p>This example demonstrates using protobuf serialization with hiroz, both for ROS messages and custom protobuf messages. See the <a href="../protobuf/">Protobuf Serialization</a> chapter for comprehensive documentation.</p>
 <p><strong>Quick start:</strong></p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="nb">cd</span><span class="w"> </span>crates/ros-z/examples/protobuf_demo
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="nb">cd</span><span class="w"> </span>crates/hiroz/examples/protobuf_demo
 </span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>cargo<span class="w"> </span>run
 </span></code></pre></div>
 <hr />
 <h2 id="parameter-examples">Parameter Examples<a class="headerlink" href="#parameter-examples" title="Permanent link">&para;</a></h2>
-<p>These focused examples demonstrate the ros-z parameter subsystem without a mode-switching wrapper. See the <a href="../../core-concepts/parameters/">Parameters</a> chapter for comprehensive documentation.</p>
+<p>These focused examples demonstrate the hiroz parameter subsystem without a mode-switching wrapper. See the <a href="../../core-concepts/parameters/">Parameters</a> chapter for comprehensive documentation.</p>
 <p><strong>Quick start:</strong></p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>cargo<span class="w"> </span>run<span class="w"> </span>--example<span class="w"> </span>z_parameter_declare
 </span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>cargo<span class="w"> </span>run<span class="w"> </span>--example<span class="w"> </span>z_parameter_callback

@@ -6,11 +6,11 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Native Rust ROS 2 implementation built on Zenoh">
+        <meta name="description" content="High-performance Interoperable Robotics on Zenoh">
       
       
       
-        <link rel="canonical" href="https://zettascalelabs.github.io/ros-z/tools/console/">
+        <link rel="canonical" href="https://zettascalelabs.github.io/hiroz/tools/console/">
       
       
         <link rel="prev" href="../../user-guide/protobuf/">
@@ -24,7 +24,7 @@
     
     
       
-        <title>ros-z-console - ros-z</title>
+        <title>hiroz-console - HIROZ</title>
       
     
     
@@ -80,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#ros-z-console" class="md-skip">
+        <a href="#hiroz-console" class="md-skip">
           Skip to content
         </a>
       
@@ -96,7 +96,7 @@
 
 <header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="ros-z" class="md-header__button md-logo" aria-label="ros-z" data-md-component="logo">
+    <a href="../.." title="HIROZ" class="md-header__button md-logo" aria-label="HIROZ" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 163" overflow="hidden"><path d="M67.5,0 C70.5,10.015361 71.5,23.0353303 70.5,39.0599078 C87.5,23.5360983 102.5,15.7741935 115.5,15.7741935 C108,23.2857143 108.272452,33.9711351 112.5,33.0506912 C124,30.546851 136.5,32.5499232 150,39.0599078 L150,153.269585 C150,165.695992 139.926407,175.769585 127.5,175.769585 L61.1792721,175.769585 C54.9660687,175.769585 49.9292721,170.732789 49.9292721,164.519585 C49.9292721,162.825588 50.3118282,161.153461 51.0483941,159.627979 C55.1904226,151.049532 63.9242912,142.158178 77.25,132.953917 C99,117.930876 107.25,107.414747 107.25,87.8847926 C107.25,76.6175115 101.235622,69.7933468 93,69.1059908 C84,68.3548387 77.25,72.8617512 77.25,79.6221198 C77.25,83.1274962 78.25,86.1321045 80.25,88.6359447 L45,114.175115 C42.5,117.680492 41.25,121.686636 41.25,126.193548 C31.75,126.193548 26.5,120.935484 25.5,110.419355 L30.5,74.1136713 C24.1666667,69.2729135 19.25,63.5140809 15.75,56.8371736 C21.5833333,59.8417819 27.3527952,61.6613272 33.0583855,62.2958096 L36,43.5668203 C38.5,30.546851 41.75,22.0337942 45.75,18.0276498 C45.25,27.0414747 46.25,38.0583717 48.75,51.078341 C59.25,35.5545315 65.5,18.5284178 67.5,0 Z M55.5,59.3410138 C54.8493151,62.5994361 52.5050666,67.1299821 48.4672671,72.9331549 C49.3254255,73.6214254 49.875,74.6796138 49.875,75.8663594 C49.875,77.9406086 48.1960678,79.6221198 46.125,79.6221198 C45.3413993,79.6221198 44.6139341,79.3814062 44.0134198,78.9679649 C42.9192012,80.380157 41.7480613,81.8501288 40.5,83.3778802 C48.0409322,84.7516633 53.0409322,83.2493592 55.5,78.8709677 C58.5613983,73.4201217 58.5,65.3502304 55.5,59.3410138 Z"/></svg>
@@ -110,13 +110,13 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            ros-z
+            HIROZ
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              ros-z-console
+              hiroz-console
             
           </span>
         </div>
@@ -198,13 +198,13 @@
     
     
       <div class="md-header__source">
-        <a href="https://github.com/ZettaScaleLabs/ros-z" title="Go to repository" class="md-source" data-md-component="source">
+        <a href="https://github.com/ZettaScaleLabs/hiroz" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
   </div>
   <div class="md-source__repository">
-    ZettaScaleLabs/ros-z
+    ZettaScaleLabs/hiroz
   </div>
 </a>
       </div>
@@ -416,23 +416,23 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="ros-z" class="md-nav__button md-logo" aria-label="ros-z" data-md-component="logo">
+    <a href="../.." title="HIROZ" class="md-nav__button md-logo" aria-label="HIROZ" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 163" overflow="hidden"><path d="M67.5,0 C70.5,10.015361 71.5,23.0353303 70.5,39.0599078 C87.5,23.5360983 102.5,15.7741935 115.5,15.7741935 C108,23.2857143 108.272452,33.9711351 112.5,33.0506912 C124,30.546851 136.5,32.5499232 150,39.0599078 L150,153.269585 C150,165.695992 139.926407,175.769585 127.5,175.769585 L61.1792721,175.769585 C54.9660687,175.769585 49.9292721,170.732789 49.9292721,164.519585 C49.9292721,162.825588 50.3118282,161.153461 51.0483941,159.627979 C55.1904226,151.049532 63.9242912,142.158178 77.25,132.953917 C99,117.930876 107.25,107.414747 107.25,87.8847926 C107.25,76.6175115 101.235622,69.7933468 93,69.1059908 C84,68.3548387 77.25,72.8617512 77.25,79.6221198 C77.25,83.1274962 78.25,86.1321045 80.25,88.6359447 L45,114.175115 C42.5,117.680492 41.25,121.686636 41.25,126.193548 C31.75,126.193548 26.5,120.935484 25.5,110.419355 L30.5,74.1136713 C24.1666667,69.2729135 19.25,63.5140809 15.75,56.8371736 C21.5833333,59.8417819 27.3527952,61.6613272 33.0583855,62.2958096 L36,43.5668203 C38.5,30.546851 41.75,22.0337942 45.75,18.0276498 C45.25,27.0414747 46.25,38.0583717 48.75,51.078341 C59.25,35.5545315 65.5,18.5284178 67.5,0 Z M55.5,59.3410138 C54.8493151,62.5994361 52.5050666,67.1299821 48.4672671,72.9331549 C49.3254255,73.6214254 49.875,74.6796138 49.875,75.8663594 C49.875,77.9406086 48.1960678,79.6221198 46.125,79.6221198 C45.3413993,79.6221198 44.6139341,79.3814062 44.0134198,78.9679649 C42.9192012,80.380157 41.7480613,81.8501288 40.5,83.3778802 C48.0409322,84.7516633 53.0409322,83.2493592 55.5,78.8709677 C58.5613983,73.4201217 58.5,65.3502304 55.5,59.3410138 Z"/></svg>
 
     </a>
-    ros-z
+    HIROZ
   </label>
   
     <div class="md-nav__source">
-      <a href="https://github.com/ZettaScaleLabs/ros-z" title="Go to repository" class="md-source" data-md-component="source">
+      <a href="https://github.com/ZettaScaleLabs/hiroz" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
   </div>
   <div class="md-source__repository">
-    ZettaScaleLabs/ros-z
+    ZettaScaleLabs/hiroz
   </div>
 </a>
     </div>
@@ -1270,7 +1270,7 @@
   
   
   <span class="md-ellipsis">
-    ros-z-console
+    hiroz-console
     
   </span>
   
@@ -1283,7 +1283,7 @@
   
   
   <span class="md-ellipsis">
-    ros-z-console
+    hiroz-console
     
   </span>
   
@@ -2193,12 +2193,12 @@
   
   
     <li class="md-nav__item">
-      <a href="../../reference/ros2-to-rosz/" class="md-nav__link">
+      <a href="../../reference/ros2-to-hiroz/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    ROS 2 → ros-z API Mapping
+    ROS 2 → hiroz API Mapping
     
   </span>
   
@@ -2832,7 +2832,7 @@
 
 
   
-    <a href="https://github.com/ZettaScaleLabs/ros-z/edit/main/docs/tools/console.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
+    <a href="https://github.com/ZettaScaleLabs/hiroz/edit/main/docs/tools/console.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
     </a>
@@ -2840,30 +2840,30 @@
   
 
 
-<h1 id="ros-z-console">ros-z-console<a class="headerlink" href="#ros-z-console" title="Permanent link">&para;</a></h1>
-<p><strong>ros-z-console</strong> is a monitoring tool for ROS 2 systems built on Eclipse Zenoh.
+<h1 id="hiroz-console">hiroz-console<a class="headerlink" href="#hiroz-console" title="Permanent link">&para;</a></h1>
+<p><strong>hiroz-console</strong> is a monitoring tool for ROS 2 systems built on Eclipse Zenoh.
 It provides real-time graph inspection, dataflow monitoring, and metrics
 collection through two interfaces: an interactive TUI (Terminal User Interface)
 and a headless JSON streaming mode.</p>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
-<p>ros-z-console uses zero-interference monitoring via pure Zenoh subscribers -
+<p>hiroz-console uses zero-interference monitoring via pure Zenoh subscribers -
 it never pollutes the ROS graph with its own presence.</p>
 </div>
 <h2 id="network-topology">Network Topology<a class="headerlink" href="#network-topology" title="Permanent link">&para;</a></h2>
-<p>ros-z-console connects to the ROS 2 graph via a Zenoh router. All ROS 2 nodes
+<p>hiroz-console connects to the ROS 2 graph via a Zenoh router. All ROS 2 nodes
 using <a href="https://github.com/ros2/rmw_zenoh"><code>rmw_zenoh_cpp</code></a> communicate through the same router, enabling
-ros-z-console to observe the entire system.</p>
+hiroz-console to observe the entire system.</p>
 <pre class="mermaid"><code>graph LR
-accTitle: ros-z-console monitoring topology via Zenoh router
-accDescr: The ros-z-console connects as a read-only observer to the same Zenoh router that the talker and listener nodes use, enabling zero-interference monitoring of the ROS 2 graph.
+accTitle: hiroz-console monitoring topology via Zenoh router
+accDescr: The hiroz-console connects as a read-only observer to the same Zenoh router that the talker and listener nodes use, enabling zero-interference monitoring of the ROS 2 graph.
     subgraph "ROS 2 System"
         T[talker&lt;br/&gt;rmw_zenoh_cpp]
         L[listener&lt;br/&gt;rmw_zenoh_cpp]
     end
 
     R[Zenoh Router&lt;br/&gt;rmw_zenohd]
-    C[ros-z-console]
+    C[hiroz-console]
 
     T &lt;--&gt; R
     L &lt;--&gt; R
@@ -2872,7 +2872,7 @@ accDescr: The ros-z-console connects as a read-only observer to the same Zenoh r
     style C fill:#2ecc71,color:#fff
     style R fill:#3498db,color:#fff</code></pre>
 <h2 id="quick-start-monitoring-demo_nodes_cpp">Quick Start: Monitoring demo_nodes_cpp<a class="headerlink" href="#quick-start-monitoring-demo_nodes_cpp" title="Permanent link">&para;</a></h2>
-<p>This example shows ros-z-console monitoring the classic talker/listener demo from <code>demo_nodes_cpp</code>.</p>
+<p>This example shows hiroz-console monitoring the classic talker/listener demo from <code>demo_nodes_cpp</code>.</p>
 <p><strong>Terminal 1 - Start the Zenoh router:</strong></p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>ros2<span class="w"> </span>run<span class="w"> </span>rmw_zenoh_cpp<span class="w"> </span>rmw_zenohd
 </span></code></pre></div>
@@ -2888,18 +2888,18 @@ accDescr: The ros-z-console connects as a read-only observer to the same Zenoh r
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">RMW_IMPLEMENTATION</span><span class="o">=</span>rmw_zenoh_cpp
 </span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>ros2<span class="w"> </span>run<span class="w"> </span>demo_nodes_cpp<span class="w"> </span>listener
 </span></code></pre></div>
-<p><strong>Terminal 4 - Monitor with ros-z-console:</strong></p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>./target/release/ros-z-console<span class="w"> </span>tcp/127.0.0.1:7447<span class="w"> </span><span class="m">0</span>
+<p><strong>Terminal 4 - Monitor with hiroz-console:</strong></p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>./target/release/hiroz-console<span class="w"> </span>tcp/127.0.0.1:7447<span class="w"> </span><span class="m">0</span>
 </span></code></pre></div>
 <div class="admonition success">
 <p class="admonition-title">Success</p>
 <p>You should see the <code>/chatter</code> topic, the <code>talker</code> and <code>listener</code> nodes, and
-their services appear in ros-z-console. Use the TUI to browse topics, check
+their services appear in hiroz-console. Use the TUI to browse topics, check
 message rates, and inspect QoS settings.</p>
 </div>
 <h2 id="installation">Installation<a class="headerlink" href="#installation" title="Permanent link">&para;</a></h2>
 <h3 id="pre-built-binary-recommended">Pre-built Binary (Recommended)<a class="headerlink" href="#pre-built-binary-recommended" title="Permanent link">&para;</a></h3>
-<p>Download the latest release for your platform from the <a href="https://github.com/ZettaScaleLabs/ros-z/releases">Releases page</a>:</p>
+<p>Download the latest release for your platform from the <a href="https://github.com/ZettaScaleLabs/hiroz/releases">Releases page</a>:</p>
 <table>
 <thead>
 <tr>
@@ -2923,39 +2923,39 @@ message rates, and inspect QoS settings.</p>
 </tbody>
 </table>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1"># Linux x86_64 example — replace &lt;version&gt; and filename for your platform</span>
-</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>curl<span class="w"> </span>-Lo<span class="w"> </span>ros-z-console<span class="w"> </span>https://github.com/ZettaScaleLabs/ros-z/releases/download/&lt;version&gt;/bin-console-x86_64-linux
-</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>chmod<span class="w"> </span>+x<span class="w"> </span>ros-z-console
-</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>./ros-z-console<span class="w"> </span>tcp/127.0.0.1:7447<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>curl<span class="w"> </span>-Lo<span class="w"> </span>hiroz-console<span class="w"> </span>https://github.com/ZettaScaleLabs/hiroz/releases/download/&lt;version&gt;/bin-console-x86_64-linux
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>chmod<span class="w"> </span>+x<span class="w"> </span>hiroz-console
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>./hiroz-console<span class="w"> </span>tcp/127.0.0.1:7447<span class="w"> </span><span class="m">0</span>
 </span></code></pre></div>
-<p><code>ros-z-console</code> has no ROS 2 dependency — it works with any <a href="https://github.com/ros2/rmw_zenoh"><code>rmw_zenoh_cpp</code></a> or ros-z deployment.</p>
+<p><code>hiroz-console</code> has no ROS 2 dependency — it works with any <a href="https://github.com/ros2/rmw_zenoh"><code>rmw_zenoh_cpp</code></a> or hiroz deployment.</p>
 <h3 id="build-from-source">Build from Source<a class="headerlink" href="#build-from-source" title="Permanent link">&para;</a></h3>
 <p>Requires Rust 1.85+:</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1"># Build the console (release build)</span>
-</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>cargo<span class="w"> </span>build<span class="w"> </span>-p<span class="w"> </span>ros-z-console<span class="w"> </span>--release
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>cargo<span class="w"> </span>build<span class="w"> </span>-p<span class="w"> </span>hiroz-console<span class="w"> </span>--release
 </span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>
 </span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="c1"># Run directly from build output</span>
-</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>./target/release/ros-z-console<span class="w"> </span>tcp/127.0.0.1:7447<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>./target/release/hiroz-console<span class="w"> </span>tcp/127.0.0.1:7447<span class="w"> </span><span class="m">0</span>
 </span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>
-</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="c1"># Or install to ~/.cargo/bin so `ros-z-console` works from anywhere</span>
-</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>cargo<span class="w"> </span>install<span class="w"> </span>--path<span class="w"> </span>crates/ros-z-console
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="c1"># Or install to ~/.cargo/bin so `hiroz-console` works from anywhere</span>
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>cargo<span class="w"> </span>install<span class="w"> </span>--path<span class="w"> </span>crates/hiroz-console
 </span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>
 </span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="c1"># Or use cargo run during development (debug build)</span>
-</span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a>cargo<span class="w"> </span>run<span class="w"> </span>-p<span class="w"> </span>ros-z-console<span class="w"> </span>--<span class="w"> </span>tcp/127.0.0.1:7447<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a>cargo<span class="w"> </span>run<span class="w"> </span>-p<span class="w"> </span>hiroz-console<span class="w"> </span>--<span class="w"> </span>tcp/127.0.0.1:7447<span class="w"> </span><span class="m">0</span>
 </span><span id="__span-5-12"><a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a>
 </span><span id="__span-5-13"><a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a><span class="c1"># Headless JSON streaming</span>
-</span><span id="__span-5-14"><a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a>./target/release/ros-z-console<span class="w"> </span>--headless<span class="w"> </span>--json<span class="w"> </span>tcp/127.0.0.1:7447<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-5-14"><a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a>./target/release/hiroz-console<span class="w"> </span>--headless<span class="w"> </span>--json<span class="w"> </span>tcp/127.0.0.1:7447<span class="w"> </span><span class="m">0</span>
 </span><span id="__span-5-15"><a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a>
 </span><span id="__span-5-16"><a id="__codelineno-5-16" name="__codelineno-5-16" href="#__codelineno-5-16"></a><span class="c1"># Echo messages from a topic</span>
-</span><span id="__span-5-17"><a id="__codelineno-5-17" name="__codelineno-5-17" href="#__codelineno-5-17"></a>./target/release/ros-z-console<span class="w"> </span>--headless<span class="w"> </span>--echo<span class="w"> </span>/chatter<span class="w"> </span>tcp/127.0.0.1:7447<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-5-17"><a id="__codelineno-5-17" name="__codelineno-5-17" href="#__codelineno-5-17"></a>./target/release/hiroz-console<span class="w"> </span>--headless<span class="w"> </span>--echo<span class="w"> </span>/chatter<span class="w"> </span>tcp/127.0.0.1:7447<span class="w"> </span><span class="m">0</span>
 </span><span id="__span-5-18"><a id="__codelineno-5-18" name="__codelineno-5-18" href="#__codelineno-5-18"></a>
 </span><span id="__span-5-19"><a id="__codelineno-5-19" name="__codelineno-5-19" href="#__codelineno-5-19"></a><span class="c1"># Echo multiple topics with JSON output</span>
-</span><span id="__span-5-20"><a id="__codelineno-5-20" name="__codelineno-5-20" href="#__codelineno-5-20"></a>./target/release/ros-z-console<span class="w"> </span>--headless<span class="w"> </span>--json<span class="w"> </span>--echo<span class="w"> </span>/chatter<span class="w"> </span>--echo<span class="w"> </span>/cmd_vel<span class="w"> </span>tcp/127.0.0.1:7447<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-5-20"><a id="__codelineno-5-20" name="__codelineno-5-20" href="#__codelineno-5-20"></a>./target/release/hiroz-console<span class="w"> </span>--headless<span class="w"> </span>--json<span class="w"> </span>--echo<span class="w"> </span>/chatter<span class="w"> </span>--echo<span class="w"> </span>/cmd_vel<span class="w"> </span>tcp/127.0.0.1:7447<span class="w"> </span><span class="m">0</span>
 </span><span id="__span-5-21"><a id="__codelineno-5-21" name="__codelineno-5-21" href="#__codelineno-5-21"></a>
 </span><span id="__span-5-22"><a id="__codelineno-5-22" name="__codelineno-5-22" href="#__codelineno-5-22"></a><span class="c1"># Export graph snapshot and exit</span>
-</span><span id="__span-5-23"><a id="__codelineno-5-23" name="__codelineno-5-23" href="#__codelineno-5-23"></a>./target/release/ros-z-console<span class="w"> </span>--export<span class="w"> </span>graph.json<span class="w"> </span>tcp/127.0.0.1:7447<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-5-23"><a id="__codelineno-5-23" name="__codelineno-5-23" href="#__codelineno-5-23"></a>./target/release/hiroz-console<span class="w"> </span>--export<span class="w"> </span>graph.json<span class="w"> </span>tcp/127.0.0.1:7447<span class="w"> </span><span class="m">0</span>
 </span></code></pre></div>
 <h2 id="command-line-interface">Command Line Interface<a class="headerlink" href="#command-line-interface" title="Permanent link">&para;</a></h2>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>ros-z-console<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span><span class="w"> </span><span class="o">[</span>ROUTER<span class="o">]</span><span class="w"> </span><span class="o">[</span>DOMAIN<span class="o">]</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>hiroz-console<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span><span class="w"> </span><span class="o">[</span>ROUTER<span class="o">]</span><span class="w"> </span><span class="o">[</span>DOMAIN<span class="o">]</span>
 </span></code></pre></div>
 <h3 id="arguments">Arguments<a class="headerlink" href="#arguments" title="Permanent link">&para;</a></h3>
 <table>
@@ -3019,7 +3019,7 @@ message rates, and inspect QoS settings.</p>
 </tbody>
 </table>
 <h3 id="backend-selection">Backend Selection<a class="headerlink" href="#backend-selection" title="Permanent link">&para;</a></h3>
-<p>ros-z-console supports two discovery backends:</p>
+<p>hiroz-console supports two discovery backends:</p>
 <table>
 <thead>
 <tr>
@@ -3039,10 +3039,10 @@ message rates, and inspect QoS settings.</p>
 </tbody>
 </table>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="c1"># Monitor nodes using rmw_zenoh_cpp (default)</span>
-</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>ros-z-console<span class="w"> </span>tcp/127.0.0.1:7447<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>hiroz-console<span class="w"> </span>tcp/127.0.0.1:7447<span class="w"> </span><span class="m">0</span>
 </span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>
 </span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="c1"># Monitor nodes bridged via zenoh-bridge-ros2dds</span>
-</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>ros-z-console<span class="w"> </span>--backend<span class="w"> </span>ros2dds<span class="w"> </span>tcp/127.0.0.1:7447<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>hiroz-console<span class="w"> </span>--backend<span class="w"> </span>ros2dds<span class="w"> </span>tcp/127.0.0.1:7447<span class="w"> </span><span class="m">0</span>
 </span></code></pre></div>
 <h2 id="modes">Modes<a class="headerlink" href="#modes" title="Permanent link">&para;</a></h2>
 <h3 id="tui-mode-default">TUI Mode (Default)<a class="headerlink" href="#tui-mode-default" title="Permanent link">&para;</a></h3>
@@ -3053,7 +3053,7 @@ message rates, and inspect QoS settings.</p>
 <li><strong>Rate Monitoring</strong> - Quick rate check with <code>r</code> key (cached for 30s)</li>
 <li><strong>Measurement Tracking</strong> - Press <code>m</code> on a topic in the Topics tab to toggle it into the Measure panel tracking list</li>
 <li><strong>Measurement Panel</strong> - Navigate to the Measure tab to see real-time metrics (msg/s, KB/s, average payload) and a 60-second time-series chart</li>
-<li><strong>SQLite Recording</strong> - Press <code>w</code> to start/stop recording metrics to <code>ros-z-metrics.db</code></li>
+<li><strong>SQLite Recording</strong> - Press <code>w</code> to start/stop recording metrics to <code>hiroz-metrics.db</code></li>
 <li><strong>Detail Drilling</strong> - Press <code>Enter</code> to expand sections with QoS profiles</li>
 <li><strong>Export</strong> - Press <code>e</code> to export the current rate cache to a timestamped CSV file</li>
 <li><strong>Screenshot</strong> - Press <code>S</code> to capture the current TUI state</li>
@@ -3072,7 +3072,7 @@ message rates, and inspect QoS settings.</p>
 <li>Scripted monitoring</li>
 </ul>
 <p><strong>Human-readable output:</strong></p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>ros-z-console<span class="w"> </span>--headless<span class="w"> </span>tcp/127.0.0.1:7447<span class="w"> </span><span class="m">0</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>hiroz-console<span class="w"> </span>--headless<span class="w"> </span>tcp/127.0.0.1:7447<span class="w"> </span><span class="m">0</span>
 </span></code></pre></div>
 <div class="language-console highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="go">Discovered Topics:</span>
 </span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="go">  📡 /chatter (std_msgs/msg/String)</span>
@@ -3085,21 +3085,21 @@ message rates, and inspect QoS settings.</p>
 </span><span id="__span-9-9"><a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a><span class="go">[2026-01-21 10:30:00] Topic discovered: /rosout (rcl_interfaces/msg/Log)</span>
 </span></code></pre></div>
 <p><strong>JSON streaming output:</strong></p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>ros-z-console<span class="w"> </span>--headless<span class="w"> </span>--json<span class="w"> </span>tcp/127.0.0.1:7447<span class="w"> </span><span class="m">0</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>hiroz-console<span class="w"> </span>--headless<span class="w"> </span>--json<span class="w"> </span>tcp/127.0.0.1:7447<span class="w"> </span><span class="m">0</span>
 </span></code></pre></div>
 <div class="language-json highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="p">{</span><span class="nt">&quot;event&quot;</span><span class="p">:</span><span class="s2">&quot;initial_state&quot;</span><span class="p">,</span><span class="nt">&quot;domain_id&quot;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="nt">&quot;topics&quot;</span><span class="p">:[</span><span class="err">...</span><span class="p">],</span><span class="nt">&quot;nodes&quot;</span><span class="p">:[</span><span class="err">...</span><span class="p">],</span><span class="nt">&quot;services&quot;</span><span class="p">:[</span><span class="err">...</span><span class="p">]}</span>
 </span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="p">{</span><span class="nt">&quot;TopicDiscovered&quot;</span><span class="p">:{</span><span class="nt">&quot;topic&quot;</span><span class="p">:</span><span class="s2">&quot;/chatter&quot;</span><span class="p">,</span><span class="nt">&quot;type_name&quot;</span><span class="p">:</span><span class="s2">&quot;std_msgs/msg/String&quot;</span><span class="p">,</span><span class="nt">&quot;timestamp&quot;</span><span class="p">:{</span><span class="nt">&quot;secs_since_epoch&quot;</span><span class="p">:</span><span class="mi">1737449400</span><span class="p">,</span><span class="nt">&quot;nanos_since_epoch&quot;</span><span class="p">:</span><span class="mi">0</span><span class="p">}}}</span>
 </span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="p">{</span><span class="nt">&quot;NodeDiscovered&quot;</span><span class="p">:{</span><span class="nt">&quot;namespace&quot;</span><span class="p">:</span><span class="s2">&quot;/&quot;</span><span class="p">,</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="s2">&quot;talker&quot;</span><span class="p">,</span><span class="nt">&quot;timestamp&quot;</span><span class="p">:{</span><span class="nt">&quot;secs_since_epoch&quot;</span><span class="p">:</span><span class="mi">1737449400</span><span class="p">,</span><span class="nt">&quot;nanos_since_epoch&quot;</span><span class="p">:</span><span class="mi">0</span><span class="p">}}}</span>
 </span></code></pre></div>
 <h2 id="dynamic-topic-echo">Dynamic Topic Echo<a class="headerlink" href="#dynamic-topic-echo" title="Permanent link">&para;</a></h2>
-<p>ros-z-console can subscribe to and display messages from <strong>any ROS 2 topic</strong>
+<p>hiroz-console can subscribe to and display messages from <strong>any ROS 2 topic</strong>
 without compile-time knowledge of message types. Dynamic schema discovery via the ROS 2 Type Description service (REP-2016) powers this capability.</p>
 <div class="admonition success">
 <p class="admonition-title">Universal Message Support</p>
 <p>Echo works with all ROS 2 message types: primitives, nested messages, arrays, and custom types. No recompilation needed!</p>
 </div>
 <h3 id="how-it-works">How It Works<a class="headerlink" href="#how-it-works" title="Permanent link">&para;</a></h3>
-<p>When you echo a topic, ros-z-console:</p>
+<p>When you echo a topic, hiroz-console:</p>
 <ol>
 <li><strong>Discovers publishers</strong> on the topic using graph monitoring</li>
 <li><strong>Queries the Type Description service</strong> from the publisher's node</li>
@@ -3108,9 +3108,9 @@ without compile-time knowledge of message types. Dynamic schema discovery via th
 <li><strong>Deserializes and displays messages</strong> in real-time</li>
 </ol>
 <pre class="mermaid"><code>sequenceDiagram
-accTitle: ros-z-console topic echo flow using dynamic type discovery
+accTitle: hiroz-console topic echo flow using dynamic type discovery
 accDescr: The console queries the graph for publishers, retrieves the type schema from the publisher node, subscribes dynamically, then deserializes incoming CDR bytes for display.
-    participant C as ros-z-console
+    participant C as hiroz-console
     participant G as Graph
     participant P as Publisher Node
     participant Z as Zenoh
@@ -3125,10 +3125,10 @@ accDescr: The console queries the graph for publishers, retrieves the type schem
 <h3 id="basic-usage">Basic Usage<a class="headerlink" href="#basic-usage" title="Permanent link">&para;</a></h3>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>The examples below omit the <code>[ROUTER] [DOMAIN]</code> positional arguments. When omitted, they default to <code>tcp/127.0.0.1:7447</code> and <code>0</code> respectively. To use a different router or domain, add them at the end: <code>ros-z-console --headless --echo /chatter tcp/192.168.1.100:7447 1</code>.</p>
+<p>The examples below omit the <code>[ROUTER] [DOMAIN]</code> positional arguments. When omitted, they default to <code>tcp/127.0.0.1:7447</code> and <code>0</code> respectively. To use a different router or domain, add them at the end: <code>hiroz-console --headless --echo /chatter tcp/192.168.1.100:7447 1</code>.</p>
 </div>
 <p><strong>Echo a single topic:</strong></p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>ros-z-console<span class="w"> </span>--headless<span class="w"> </span>--echo<span class="w"> </span>/chatter
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>hiroz-console<span class="w"> </span>--headless<span class="w"> </span>--echo<span class="w"> </span>/chatter
 </span></code></pre></div>
 <p><strong>Output:</strong></p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>=== Subscribed to /chatter ===
@@ -3143,7 +3143,7 @@ accDescr: The console queries the graph for publishers, retrieves the type schem
 </span><span id="__span-13-10"><a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a>data: &quot;Hello World: 1&quot;
 </span></code></pre></div>
 <p><strong>JSON output mode:</strong></p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>ros-z-console<span class="w"> </span>--headless<span class="w"> </span>--json<span class="w"> </span>--echo<span class="w"> </span>/chatter
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>hiroz-console<span class="w"> </span>--headless<span class="w"> </span>--json<span class="w"> </span>--echo<span class="w"> </span>/chatter
 </span></code></pre></div>
 <div class="language-json highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="p">{</span><span class="nt">&quot;event&quot;</span><span class="p">:</span><span class="s2">&quot;topic_subscribed&quot;</span><span class="p">,</span><span class="nt">&quot;topic&quot;</span><span class="p">:</span><span class="s2">&quot;/chatter&quot;</span><span class="p">,</span><span class="nt">&quot;type_name&quot;</span><span class="p">:</span><span class="s2">&quot;std_msgs/msg/String&quot;</span><span class="p">,</span><span class="nt">&quot;type_hash&quot;</span><span class="p">:</span><span class="s2">&quot;RIHS01_df668...&quot;</span><span class="p">,</span><span class="nt">&quot;fields&quot;</span><span class="p">:[</span><span class="s2">&quot;data&quot;</span><span class="p">]}</span>
 </span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="p">{</span><span class="nt">&quot;event&quot;</span><span class="p">:</span><span class="s2">&quot;message_received&quot;</span><span class="p">,</span><span class="nt">&quot;topic&quot;</span><span class="p">:</span><span class="s2">&quot;/chatter&quot;</span><span class="p">,</span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="s2">&quot;std_msgs/msg/String&quot;</span><span class="p">,</span><span class="nt">&quot;data&quot;</span><span class="p">:{</span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="s2">&quot;Hello World: 0&quot;</span><span class="p">}}</span>
@@ -3151,21 +3151,21 @@ accDescr: The console queries the graph for publishers, retrieves the type schem
 </span></code></pre></div>
 <h3 id="multiple-topics">Multiple Topics<a class="headerlink" href="#multiple-topics" title="Permanent link">&para;</a></h3>
 <p>Echo multiple topics simultaneously:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>ros-z-console<span class="w"> </span>--headless<span class="w"> </span>--echo<span class="w"> </span>/chatter<span class="w"> </span>--echo<span class="w"> </span>/cmd_vel<span class="w"> </span>--echo<span class="w"> </span>/odom
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>hiroz-console<span class="w"> </span>--headless<span class="w"> </span>--echo<span class="w"> </span>/chatter<span class="w"> </span>--echo<span class="w"> </span>/cmd_vel<span class="w"> </span>--echo<span class="w"> </span>/odom
 </span></code></pre></div>
 <p>Each topic is independently discovered and subscribed with its own dynamic schema.</p>
 <h3 id="supported-message-types">Supported Message Types<a class="headerlink" href="#supported-message-types" title="Permanent link">&para;</a></h3>
 <h4 id="primitives">Primitives<a class="headerlink" href="#primitives" title="Permanent link">&para;</a></h4>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="c1"># String messages</span>
-</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>ros-z-console<span class="w"> </span>--headless<span class="w"> </span>--echo<span class="w"> </span>/chatter
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>hiroz-console<span class="w"> </span>--headless<span class="w"> </span>--echo<span class="w"> </span>/chatter
 </span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>
 </span><span id="__span-17-4"><a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a><span class="c1"># Numeric types</span>
-</span><span id="__span-17-5"><a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a>ros-z-console<span class="w"> </span>--headless<span class="w"> </span>--echo<span class="w"> </span>/count<span class="w">      </span><span class="c1"># Int32</span>
-</span><span id="__span-17-6"><a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a>ros-z-console<span class="w"> </span>--headless<span class="w"> </span>--echo<span class="w"> </span>/sensor<span class="w">     </span><span class="c1"># Float64</span>
+</span><span id="__span-17-5"><a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a>hiroz-console<span class="w"> </span>--headless<span class="w"> </span>--echo<span class="w"> </span>/count<span class="w">      </span><span class="c1"># Int32</span>
+</span><span id="__span-17-6"><a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a>hiroz-console<span class="w"> </span>--headless<span class="w"> </span>--echo<span class="w"> </span>/sensor<span class="w">     </span><span class="c1"># Float64</span>
 </span></code></pre></div>
 <h4 id="nested-messages">Nested Messages<a class="headerlink" href="#nested-messages" title="Permanent link">&para;</a></h4>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="c1"># Twist (linear + angular vectors)</span>
-</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>ros-z-console<span class="w"> </span>--headless<span class="w"> </span>--echo<span class="w"> </span>/cmd_vel
+</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>hiroz-console<span class="w"> </span>--headless<span class="w"> </span>--echo<span class="w"> </span>/cmd_vel
 </span></code></pre></div>
 <p><strong>Output:</strong></p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>=== /cmd_vel ===
@@ -3180,34 +3180,34 @@ accDescr: The console queries the graph for publishers, retrieves the type schem
 </span></code></pre></div>
 <h4 id="arrays-and-sequences">Arrays and Sequences<a class="headerlink" href="#arrays-and-sequences" title="Permanent link">&para;</a></h4>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="c1"># Point cloud or array messages</span>
-</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>ros-z-console<span class="w"> </span>--headless<span class="w"> </span>--echo<span class="w"> </span>/scan
+</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>hiroz-console<span class="w"> </span>--headless<span class="w"> </span>--echo<span class="w"> </span>/scan
 </span></code></pre></div>
 <h3 id="use-cases">Use Cases<a class="headerlink" href="#use-cases" title="Permanent link">&para;</a></h3>
 <h4 id="debugging-message-content">Debugging Message Content<a class="headerlink" href="#debugging-message-content" title="Permanent link">&para;</a></h4>
 <p>Quickly inspect what publishers are sending:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>ros-z-console<span class="w"> </span>--headless<span class="w"> </span>--echo<span class="w"> </span>/diagnostics
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>hiroz-console<span class="w"> </span>--headless<span class="w"> </span>--echo<span class="w"> </span>/diagnostics
 </span></code></pre></div>
 <h4 id="data-analysis">Data Analysis<a class="headerlink" href="#data-analysis" title="Permanent link">&para;</a></h4>
 <p>Pipe JSON output to analysis tools:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>ros-z-console<span class="w"> </span>--headless<span class="w"> </span>--json<span class="w"> </span>--echo<span class="w"> </span>/pose<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="se">\</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>hiroz-console<span class="w"> </span>--headless<span class="w"> </span>--json<span class="w"> </span>--echo<span class="w"> </span>/pose<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="se">\</span>
 </span><span id="__span-22-2"><a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a><span class="w">  </span>jq<span class="w"> </span>-r<span class="w"> </span><span class="s1">&#39;select(.event==&quot;message_received&quot;) | .data.position.x&#39;</span>
 </span></code></pre></div>
 <h4 id="recording-specific-fields">Recording Specific Fields<a class="headerlink" href="#recording-specific-fields" title="Permanent link">&para;</a></h4>
 <p>Extract and log specific data:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>ros-z-console<span class="w"> </span>--headless<span class="w"> </span>--json<span class="w"> </span>--echo<span class="w"> </span>/sensor_data<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="se">\</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>hiroz-console<span class="w"> </span>--headless<span class="w"> </span>--json<span class="w"> </span>--echo<span class="w"> </span>/sensor_data<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="se">\</span>
 </span><span id="__span-23-2"><a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a><span class="w">  </span>jq<span class="w"> </span><span class="s1">&#39;.data.temperature&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>temps.log
 </span></code></pre></div>
 <h4 id="message-validation">Message Validation<a class="headerlink" href="#message-validation" title="Permanent link">&para;</a></h4>
 <p>Verify message structure and content during development:</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="c1"># Check if messages match expected schema</span>
-</span><span id="__span-24-2"><a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a>ros-z-console<span class="w"> </span>--headless<span class="w"> </span>--json<span class="w"> </span>--echo<span class="w"> </span>/my_custom_topic<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-24-2"><a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a>hiroz-console<span class="w"> </span>--headless<span class="w"> </span>--json<span class="w"> </span>--echo<span class="w"> </span>/my_custom_topic<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="se">\</span>
 </span><span id="__span-24-3"><a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a><span class="w">  </span>jq<span class="w"> </span><span class="s1">&#39;.data | keys&#39;</span>
 </span></code></pre></div>
 <h3 id="example-monitoring-robot-telemetry">Example: Monitoring Robot Telemetry<a class="headerlink" href="#example-monitoring-robot-telemetry" title="Permanent link">&para;</a></h3>
 <p>Monitor multiple robot topics simultaneously:</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="ch">#!/bin/bash</span>
 </span><span id="__span-25-2"><a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a><span class="c1"># Monitor robot state</span>
-</span><span id="__span-25-3"><a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a>ros-z-console<span class="w"> </span>--headless<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-25-3"><a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a>hiroz-console<span class="w"> </span>--headless<span class="w"> </span><span class="se">\</span>
 </span><span id="__span-25-4"><a id="__codelineno-25-4" name="__codelineno-25-4" href="#__codelineno-25-4"></a><span class="w">  </span>--echo<span class="w"> </span>/cmd_vel<span class="w"> </span><span class="se">\</span>
 </span><span id="__span-25-5"><a id="__codelineno-25-5" name="__codelineno-25-5" href="#__codelineno-25-5"></a><span class="w">  </span>--echo<span class="w"> </span>/odom<span class="w"> </span><span class="se">\</span>
 </span><span id="__span-25-6"><a id="__codelineno-25-6" name="__codelineno-25-6" href="#__codelineno-25-6"></a><span class="w">  </span>--echo<span class="w"> </span>/battery_state<span class="w"> </span><span class="se">\</span>
@@ -3215,21 +3215,21 @@ accDescr: The console queries the graph for publishers, retrieves the type schem
 </span><span id="__span-25-8"><a id="__codelineno-25-8" name="__codelineno-25-8" href="#__codelineno-25-8"></a><span class="w">  </span>&gt;<span class="w"> </span>robot_state.log
 </span></code></pre></div>
 <h3 id="integration-with-standard-ros-2">Integration with Standard ROS 2<a class="headerlink" href="#integration-with-standard-ros-2" title="Permanent link">&para;</a></h3>
-<p>ros-z-console echo works seamlessly with standard ROS 2 nodes:</p>
+<p>hiroz-console echo works seamlessly with standard ROS 2 nodes:</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-26-1"><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="c1"># Terminal 1: Standard ROS 2 publisher</span>
 </span><span id="__span-26-2"><a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a>ros2<span class="w"> </span>run<span class="w"> </span>demo_nodes_cpp<span class="w"> </span>talker
 </span><span id="__span-26-3"><a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a>
-</span><span id="__span-26-4"><a id="__codelineno-26-4" name="__codelineno-26-4" href="#__codelineno-26-4"></a><span class="c1"># Terminal 2: ros-z-console subscriber</span>
-</span><span id="__span-26-5"><a id="__codelineno-26-5" name="__codelineno-26-5" href="#__codelineno-26-5"></a>ros-z-console<span class="w"> </span>--headless<span class="w"> </span>--echo<span class="w"> </span>/chatter
+</span><span id="__span-26-4"><a id="__codelineno-26-4" name="__codelineno-26-4" href="#__codelineno-26-4"></a><span class="c1"># Terminal 2: hiroz-console subscriber</span>
+</span><span id="__span-26-5"><a id="__codelineno-26-5" name="__codelineno-26-5" href="#__codelineno-26-5"></a>hiroz-console<span class="w"> </span>--headless<span class="w"> </span>--echo<span class="w"> </span>/chatter
 </span></code></pre></div>
 <div class="admonition info">
 <p class="admonition-title">Type Hash Matching</p>
-<p>ros-z-console uses RIHS01 type hashes to ensure message compatibility. If type hashes don't match, the subscription will fail with a clear error message.</p>
+<p>hiroz-console uses RIHS01 type hashes to ensure message compatibility. If type hashes don't match, the subscription will fail with a clear error message.</p>
 </div>
 <h3 id="advanced-options">Advanced Options<a class="headerlink" href="#advanced-options" title="Permanent link">&para;</a></h3>
 <h4 id="with-debug-logging">With Debug Logging<a class="headerlink" href="#with-debug-logging" title="Permanent link">&para;</a></h4>
 <p>Enable detailed logging to troubleshoot discovery issues:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-27-1"><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="nv">RUST_LOG</span><span class="o">=</span><span class="nv">ros_z</span><span class="o">=</span>debug<span class="w"> </span>ros-z-console<span class="w"> </span>--headless<span class="w"> </span>--echo<span class="w"> </span>/chatter
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-27-1"><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="nv">RUST_LOG</span><span class="o">=</span><span class="nv">hiroz</span><span class="o">=</span>debug<span class="w"> </span>hiroz-console<span class="w"> </span>--headless<span class="w"> </span>--echo<span class="w"> </span>/chatter
 </span></code></pre></div>
 <p><strong>Debug output shows:</strong></p>
 <ul>
@@ -3260,7 +3260,7 @@ accDescr: The console queries the graph for publishers, retrieves the type schem
 <thead>
 <tr>
 <th>Feature</th>
-<th>ros-z-console</th>
+<th>hiroz-console</th>
 <th>ros2 topic echo</th>
 </tr>
 </thead>
@@ -3306,12 +3306,12 @@ accDescr: The console queries the graph for publishers, retrieves the type schem
 </ul>
 <div class="admonition tip">
 <p class="admonition-title">Schema Caching</p>
-<p>ros-z-console caches message schemas in a global registry. Once it discovers a type, subsequent subscriptions to topics with the same type are instant.</p>
+<p>hiroz-console caches message schemas in a global registry. Once it discovers a type, subsequent subscriptions to topics with the same type are instant.</p>
 </div>
 <h2 id="export-formats">Export Formats<a class="headerlink" href="#export-formats" title="Permanent link">&para;</a></h2>
 <p>Export the current graph state with the <code>--export</code> flag:</p>
 <h3 id="json-export">JSON Export<a class="headerlink" href="#json-export" title="Permanent link">&para;</a></h3>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-30-1"><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a>ros-z-console<span class="w"> </span>--export<span class="w"> </span>graph.json<span class="w"> </span>tcp/127.0.0.1:7447<span class="w"> </span><span class="m">0</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-30-1"><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a>hiroz-console<span class="w"> </span>--export<span class="w"> </span>graph.json<span class="w"> </span>tcp/127.0.0.1:7447<span class="w"> </span><span class="m">0</span>
 </span></code></pre></div>
 <p>Produces a structured JSON file with topics, nodes, services, and their relationships:</p>
 <div class="language-json highlight"><pre><span></span><code><span id="__span-31-1"><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a><span class="p">{</span>
@@ -3327,7 +3327,7 @@ accDescr: The console queries the graph for publishers, retrieves the type schem
 </span><span id="__span-31-11"><a id="__codelineno-31-11" name="__codelineno-31-11" href="#__codelineno-31-11"></a><span class="p">}</span>
 </span></code></pre></div>
 <h3 id="graphviz-dot-export">GraphViz DOT Export<a class="headerlink" href="#graphviz-dot-export" title="Permanent link">&para;</a></h3>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-32-1"><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a>ros-z-console<span class="w"> </span>--export<span class="w"> </span>graph.dot<span class="w"> </span>tcp/127.0.0.1:7447<span class="w"> </span><span class="m">0</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-32-1"><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a>hiroz-console<span class="w"> </span>--export<span class="w"> </span>graph.dot<span class="w"> </span>tcp/127.0.0.1:7447<span class="w"> </span><span class="m">0</span>
 </span><span id="__span-32-2"><a id="__codelineno-32-2" name="__codelineno-32-2" href="#__codelineno-32-2"></a>dot<span class="w"> </span>-Tpng<span class="w"> </span>graph.dot<span class="w"> </span>-o<span class="w"> </span>graph.png
 </span></code></pre></div>
 <p>Generates a visual graph representation with:</p>
@@ -3338,7 +3338,7 @@ accDescr: The console queries the graph for publishers, retrieves the type schem
 <li>Subscriber edges in green</li>
 </ul>
 <h3 id="csv-export">CSV Export<a class="headerlink" href="#csv-export" title="Permanent link">&para;</a></h3>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-33-1"><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a>ros-z-console<span class="w"> </span>--export<span class="w"> </span>metrics.csv<span class="w"> </span>tcp/127.0.0.1:7447<span class="w"> </span><span class="m">0</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-33-1"><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a>hiroz-console<span class="w"> </span>--export<span class="w"> </span>metrics.csv<span class="w"> </span>tcp/127.0.0.1:7447<span class="w"> </span><span class="m">0</span>
 </span></code></pre></div>
 <p>Exports metrics recorded during the current TUI session. Use <code>w</code> in the TUI to start recording before exporting:</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-34-1"><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a>timestamp,topic,rate_hz,bandwidth_kbps,avg_payload_bytes
@@ -3349,7 +3349,7 @@ accDescr: The console queries the graph for publishers, retrieves the type schem
 <p>The CSV file will be empty if you have not started recording with <code>w</code> in the TUI before exporting.</p>
 </div>
 <h2 id="event-types">Event Types<a class="headerlink" href="#event-types" title="Permanent link">&para;</a></h2>
-<p>ros-z-console tracks these system events:</p>
+<p>hiroz-console tracks these system events:</p>
 <table>
 <thead>
 <tr>
@@ -3389,7 +3389,7 @@ accDescr: The console queries the graph for publishers, retrieves the type schem
 </tbody>
 </table>
 <h2 id="configuration">Configuration<a class="headerlink" href="#configuration" title="Permanent link">&para;</a></h2>
-<p>Create a <code>ros-z-console.json</code> or <code>.ros-z-console.json</code> file:</p>
+<p>Create a <code>hiroz-console.json</code> or <code>.hiroz-console.json</code> file:</p>
 <div class="language-json highlight"><pre><span></span><code><span id="__span-35-1"><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a><span class="p">{</span>
 </span><span id="__span-35-2"><a id="__codelineno-35-2" name="__codelineno-35-2" href="#__codelineno-35-2"></a><span class="w">  </span><span class="nt">&quot;cache_ttl_seconds&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span>
 </span><span id="__span-35-3"><a id="__codelineno-35-3" name="__codelineno-35-3" href="#__codelineno-35-3"></a><span class="w">  </span><span class="nt">&quot;rate_cache_ttl_seconds&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span>
@@ -3425,44 +3425,44 @@ accDescr: The console queries the graph for publishers, retrieves the type schem
 <h2 id="integration-examples">Integration Examples<a class="headerlink" href="#integration-examples" title="Permanent link">&para;</a></h2>
 <h3 id="pipe-to-jq-for-filtering">Pipe to jq for filtering<a class="headerlink" href="#pipe-to-jq-for-filtering" title="Permanent link">&para;</a></h3>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-36-1"><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a><span class="c1"># Filter for topic discovery events</span>
-</span><span id="__span-36-2"><a id="__codelineno-36-2" name="__codelineno-36-2" href="#__codelineno-36-2"></a>ros-z-console<span class="w"> </span>--headless<span class="w"> </span>--json<span class="w"> </span><span class="p">|</span><span class="w"> </span>jq<span class="w"> </span><span class="s1">&#39;select(.TopicDiscovered != null)&#39;</span>
+</span><span id="__span-36-2"><a id="__codelineno-36-2" name="__codelineno-36-2" href="#__codelineno-36-2"></a>hiroz-console<span class="w"> </span>--headless<span class="w"> </span>--json<span class="w"> </span><span class="p">|</span><span class="w"> </span>jq<span class="w"> </span><span class="s1">&#39;select(.TopicDiscovered != null)&#39;</span>
 </span><span id="__span-36-3"><a id="__codelineno-36-3" name="__codelineno-36-3" href="#__codelineno-36-3"></a>
 </span><span id="__span-36-4"><a id="__codelineno-36-4" name="__codelineno-36-4" href="#__codelineno-36-4"></a><span class="c1"># Extract specific message fields</span>
-</span><span id="__span-36-5"><a id="__codelineno-36-5" name="__codelineno-36-5" href="#__codelineno-36-5"></a>ros-z-console<span class="w"> </span>--headless<span class="w"> </span>--json<span class="w"> </span>--echo<span class="w"> </span>/pose<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-36-5"><a id="__codelineno-36-5" name="__codelineno-36-5" href="#__codelineno-36-5"></a>hiroz-console<span class="w"> </span>--headless<span class="w"> </span>--json<span class="w"> </span>--echo<span class="w"> </span>/pose<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="se">\</span>
 </span><span id="__span-36-6"><a id="__codelineno-36-6" name="__codelineno-36-6" href="#__codelineno-36-6"></a><span class="w">  </span>jq<span class="w"> </span>-r<span class="w"> </span><span class="s1">&#39;select(.event==&quot;message_received&quot;) | .data.position&#39;</span>
 </span></code></pre></div>
 <h3 id="monitor-specific-topics">Monitor specific topics<a class="headerlink" href="#monitor-specific-topics" title="Permanent link">&para;</a></h3>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-37-1"><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a><span class="c1"># Watch for messages on specific topic</span>
-</span><span id="__span-37-2"><a id="__codelineno-37-2" name="__codelineno-37-2" href="#__codelineno-37-2"></a>ros-z-console<span class="w"> </span>--headless<span class="w"> </span>--json<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-E<span class="w"> </span><span class="s1">&#39;&quot;topic&quot;:&quot;/cmd_vel&quot;&#39;</span>
+</span><span id="__span-37-2"><a id="__codelineno-37-2" name="__codelineno-37-2" href="#__codelineno-37-2"></a>hiroz-console<span class="w"> </span>--headless<span class="w"> </span>--json<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-E<span class="w"> </span><span class="s1">&#39;&quot;topic&quot;:&quot;/cmd_vel&quot;&#39;</span>
 </span><span id="__span-37-3"><a id="__codelineno-37-3" name="__codelineno-37-3" href="#__codelineno-37-3"></a>
 </span><span id="__span-37-4"><a id="__codelineno-37-4" name="__codelineno-37-4" href="#__codelineno-37-4"></a><span class="c1"># Echo and filter by field value</span>
-</span><span id="__span-37-5"><a id="__codelineno-37-5" name="__codelineno-37-5" href="#__codelineno-37-5"></a>ros-z-console<span class="w"> </span>--headless<span class="w"> </span>--json<span class="w"> </span>--echo<span class="w"> </span>/sensor<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-37-5"><a id="__codelineno-37-5" name="__codelineno-37-5" href="#__codelineno-37-5"></a>hiroz-console<span class="w"> </span>--headless<span class="w"> </span>--json<span class="w"> </span>--echo<span class="w"> </span>/sensor<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="se">\</span>
 </span><span id="__span-37-6"><a id="__codelineno-37-6" name="__codelineno-37-6" href="#__codelineno-37-6"></a><span class="w">  </span>jq<span class="w"> </span><span class="s1">&#39;select(.data.temperature &gt; 50)&#39;</span>
 </span></code></pre></div>
 <h3 id="continuous-logging">Continuous logging<a class="headerlink" href="#continuous-logging" title="Permanent link">&para;</a></h3>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-38-1"><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a><span class="c1"># Log all graph events</span>
-</span><span id="__span-38-2"><a id="__codelineno-38-2" name="__codelineno-38-2" href="#__codelineno-38-2"></a>ros-z-console<span class="w"> </span>--headless<span class="w"> </span>--json<span class="w"> </span>&gt;&gt;<span class="w"> </span>ros-events.jsonl<span class="w"> </span><span class="p">&amp;</span>
+</span><span id="__span-38-2"><a id="__codelineno-38-2" name="__codelineno-38-2" href="#__codelineno-38-2"></a>hiroz-console<span class="w"> </span>--headless<span class="w"> </span>--json<span class="w"> </span>&gt;&gt;<span class="w"> </span>ros-events.jsonl<span class="w"> </span><span class="p">&amp;</span>
 </span><span id="__span-38-3"><a id="__codelineno-38-3" name="__codelineno-38-3" href="#__codelineno-38-3"></a>
 </span><span id="__span-38-4"><a id="__codelineno-38-4" name="__codelineno-38-4" href="#__codelineno-38-4"></a><span class="c1"># Log all messages from a topic</span>
-</span><span id="__span-38-5"><a id="__codelineno-38-5" name="__codelineno-38-5" href="#__codelineno-38-5"></a>ros-z-console<span class="w"> </span>--headless<span class="w"> </span>--json<span class="w"> </span>--echo<span class="w"> </span>/diagnostics<span class="w"> </span>&gt;&gt;<span class="w"> </span>diagnostics.jsonl<span class="w"> </span><span class="p">&amp;</span>
+</span><span id="__span-38-5"><a id="__codelineno-38-5" name="__codelineno-38-5" href="#__codelineno-38-5"></a>hiroz-console<span class="w"> </span>--headless<span class="w"> </span>--json<span class="w"> </span>--echo<span class="w"> </span>/diagnostics<span class="w"> </span>&gt;&gt;<span class="w"> </span>diagnostics.jsonl<span class="w"> </span><span class="p">&amp;</span>
 </span></code></pre></div>
 <h3 id="real-time-data-extraction">Real-time data extraction<a class="headerlink" href="#real-time-data-extraction" title="Permanent link">&para;</a></h3>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-39-1"><a id="__codelineno-39-1" name="__codelineno-39-1" href="#__codelineno-39-1"></a><span class="c1"># Extract velocity commands</span>
-</span><span id="__span-39-2"><a id="__codelineno-39-2" name="__codelineno-39-2" href="#__codelineno-39-2"></a>ros-z-console<span class="w"> </span>--headless<span class="w"> </span>--json<span class="w"> </span>--echo<span class="w"> </span>/cmd_vel<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-39-2"><a id="__codelineno-39-2" name="__codelineno-39-2" href="#__codelineno-39-2"></a>hiroz-console<span class="w"> </span>--headless<span class="w"> </span>--json<span class="w"> </span>--echo<span class="w"> </span>/cmd_vel<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="se">\</span>
 </span><span id="__span-39-3"><a id="__codelineno-39-3" name="__codelineno-39-3" href="#__codelineno-39-3"></a><span class="w">  </span>jq<span class="w"> </span>-r<span class="w"> </span><span class="s1">&#39;.data.linear.x&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="se">\</span>
 </span><span id="__span-39-4"><a id="__codelineno-39-4" name="__codelineno-39-4" href="#__codelineno-39-4"></a><span class="w">  </span>tee<span class="w"> </span>-a<span class="w"> </span>velocity.log
 </span><span id="__span-39-5"><a id="__codelineno-39-5" name="__codelineno-39-5" href="#__codelineno-39-5"></a>
 </span><span id="__span-39-6"><a id="__codelineno-39-6" name="__codelineno-39-6" href="#__codelineno-39-6"></a><span class="c1"># Monitor temperature sensor</span>
-</span><span id="__span-39-7"><a id="__codelineno-39-7" name="__codelineno-39-7" href="#__codelineno-39-7"></a>ros-z-console<span class="w"> </span>--headless<span class="w"> </span>--json<span class="w"> </span>--echo<span class="w"> </span>/temperature<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-39-7"><a id="__codelineno-39-7" name="__codelineno-39-7" href="#__codelineno-39-7"></a>hiroz-console<span class="w"> </span>--headless<span class="w"> </span>--json<span class="w"> </span>--echo<span class="w"> </span>/temperature<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="se">\</span>
 </span><span id="__span-39-8"><a id="__codelineno-39-8" name="__codelineno-39-8" href="#__codelineno-39-8"></a><span class="w">  </span>jq<span class="w"> </span>-r<span class="w"> </span><span class="s1">&#39;[.timestamp, .data.value] | @csv&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>temp.csv
 </span></code></pre></div>
 <h3 id="database-analysis">Database analysis<a class="headerlink" href="#database-analysis" title="Permanent link">&para;</a></h3>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-40-1"><a id="__codelineno-40-1" name="__codelineno-40-1" href="#__codelineno-40-1"></a><span class="c1"># After running TUI mode with measurements</span>
-</span><span id="__span-40-2"><a id="__codelineno-40-2" name="__codelineno-40-2" href="#__codelineno-40-2"></a>sqlite3<span class="w"> </span>ros-z-metrics.db<span class="w"> </span><span class="s2">&quot;SELECT topic, AVG(msgs_sec) FROM metrics GROUP BY topic&quot;</span>
+</span><span id="__span-40-2"><a id="__codelineno-40-2" name="__codelineno-40-2" href="#__codelineno-40-2"></a>sqlite3<span class="w"> </span>hiroz-metrics.db<span class="w"> </span><span class="s2">&quot;SELECT topic, AVG(msgs_sec) FROM metrics GROUP BY topic&quot;</span>
 </span></code></pre></div>
 <div class="admonition tip">
 <p class="admonition-title">Interoperability</p>
-<p>Both ros-z and rmw_zenoh_cpp use the same Zenoh-based discovery protocol. ros-z-console subscribes to the graph liveliness tokens that rmw_zenoh_cpp nodes publish, enabling seamless interoperability without any configuration changes.</p>
+<p>Both hiroz and rmw_zenoh_cpp use the same Zenoh-based discovery protocol. hiroz-console subscribes to the graph liveliness tokens that rmw_zenoh_cpp nodes publish, enabling seamless interoperability without any configuration changes.</p>
 </div>
 
 

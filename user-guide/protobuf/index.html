@@ -6,11 +6,11 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Native Rust ROS 2 implementation built on Zenoh">
+        <meta name="description" content="High-performance Interoperable Robotics on Zenoh">
       
       
       
-        <link rel="canonical" href="https://zettascalelabs.github.io/ros-z/user-guide/protobuf/">
+        <link rel="canonical" href="https://zettascalelabs.github.io/hiroz/user-guide/protobuf/">
       
       
         <link rel="prev" href="../custom-messages/">
@@ -24,7 +24,7 @@
     
     
       
-        <title>Protobuf Serialization - ros-z</title>
+        <title>Protobuf Serialization - HIROZ</title>
       
     
     
@@ -96,7 +96,7 @@
 
 <header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="ros-z" class="md-header__button md-logo" aria-label="ros-z" data-md-component="logo">
+    <a href="../.." title="HIROZ" class="md-header__button md-logo" aria-label="HIROZ" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 163" overflow="hidden"><path d="M67.5,0 C70.5,10.015361 71.5,23.0353303 70.5,39.0599078 C87.5,23.5360983 102.5,15.7741935 115.5,15.7741935 C108,23.2857143 108.272452,33.9711351 112.5,33.0506912 C124,30.546851 136.5,32.5499232 150,39.0599078 L150,153.269585 C150,165.695992 139.926407,175.769585 127.5,175.769585 L61.1792721,175.769585 C54.9660687,175.769585 49.9292721,170.732789 49.9292721,164.519585 C49.9292721,162.825588 50.3118282,161.153461 51.0483941,159.627979 C55.1904226,151.049532 63.9242912,142.158178 77.25,132.953917 C99,117.930876 107.25,107.414747 107.25,87.8847926 C107.25,76.6175115 101.235622,69.7933468 93,69.1059908 C84,68.3548387 77.25,72.8617512 77.25,79.6221198 C77.25,83.1274962 78.25,86.1321045 80.25,88.6359447 L45,114.175115 C42.5,117.680492 41.25,121.686636 41.25,126.193548 C31.75,126.193548 26.5,120.935484 25.5,110.419355 L30.5,74.1136713 C24.1666667,69.2729135 19.25,63.5140809 15.75,56.8371736 C21.5833333,59.8417819 27.3527952,61.6613272 33.0583855,62.2958096 L36,43.5668203 C38.5,30.546851 41.75,22.0337942 45.75,18.0276498 C45.25,27.0414747 46.25,38.0583717 48.75,51.078341 C59.25,35.5545315 65.5,18.5284178 67.5,0 Z M55.5,59.3410138 C54.8493151,62.5994361 52.5050666,67.1299821 48.4672671,72.9331549 C49.3254255,73.6214254 49.875,74.6796138 49.875,75.8663594 C49.875,77.9406086 48.1960678,79.6221198 46.125,79.6221198 C45.3413993,79.6221198 44.6139341,79.3814062 44.0134198,78.9679649 C42.9192012,80.380157 41.7480613,81.8501288 40.5,83.3778802 C48.0409322,84.7516633 53.0409322,83.2493592 55.5,78.8709677 C58.5613983,73.4201217 58.5,65.3502304 55.5,59.3410138 Z"/></svg>
@@ -110,7 +110,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            ros-z
+            HIROZ
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -198,13 +198,13 @@
     
     
       <div class="md-header__source">
-        <a href="https://github.com/ZettaScaleLabs/ros-z" title="Go to repository" class="md-source" data-md-component="source">
+        <a href="https://github.com/ZettaScaleLabs/hiroz" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
   </div>
   <div class="md-source__repository">
-    ZettaScaleLabs/ros-z
+    ZettaScaleLabs/hiroz
   </div>
 </a>
       </div>
@@ -416,23 +416,23 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="ros-z" class="md-nav__button md-logo" aria-label="ros-z" data-md-component="logo">
+    <a href="../.." title="HIROZ" class="md-nav__button md-logo" aria-label="HIROZ" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 163" overflow="hidden"><path d="M67.5,0 C70.5,10.015361 71.5,23.0353303 70.5,39.0599078 C87.5,23.5360983 102.5,15.7741935 115.5,15.7741935 C108,23.2857143 108.272452,33.9711351 112.5,33.0506912 C124,30.546851 136.5,32.5499232 150,39.0599078 L150,153.269585 C150,165.695992 139.926407,175.769585 127.5,175.769585 L61.1792721,175.769585 C54.9660687,175.769585 49.9292721,170.732789 49.9292721,164.519585 C49.9292721,162.825588 50.3118282,161.153461 51.0483941,159.627979 C55.1904226,151.049532 63.9242912,142.158178 77.25,132.953917 C99,117.930876 107.25,107.414747 107.25,87.8847926 C107.25,76.6175115 101.235622,69.7933468 93,69.1059908 C84,68.3548387 77.25,72.8617512 77.25,79.6221198 C77.25,83.1274962 78.25,86.1321045 80.25,88.6359447 L45,114.175115 C42.5,117.680492 41.25,121.686636 41.25,126.193548 C31.75,126.193548 26.5,120.935484 25.5,110.419355 L30.5,74.1136713 C24.1666667,69.2729135 19.25,63.5140809 15.75,56.8371736 C21.5833333,59.8417819 27.3527952,61.6613272 33.0583855,62.2958096 L36,43.5668203 C38.5,30.546851 41.75,22.0337942 45.75,18.0276498 C45.25,27.0414747 46.25,38.0583717 48.75,51.078341 C59.25,35.5545315 65.5,18.5284178 67.5,0 Z M55.5,59.3410138 C54.8493151,62.5994361 52.5050666,67.1299821 48.4672671,72.9331549 C49.3254255,73.6214254 49.875,74.6796138 49.875,75.8663594 C49.875,77.9406086 48.1960678,79.6221198 46.125,79.6221198 C45.3413993,79.6221198 44.6139341,79.3814062 44.0134198,78.9679649 C42.9192012,80.380157 41.7480613,81.8501288 40.5,83.3778802 C48.0409322,84.7516633 53.0409322,83.2493592 55.5,78.8709677 C58.5613983,73.4201217 58.5,65.3502304 55.5,59.3410138 Z"/></svg>
 
     </a>
-    ros-z
+    HIROZ
   </label>
   
     <div class="md-nav__source">
-      <a href="https://github.com/ZettaScaleLabs/ros-z" title="Go to repository" class="md-source" data-md-component="source">
+      <a href="https://github.com/ZettaScaleLabs/hiroz" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
   </div>
   <div class="md-source__repository">
-    ZettaScaleLabs/ros-z
+    ZettaScaleLabs/hiroz
   </div>
 </a>
     </div>
@@ -1330,9 +1330,9 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#step-5-use-in-ros-z" class="md-nav__link">
+  <a href="#step-5-use-in-hiroz" class="md-nav__link">
     <span class="md-ellipsis">
-      Step 5: Use in ros-z
+      Step 5: Use in hiroz
     </span>
   </a>
   
@@ -1617,7 +1617,7 @@
   
   
   <span class="md-ellipsis">
-    ros-z-console
+    hiroz-console
     
   </span>
   
@@ -2048,12 +2048,12 @@
   
   
     <li class="md-nav__item">
-      <a href="../../reference/ros2-to-rosz/" class="md-nav__link">
+      <a href="../../reference/ros2-to-hiroz/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    ROS 2 → ros-z API Mapping
+    ROS 2 → hiroz API Mapping
     
   </span>
   
@@ -2310,9 +2310,9 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#step-5-use-in-ros-z" class="md-nav__link">
+  <a href="#step-5-use-in-hiroz" class="md-nav__link">
     <span class="md-ellipsis">
-      Step 5: Use in ros-z
+      Step 5: Use in hiroz
     </span>
   </a>
   
@@ -2534,7 +2534,7 @@
 
 
   
-    <a href="https://github.com/ZettaScaleLabs/ros-z/edit/main/docs/user-guide/protobuf.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
+    <a href="https://github.com/ZettaScaleLabs/hiroz/edit/main/docs/user-guide/protobuf.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
     </a>
@@ -2544,12 +2544,12 @@
 
 <!-- markdownlint-disable MD046 -->
 <h1 id="protobuf-serialization">Protobuf Serialization<a class="headerlink" href="#protobuf-serialization" title="Permanent link">&para;</a></h1>
-<p><strong>Use Protocol Buffers as an alternative serialization format for ros-z messages.</strong> While CDR is the default ROS 2-compatible format, protobuf offers schema evolution, cross-language compatibility, and familiar tooling for teams already using the protobuf ecosystem.</p>
+<p><strong>Use Protocol Buffers as an alternative serialization format for hiroz messages.</strong> While CDR is the default ROS 2-compatible format, protobuf offers schema evolution, cross-language compatibility, and familiar tooling for teams already using the protobuf ecosystem.</p>
 <div class="admonition info">
 <p class="admonition-title">Info</p>
-<p>Protobuf support in ros-z enables two powerful use cases:
+<p>Protobuf support in hiroz enables two powerful use cases:
 1. <strong>ROS messages with protobuf encoding</strong> - Use standard ROS message types serialized via protobuf
-2. <strong>Pure protobuf messages</strong> - Send custom <code>.proto</code> messages directly through ros-z</p>
+2. <strong>Pure protobuf messages</strong> - Send custom <code>.proto</code> messages directly through hiroz</p>
 </div>
 <h2 id="when-to-use-protobuf">When to Use Protobuf<a class="headerlink" href="#when-to-use-protobuf" title="Permanent link">&para;</a></h2>
 <table>
@@ -2590,8 +2590,8 @@
 <h3 id="feature-flags">Feature Flags<a class="headerlink" href="#feature-flags" title="Permanent link">&para;</a></h3>
 <p>Enable protobuf in your <code>Cargo.toml</code>:</p>
 <div class="language-toml highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">[dependencies]</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">ros-z</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">version</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;0.1&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">features</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;protobuf&quot;</span><span class="p">]</span><span class="w"> </span><span class="p">}</span>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">ros-z-msgs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">version</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;0.1&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">features</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;geometry_msgs&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;protobuf&quot;</span><span class="p">]</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">hiroz</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">version</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;0.1&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">features</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;protobuf&quot;</span><span class="p">]</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">hiroz-msgs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">version</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;0.1&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">features</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;geometry_msgs&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;protobuf&quot;</span><span class="p">]</span><span class="w"> </span><span class="p">}</span>
 </span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="n">prost</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;0.13&quot;</span>
 </span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>
 </span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="k">[build-dependencies]</span>
@@ -2601,7 +2601,7 @@
 <p>For custom <code>.proto</code> files, add a <code>build.rs</code>:</p>
 <div class="language-rust highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">fn</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="nb">Result</span><span class="o">&lt;</span><span class="p">(),</span><span class="w"> </span><span class="nb">Box</span><span class="o">&lt;</span><span class="k">dyn</span><span class="w"> </span><span class="n">std</span><span class="p">::</span><span class="n">error</span><span class="p">::</span><span class="n">Error</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="p">{</span>
 </span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="k">mut</span><span class="w"> </span><span class="n">config</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">prost_build</span><span class="p">::</span><span class="n">Config</span><span class="p">::</span><span class="n">new</span><span class="p">();</span>
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span><span class="c1">// Enable serde support for ros-z compatibility</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span><span class="c1">// Enable serde support for hiroz compatibility</span>
 </span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">    </span><span class="n">config</span><span class="p">.</span><span class="n">type_attribute</span><span class="p">(</span><span class="s">&quot;.&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;#[derive(serde::Serialize, serde::Deserialize)]&quot;</span><span class="p">);</span>
 </span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">    </span><span class="n">config</span><span class="p">.</span><span class="n">compile_protos</span><span class="p">(</span><span class="o">&amp;</span><span class="p">[</span><span class="s">&quot;proto/sensor_data.proto&quot;</span><span class="p">],</span><span class="w"> </span><span class="o">&amp;</span><span class="p">[</span><span class="s">&quot;proto/&quot;</span><span class="p">])</span><span class="o">?</span><span class="p">;</span>
 </span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">    </span><span class="fm">println!</span><span class="p">(</span><span class="s">&quot;cargo:rerun-if-changed=proto/sensor_data.proto&quot;</span><span class="p">);</span>
@@ -2610,10 +2610,10 @@
 </span></code></pre></div>
 <h2 id="approach-1-ros-messages-with-protobuf">Approach 1: ROS Messages with Protobuf<a class="headerlink" href="#approach-1-ros-messages-with-protobuf" title="Permanent link">&para;</a></h2>
 <p>Use auto-generated ROS message types with protobuf serialization:</p>
-<div class="language-rust highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">use</span><span class="w"> </span><span class="n">ros_z</span><span class="p">::</span><span class="n">msg</span><span class="p">::</span><span class="n">ProtobufSerdes</span><span class="p">;</span>
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="k">use</span><span class="w"> </span><span class="n">ros_z_msgs</span><span class="p">::</span><span class="n">proto</span><span class="p">::</span><span class="n">geometry_msgs</span><span class="p">::</span><span class="n">Vector3</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">Vector3Proto</span><span class="p">;</span>
+<div class="language-rust highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">use</span><span class="w"> </span><span class="n">hiroz</span><span class="p">::</span><span class="n">msg</span><span class="p">::</span><span class="n">ProtobufSerdes</span><span class="p">;</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="k">use</span><span class="w"> </span><span class="n">hiroz_msgs</span><span class="p">::</span><span class="n">proto</span><span class="p">::</span><span class="n">geometry_msgs</span><span class="p">::</span><span class="n">Vector3</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">Vector3Proto</span><span class="p">;</span>
 </span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
-</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="kd">let</span><span class="w"> </span><span class="n">ctx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ros_z</span><span class="p">::</span><span class="n">context</span><span class="p">::</span><span class="n">ZContextBuilder</span><span class="p">::</span><span class="n">default</span><span class="p">().</span><span class="n">build</span><span class="p">()</span><span class="o">?</span><span class="p">;</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="kd">let</span><span class="w"> </span><span class="n">ctx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">hiroz</span><span class="p">::</span><span class="n">context</span><span class="p">::</span><span class="n">ZContextBuilder</span><span class="p">::</span><span class="n">default</span><span class="p">().</span><span class="n">build</span><span class="p">()</span><span class="o">?</span><span class="p">;</span>
 </span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="kd">let</span><span class="w"> </span><span class="n">node</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ctx</span><span class="p">.</span><span class="n">create_node</span><span class="p">(</span><span class="s">&quot;protobuf_node&quot;</span><span class="p">).</span><span class="n">build</span><span class="p">()</span><span class="o">?</span><span class="p">;</span>
 </span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>
 </span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="c1">// Create publisher with protobuf serialization</span>
@@ -2632,7 +2632,7 @@
 </span></code></pre></div>
 <p><strong>Key points:</strong></p>
 <ul>
-<li>Import from <code>ros_z_msgs::proto::*</code> namespace (not <code>ros_z_msgs::ros::*</code>)</li>
+<li>Import from <code>hiroz_msgs::proto::*</code> namespace (not <code>hiroz_msgs::ros::*</code>)</li>
 <li>Use <code>.with_serdes::&lt;ProtobufSerdes&lt;T&gt;&gt;()</code> to select protobuf encoding</li>
 <li>Message types automatically implement <code>MessageTypeInfo</code> trait</li>
 <li>Full type safety and compile-time checking</li>
@@ -2662,7 +2662,7 @@
 </span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="k">use</span><span class="w"> </span><span class="n">sensor_data</span><span class="p">::</span><span class="n">SensorData</span><span class="p">;</span>
 </span></code></pre></div>
 <h3 id="step-4-implement-required-traits">Step 4: Implement Required Traits<a class="headerlink" href="#step-4-implement-required-traits" title="Permanent link">&para;</a></h3>
-<div class="language-rust highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">use</span><span class="w"> </span><span class="n">ros_z</span><span class="p">::{</span><span class="n">MessageTypeInfo</span><span class="p">,</span><span class="w"> </span><span class="n">WithTypeInfo</span><span class="p">,</span><span class="w"> </span><span class="n">entity</span><span class="p">::</span><span class="n">TypeHash</span><span class="p">};</span>
+<div class="language-rust highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">use</span><span class="w"> </span><span class="n">hiroz</span><span class="p">::{</span><span class="n">MessageTypeInfo</span><span class="p">,</span><span class="w"> </span><span class="n">WithTypeInfo</span><span class="p">,</span><span class="w"> </span><span class="n">entity</span><span class="p">::</span><span class="n">TypeHash</span><span class="p">};</span>
 </span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>
 </span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="k">impl</span><span class="w"> </span><span class="n">MessageTypeInfo</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">SensorData</span><span class="w"> </span><span class="p">{</span>
 </span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">    </span><span class="k">fn</span><span class="w"> </span><span class="nf">type_name</span><span class="p">()</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="kp">&amp;</span><span class="o">&#39;</span><span class="nb">static</span><span class="w"> </span><span class="kt">str</span><span class="w"> </span><span class="p">{</span>
@@ -2676,7 +2676,7 @@
 </span><span id="__span-5-12"><a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a>
 </span><span id="__span-5-13"><a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a><span class="k">impl</span><span class="w"> </span><span class="n">WithTypeInfo</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">SensorData</span><span class="w"> </span><span class="p">{}</span>
 </span></code></pre></div>
-<h3 id="step-5-use-in-ros-z">Step 5: Use in ros-z<a class="headerlink" href="#step-5-use-in-ros-z" title="Permanent link">&para;</a></h3>
+<h3 id="step-5-use-in-hiroz">Step 5: Use in hiroz<a class="headerlink" href="#step-5-use-in-hiroz" title="Permanent link">&para;</a></h3>
 <div class="language-rust highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="kd">let</span><span class="w"> </span><span class="k">pub</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">node</span>
 </span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">    </span><span class="p">.</span><span class="n">create_pub</span><span class="p">::</span><span class="o">&lt;</span><span class="n">SensorData</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;/sensor_data&quot;</span><span class="p">)</span>
 </span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">    </span><span class="p">.</span><span class="n">with_serdes</span><span class="p">::</span><span class="o">&lt;</span><span class="n">ProtobufSerdes</span><span class="o">&lt;</span><span class="n">SensorData</span><span class="o">&gt;&gt;</span><span class="p">()</span>
@@ -2695,12 +2695,12 @@
 <p>The <code>protobuf_demo</code> example demonstrates both approaches:</p>
 <div class="language-rust highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="k">use</span><span class="w"> </span><span class="n">clap</span><span class="p">::</span><span class="n">Parser</span><span class="p">;</span>
 </span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="k">use</span><span class="w"> </span><span class="n">protobuf_demo</span><span class="p">::{</span><span class="n">run_pubsub_demo</span><span class="p">,</span><span class="w"> </span><span class="n">run_service_client</span><span class="p">,</span><span class="w"> </span><span class="n">run_service_server</span><span class="p">};</span>
-</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="k">use</span><span class="w"> </span><span class="n">ros_z</span><span class="p">::{</span><span class="n">Builder</span><span class="p">,</span><span class="w"> </span><span class="nb">Result</span><span class="p">,</span><span class="w"> </span><span class="n">context</span><span class="p">::</span><span class="n">ZContextBuilder</span><span class="p">};</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="k">use</span><span class="w"> </span><span class="n">hiroz</span><span class="p">::{</span><span class="n">Builder</span><span class="p">,</span><span class="w"> </span><span class="nb">Result</span><span class="p">,</span><span class="w"> </span><span class="n">context</span><span class="p">::</span><span class="n">ZContextBuilder</span><span class="p">};</span>
 </span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>
 </span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="cp">#[derive(Debug, Parser)]</span>
 </span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="cp">#[command(</span>
 </span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="cp">    name = </span><span class="s">&quot;protobuf_demo&quot;</span><span class="cp">,</span>
-</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="cp">    about = </span><span class="s">&quot;Protobuf demonstration for ros-z - pub/sub and services&quot;</span>
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="cp">    about = </span><span class="s">&quot;Protobuf demonstration for hiroz - pub/sub and services&quot;</span>
 </span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span class="cp">)]</span>
 </span><span id="__span-7-10"><a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a><span class="k">struct</span><span class="w"> </span><span class="nc">Args</span><span class="w"> </span><span class="p">{</span>
 </span><span id="__span-7-11"><a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a><span class="w">    </span><span class="sd">/// Mode to run: pubsub, service-server, service-client, or combined</span>
@@ -2730,7 +2730,7 @@
 </span><span id="__span-7-35"><a id="__codelineno-7-35" name="__codelineno-7-35" href="#__codelineno-7-35"></a><span class="w">    </span><span class="c1">// Initialize logging</span>
 </span><span id="__span-7-36"><a id="__codelineno-7-36" name="__codelineno-7-36" href="#__codelineno-7-36"></a><span class="w">    </span><span class="n">zenoh</span><span class="p">::</span><span class="n">init_log_from_env_or</span><span class="p">(</span><span class="s">&quot;info&quot;</span><span class="p">);</span>
 </span><span id="__span-7-37"><a id="__codelineno-7-37" name="__codelineno-7-37" href="#__codelineno-7-37"></a>
-</span><span id="__span-7-38"><a id="__codelineno-7-38" name="__codelineno-7-38" href="#__codelineno-7-38"></a><span class="w">    </span><span class="c1">// Create the ros-z context</span>
+</span><span id="__span-7-38"><a id="__codelineno-7-38" name="__codelineno-7-38" href="#__codelineno-7-38"></a><span class="w">    </span><span class="c1">// Create the hiroz context</span>
 </span><span id="__span-7-39"><a id="__codelineno-7-39" name="__codelineno-7-39" href="#__codelineno-7-39"></a><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">ctx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="kd">let</span><span class="w"> </span><span class="nb">Some</span><span class="p">(</span><span class="k">ref</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">args</span><span class="p">.</span><span class="n">endpoint</span><span class="w"> </span><span class="p">{</span>
 </span><span id="__span-7-40"><a id="__codelineno-7-40" name="__codelineno-7-40" href="#__codelineno-7-40"></a><span class="w">        </span><span class="n">ZContextBuilder</span><span class="p">::</span><span class="n">default</span><span class="p">()</span>
 </span><span id="__span-7-41"><a id="__codelineno-7-41" name="__codelineno-7-41" href="#__codelineno-7-41"></a><span class="w">            </span><span class="p">.</span><span class="n">with_mode</span><span class="p">(</span><span class="o">&amp;</span><span class="n">args</span><span class="p">.</span><span class="n">zenoh_mode</span><span class="p">)</span>
@@ -2811,7 +2811,7 @@
 </span></code></pre></div>
 <h2 id="subscribers-with-protobuf">Subscribers with Protobuf<a class="headerlink" href="#subscribers-with-protobuf" title="Permanent link">&para;</a></h2>
 <p>Receive protobuf-encoded messages:</p>
-<div class="language-rust highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="k">use</span><span class="w"> </span><span class="n">ros_z</span><span class="p">::</span><span class="n">msg</span><span class="p">::</span><span class="n">ProtobufSerdes</span><span class="p">;</span>
+<div class="language-rust highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="k">use</span><span class="w"> </span><span class="n">hiroz</span><span class="p">::</span><span class="n">msg</span><span class="p">::</span><span class="n">ProtobufSerdes</span><span class="p">;</span>
 </span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>
 </span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="kd">let</span><span class="w"> </span><span class="n">sub</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">node</span>
 </span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="w">    </span><span class="p">.</span><span class="n">create_sub</span><span class="p">::</span><span class="o">&lt;</span><span class="n">Vector3Proto</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;/vector_proto&quot;</span><span class="p">)</span>
@@ -2850,11 +2850,11 @@
 </span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="kd">let</span><span class="w"> </span><span class="n">response</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">client</span><span class="p">.</span><span class="n">call_with_timeout</span><span class="p">(</span><span class="o">&amp;</span><span class="n">request</span><span class="p">,</span><span class="w"> </span><span class="n">Duration</span><span class="p">::</span><span class="n">from_secs</span><span class="p">(</span><span class="mi">5</span><span class="p">)).</span><span class="k">await</span><span class="o">?</span><span class="p">;</span>
 </span></code></pre></div>
 <h2 id="available-ros-messages">Available ROS Messages<a class="headerlink" href="#available-ros-messages" title="Permanent link">&para;</a></h2>
-<p>When ros-z-msgs is built with <code>protobuf</code> feature, it generates protobuf versions of ROS messages:</p>
+<p>When hiroz-msgs is built with <code>protobuf</code> feature, it generates protobuf versions of ROS messages:</p>
 <div class="language-rust highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="c1">// Import from proto namespace</span>
-</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="k">use</span><span class="w"> </span><span class="n">ros_z_msgs</span><span class="p">::</span><span class="n">proto</span><span class="p">::</span><span class="n">std_msgs</span><span class="p">::</span><span class="nb">String</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">StringProto</span><span class="p">;</span>
-</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="k">use</span><span class="w"> </span><span class="n">ros_z_msgs</span><span class="p">::</span><span class="n">proto</span><span class="p">::</span><span class="n">geometry_msgs</span><span class="p">::{</span><span class="n">Point</span><span class="p">,</span><span class="w"> </span><span class="n">Pose</span><span class="p">,</span><span class="w"> </span><span class="n">Twist</span><span class="p">};</span>
-</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="k">use</span><span class="w"> </span><span class="n">ros_z_msgs</span><span class="p">::</span><span class="n">proto</span><span class="p">::</span><span class="n">sensor_msgs</span><span class="p">::{</span><span class="n">LaserScan</span><span class="p">,</span><span class="w"> </span><span class="n">Image</span><span class="p">};</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="k">use</span><span class="w"> </span><span class="n">hiroz_msgs</span><span class="p">::</span><span class="n">proto</span><span class="p">::</span><span class="n">std_msgs</span><span class="p">::</span><span class="nb">String</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">StringProto</span><span class="p">;</span>
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="k">use</span><span class="w"> </span><span class="n">hiroz_msgs</span><span class="p">::</span><span class="n">proto</span><span class="p">::</span><span class="n">geometry_msgs</span><span class="p">::{</span><span class="n">Point</span><span class="p">,</span><span class="w"> </span><span class="n">Pose</span><span class="p">,</span><span class="w"> </span><span class="n">Twist</span><span class="p">};</span>
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="k">use</span><span class="w"> </span><span class="n">hiroz_msgs</span><span class="p">::</span><span class="n">proto</span><span class="p">::</span><span class="n">sensor_msgs</span><span class="p">::{</span><span class="n">LaserScan</span><span class="p">,</span><span class="w"> </span><span class="n">Image</span><span class="p">};</span>
 </span></code></pre></div>
 <p><strong>Namespace mapping:</strong></p>
 <table>
@@ -2868,21 +2868,21 @@
 <tbody>
 <tr>
 <td><strong>CDR</strong></td>
-<td><code>ros_z_msgs::ros::*</code></td>
+<td><code>hiroz_msgs::ros::*</code></td>
 <td>ROS 2 interop</td>
 </tr>
 <tr>
 <td><strong>Protobuf</strong></td>
-<td><code>ros_z_msgs::proto::*</code></td>
+<td><code>hiroz_msgs::proto::*</code></td>
 <td>Protobuf encoding</td>
 </tr>
 </tbody>
 </table>
 <h2 id="type-information">Type Information<a class="headerlink" href="#type-information" title="Permanent link">&para;</a></h2>
 <h3 id="ros-messages">ROS Messages<a class="headerlink" href="#ros-messages" title="Permanent link">&para;</a></h3>
-<p>Auto-generated messages from ros-z-msgs include <code>MessageTypeInfo</code>:</p>
+<p>Auto-generated messages from hiroz-msgs include <code>MessageTypeInfo</code>:</p>
 <div class="language-rust highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="c1">// No manual implementation needed</span>
-</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="k">use</span><span class="w"> </span><span class="n">ros_z_msgs</span><span class="p">::</span><span class="n">proto</span><span class="p">::</span><span class="n">geometry_msgs</span><span class="p">::</span><span class="n">Vector3</span><span class="p">;</span>
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="k">use</span><span class="w"> </span><span class="n">hiroz_msgs</span><span class="p">::</span><span class="n">proto</span><span class="p">::</span><span class="n">geometry_msgs</span><span class="p">::</span><span class="n">Vector3</span><span class="p">;</span>
 </span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="c1">// Vector3 already implements MessageTypeInfo</span>
 </span></code></pre></div>
 <h3 id="custom-protobuf-messages">Custom Protobuf Messages<a class="headerlink" href="#custom-protobuf-messages" title="Permanent link">&para;</a></h3>
@@ -2905,7 +2905,7 @@
 </span></code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p><code>TypeHash::zero()</code> indicates the message doesn't have ROS 2 type compatibility. This is fine for ros-z-to-ros-z communication.</p>
+<p><code>TypeHash::zero()</code> indicates the message doesn't have ROS 2 type compatibility. This is fine for hiroz-to-hiroz communication.</p>
 </div>
 <h2 id="protobuf-vs-cdr-comparison">Protobuf vs CDR Comparison<a class="headerlink" href="#protobuf-vs-cdr-comparison" title="Permanent link">&para;</a></h2>
 <table>
@@ -2948,7 +2948,7 @@
 <td>Moderate</td>
 </tr>
 <tr>
-<td><strong>ros-z Support</strong></td>
+<td><strong>hiroz Support</strong></td>
 <td>Default</td>
 <td>Requires feature flag</td>
 </tr>
@@ -2995,8 +2995,8 @@
 </span><span id="__span-16-4"><a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a><span class="n">edition</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;2021&quot;</span>
 </span><span id="__span-16-5"><a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a>
 </span><span id="__span-16-6"><a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a><span class="k">[dependencies]</span>
-</span><span id="__span-16-7"><a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a><span class="n">ros-z</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">version</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;0.1&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">features</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;protobuf&quot;</span><span class="p">]</span><span class="w"> </span><span class="p">}</span>
-</span><span id="__span-16-8"><a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a><span class="n">ros-z-msgs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">version</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;0.1&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">features</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;geometry_msgs&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;protobuf&quot;</span><span class="p">]</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-16-7"><a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a><span class="n">hiroz</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">version</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;0.1&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">features</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;protobuf&quot;</span><span class="p">]</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-16-8"><a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a><span class="n">hiroz-msgs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">version</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;0.1&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">features</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;geometry_msgs&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;protobuf&quot;</span><span class="p">]</span><span class="w"> </span><span class="p">}</span>
 </span><span id="__span-16-9"><a id="__codelineno-16-9" name="__codelineno-16-9" href="#__codelineno-16-9"></a><span class="n">prost</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;0.13&quot;</span>
 </span><span id="__span-16-10"><a id="__codelineno-16-10" name="__codelineno-16-10" href="#__codelineno-16-10"></a><span class="n">serde</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">version</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;1.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">features</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;derive&quot;</span><span class="p">]</span><span class="w"> </span><span class="p">}</span>
 </span><span id="__span-16-11"><a id="__codelineno-16-11" name="__codelineno-16-11" href="#__codelineno-16-11"></a>
@@ -3009,7 +3009,7 @@
 </span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a><span class="k">fn</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="nb">Result</span><span class="o">&lt;</span><span class="p">()</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
 </span><span id="__span-17-4"><a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="k">mut</span><span class="w"> </span><span class="n">config</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">prost_build</span><span class="p">::</span><span class="n">Config</span><span class="p">::</span><span class="n">new</span><span class="p">();</span>
 </span><span id="__span-17-5"><a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a>
-</span><span id="__span-17-6"><a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a><span class="w">    </span><span class="c1">// Enable serde for ros-z compatibility</span>
+</span><span id="__span-17-6"><a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a><span class="w">    </span><span class="c1">// Enable serde for hiroz compatibility</span>
 </span><span id="__span-17-7"><a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a><span class="w">    </span><span class="n">config</span><span class="p">.</span><span class="n">type_attribute</span><span class="p">(</span><span class="s">&quot;.&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;#[derive(serde::Serialize, serde::Deserialize)]&quot;</span><span class="p">);</span>
 </span><span id="__span-17-8"><a id="__codelineno-17-8" name="__codelineno-17-8" href="#__codelineno-17-8"></a>
 </span><span id="__span-17-9"><a id="__codelineno-17-9" name="__codelineno-17-9" href="#__codelineno-17-9"></a><span class="w">    </span><span class="c1">// Compile all proto files</span>
@@ -3033,15 +3033,15 @@
 <p>This error occurs when you try to use protobuf serialization without enabling the feature flag.
 <strong>Solution:</strong> Enable the protobuf feature in your <code>Cargo.toml</code>:</p>
 <div class="language-toml highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="k">[dependencies]</span>
-</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="n">ros-z</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">version</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;0.1&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">features</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;protobuf&quot;</span><span class="p">]</span><span class="w"> </span><span class="p">}</span>
-</span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a><span class="n">ros-z-msgs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">version</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;0.1&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">features</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;geometry_msgs&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;protobuf&quot;</span><span class="p">]</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="n">hiroz</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">version</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;0.1&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">features</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;protobuf&quot;</span><span class="p">]</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a><span class="n">hiroz-msgs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">version</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;0.1&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">features</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;geometry_msgs&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;protobuf&quot;</span><span class="p">]</span><span class="w"> </span><span class="p">}</span>
 </span></code></pre></div>
 </details>
 <details class="question">
 <summary>Error: MessageTypeInfo not implemented</summary>
-<p>Custom protobuf messages need to implement required ros-z traits.
+<p>Custom protobuf messages need to implement required hiroz traits.
 <strong>Solution:</strong> Implement the required traits for your custom message:</p>
-<div class="language-rust highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="k">use</span><span class="w"> </span><span class="n">ros_z</span><span class="p">::{</span><span class="n">MessageTypeInfo</span><span class="p">,</span><span class="w"> </span><span class="n">WithTypeInfo</span><span class="p">,</span><span class="w"> </span><span class="n">entity</span><span class="p">::</span><span class="n">TypeHash</span><span class="p">};</span>
+<div class="language-rust highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="k">use</span><span class="w"> </span><span class="n">hiroz</span><span class="p">::{</span><span class="n">MessageTypeInfo</span><span class="p">,</span><span class="w"> </span><span class="n">WithTypeInfo</span><span class="p">,</span><span class="w"> </span><span class="n">entity</span><span class="p">::</span><span class="n">TypeHash</span><span class="p">};</span>
 </span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>
 </span><span id="__span-19-3"><a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a><span class="k">impl</span><span class="w"> </span><span class="n">MessageTypeInfo</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">MyMessage</span><span class="w"> </span><span class="p">{</span>
 </span><span id="__span-19-4"><a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a><span class="w">    </span><span class="k">fn</span><span class="w"> </span><span class="nf">type_name</span><span class="p">()</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="kp">&amp;</span><span class="o">&#39;</span><span class="nb">static</span><span class="w"> </span><span class="kt">str</span><span class="w"> </span><span class="p">{</span>
@@ -3174,13 +3174,13 @@
         
         
           
-          <a href="../../tools/console/" class="md-footer__link md-footer__link--next" aria-label="Next: ros-z-console">
+          <a href="../../tools/console/" class="md-footer__link md-footer__link--next" aria-label="Next: hiroz-console">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                ros-z-console
+                hiroz-console
               </div>
             </div>
             <div class="md-footer__button md-icon">

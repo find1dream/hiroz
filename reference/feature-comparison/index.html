@@ -6,17 +6,17 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Native Rust ROS 2 implementation built on Zenoh">
+        <meta name="description" content="High-performance Interoperable Robotics on Zenoh">
       
       
       
-        <link rel="canonical" href="https://zettascalelabs.github.io/ros-z/reference/feature-comparison/">
+        <link rel="canonical" href="https://zettascalelabs.github.io/hiroz/reference/feature-comparison/">
       
       
         <link rel="prev" href="../../experimental/shm/">
       
       
-        <link rel="next" href="../ros2-to-rosz/">
+        <link rel="next" href="../ros2-to-hiroz/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -24,7 +24,7 @@
     
     
       
-        <title>Feature Comparison - ros-z</title>
+        <title>Feature Comparison - HIROZ</title>
       
     
     
@@ -96,7 +96,7 @@
 
 <header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="ros-z" class="md-header__button md-logo" aria-label="ros-z" data-md-component="logo">
+    <a href="../.." title="HIROZ" class="md-header__button md-logo" aria-label="HIROZ" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 163" overflow="hidden"><path d="M67.5,0 C70.5,10.015361 71.5,23.0353303 70.5,39.0599078 C87.5,23.5360983 102.5,15.7741935 115.5,15.7741935 C108,23.2857143 108.272452,33.9711351 112.5,33.0506912 C124,30.546851 136.5,32.5499232 150,39.0599078 L150,153.269585 C150,165.695992 139.926407,175.769585 127.5,175.769585 L61.1792721,175.769585 C54.9660687,175.769585 49.9292721,170.732789 49.9292721,164.519585 C49.9292721,162.825588 50.3118282,161.153461 51.0483941,159.627979 C55.1904226,151.049532 63.9242912,142.158178 77.25,132.953917 C99,117.930876 107.25,107.414747 107.25,87.8847926 C107.25,76.6175115 101.235622,69.7933468 93,69.1059908 C84,68.3548387 77.25,72.8617512 77.25,79.6221198 C77.25,83.1274962 78.25,86.1321045 80.25,88.6359447 L45,114.175115 C42.5,117.680492 41.25,121.686636 41.25,126.193548 C31.75,126.193548 26.5,120.935484 25.5,110.419355 L30.5,74.1136713 C24.1666667,69.2729135 19.25,63.5140809 15.75,56.8371736 C21.5833333,59.8417819 27.3527952,61.6613272 33.0583855,62.2958096 L36,43.5668203 C38.5,30.546851 41.75,22.0337942 45.75,18.0276498 C45.25,27.0414747 46.25,38.0583717 48.75,51.078341 C59.25,35.5545315 65.5,18.5284178 67.5,0 Z M55.5,59.3410138 C54.8493151,62.5994361 52.5050666,67.1299821 48.4672671,72.9331549 C49.3254255,73.6214254 49.875,74.6796138 49.875,75.8663594 C49.875,77.9406086 48.1960678,79.6221198 46.125,79.6221198 C45.3413993,79.6221198 44.6139341,79.3814062 44.0134198,78.9679649 C42.9192012,80.380157 41.7480613,81.8501288 40.5,83.3778802 C48.0409322,84.7516633 53.0409322,83.2493592 55.5,78.8709677 C58.5613983,73.4201217 58.5,65.3502304 55.5,59.3410138 Z"/></svg>
@@ -110,7 +110,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            ros-z
+            HIROZ
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -198,13 +198,13 @@
     
     
       <div class="md-header__source">
-        <a href="https://github.com/ZettaScaleLabs/ros-z" title="Go to repository" class="md-source" data-md-component="source">
+        <a href="https://github.com/ZettaScaleLabs/hiroz" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
   </div>
   <div class="md-source__repository">
-    ZettaScaleLabs/ros-z
+    ZettaScaleLabs/hiroz
   </div>
 </a>
       </div>
@@ -416,23 +416,23 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="ros-z" class="md-nav__button md-logo" aria-label="ros-z" data-md-component="logo">
+    <a href="../.." title="HIROZ" class="md-nav__button md-logo" aria-label="HIROZ" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 163" overflow="hidden"><path d="M67.5,0 C70.5,10.015361 71.5,23.0353303 70.5,39.0599078 C87.5,23.5360983 102.5,15.7741935 115.5,15.7741935 C108,23.2857143 108.272452,33.9711351 112.5,33.0506912 C124,30.546851 136.5,32.5499232 150,39.0599078 L150,153.269585 C150,165.695992 139.926407,175.769585 127.5,175.769585 L61.1792721,175.769585 C54.9660687,175.769585 49.9292721,170.732789 49.9292721,164.519585 C49.9292721,162.825588 50.3118282,161.153461 51.0483941,159.627979 C55.1904226,151.049532 63.9242912,142.158178 77.25,132.953917 C99,117.930876 107.25,107.414747 107.25,87.8847926 C107.25,76.6175115 101.235622,69.7933468 93,69.1059908 C84,68.3548387 77.25,72.8617512 77.25,79.6221198 C77.25,83.1274962 78.25,86.1321045 80.25,88.6359447 L45,114.175115 C42.5,117.680492 41.25,121.686636 41.25,126.193548 C31.75,126.193548 26.5,120.935484 25.5,110.419355 L30.5,74.1136713 C24.1666667,69.2729135 19.25,63.5140809 15.75,56.8371736 C21.5833333,59.8417819 27.3527952,61.6613272 33.0583855,62.2958096 L36,43.5668203 C38.5,30.546851 41.75,22.0337942 45.75,18.0276498 C45.25,27.0414747 46.25,38.0583717 48.75,51.078341 C59.25,35.5545315 65.5,18.5284178 67.5,0 Z M55.5,59.3410138 C54.8493151,62.5994361 52.5050666,67.1299821 48.4672671,72.9331549 C49.3254255,73.6214254 49.875,74.6796138 49.875,75.8663594 C49.875,77.9406086 48.1960678,79.6221198 46.125,79.6221198 C45.3413993,79.6221198 44.6139341,79.3814062 44.0134198,78.9679649 C42.9192012,80.380157 41.7480613,81.8501288 40.5,83.3778802 C48.0409322,84.7516633 53.0409322,83.2493592 55.5,78.8709677 C58.5613983,73.4201217 58.5,65.3502304 55.5,59.3410138 Z"/></svg>
 
     </a>
-    ros-z
+    HIROZ
   </label>
   
     <div class="md-nav__source">
-      <a href="https://github.com/ZettaScaleLabs/ros-z" title="Go to repository" class="md-source" data-md-component="source">
+      <a href="https://github.com/ZettaScaleLabs/hiroz" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
   </div>
   <div class="md-source__repository">
-    ZettaScaleLabs/ros-z
+    ZettaScaleLabs/hiroz
   </div>
 </a>
     </div>
@@ -1256,7 +1256,7 @@
   
   
   <span class="md-ellipsis">
-    ros-z-console
+    hiroz-console
     
   </span>
   
@@ -1806,12 +1806,12 @@
   
   
     <li class="md-nav__item">
-      <a href="../ros2-to-rosz/" class="md-nav__link">
+      <a href="../ros2-to-hiroz/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    ROS 2 → ros-z API Mapping
+    ROS 2 → hiroz API Mapping
     
   </span>
   
@@ -2058,7 +2058,7 @@
 
 
   
-    <a href="https://github.com/ZettaScaleLabs/ros-z/edit/main/docs/reference/feature-comparison.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
+    <a href="https://github.com/ZettaScaleLabs/hiroz/edit/main/docs/reference/feature-comparison.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
     </a>
@@ -2074,7 +2074,7 @@
 <th></th>
 <th>ROS 2 (DDS)</th>
 <th>ROS 2 (Zenoh)</th>
-<th>ros-z</th>
+<th>hiroz</th>
 </tr>
 </thead>
 <tbody>
@@ -2104,7 +2104,7 @@
 </tr>
 </tbody>
 </table>
-<p>ROS 2 (Zenoh) means <code>rmw_zenoh_cpp</code>: a drop-in RMW plugin that gives existing rclcpp/rclpy nodes a Zenoh transport without changing any application code. ros-z is an independent Rust API built directly on Zenoh — no ROS 2 installation needed.</p>
+<p>ROS 2 (Zenoh) means <code>rmw_zenoh_cpp</code>: a drop-in RMW plugin that gives existing rclcpp/rclpy nodes a Zenoh transport without changing any application code. hiroz is an independent Rust API built directly on Zenoh — no ROS 2 installation needed.</p>
 <h2 id="communication">Communication<a class="headerlink" href="#communication" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
@@ -2112,7 +2112,7 @@
 <th>Feature</th>
 <th style="text-align: center;">ROS 2 (DDS)</th>
 <th style="text-align: center;">ROS 2 (Zenoh)</th>
-<th style="text-align: center;">ros-z</th>
+<th style="text-align: center;">hiroz</th>
 </tr>
 </thead>
 <tbody>
@@ -2173,7 +2173,7 @@
 <th>Feature</th>
 <th style="text-align: center;">ROS 2 (DDS)</th>
 <th style="text-align: center;">ROS 2 (Zenoh)</th>
-<th style="text-align: center;">ros-z</th>
+<th style="text-align: center;">hiroz</th>
 </tr>
 </thead>
 <tbody>
@@ -2264,7 +2264,7 @@
 <th>Feature</th>
 <th style="text-align: center;">ROS 2 (DDS)</th>
 <th style="text-align: center;">ROS 2 (Zenoh)</th>
-<th style="text-align: center;">ros-z</th>
+<th style="text-align: center;">hiroz</th>
 </tr>
 </thead>
 <tbody>
@@ -2307,7 +2307,7 @@
 <th>Feature</th>
 <th style="text-align: center;">ROS 2 (DDS)</th>
 <th style="text-align: center;">ROS 2 (Zenoh)</th>
-<th style="text-align: center;">ros-z</th>
+<th style="text-align: center;">hiroz</th>
 </tr>
 </thead>
 <tbody>
@@ -2356,7 +2356,7 @@
 <th>Feature</th>
 <th style="text-align: center;">ROS 2 (DDS)</th>
 <th style="text-align: center;">ROS 2 (Zenoh)</th>
-<th style="text-align: center;">ros-z</th>
+<th style="text-align: center;">hiroz</th>
 </tr>
 </thead>
 <tbody>
@@ -2399,7 +2399,7 @@
 <th>Feature</th>
 <th style="text-align: center;">ROS 2 (DDS)</th>
 <th style="text-align: center;">ROS 2 (Zenoh)</th>
-<th style="text-align: center;">ros-z</th>
+<th style="text-align: center;">hiroz</th>
 </tr>
 </thead>
 <tbody>
@@ -2431,13 +2431,13 @@
 <td>Python bindings</td>
 <td style="text-align: center;">native</td>
 <td style="text-align: center;">native</td>
-<td style="text-align: center;">✅ (<code>ros-z-py</code>)</td>
+<td style="text-align: center;">✅ (<code>hiroz-py</code>)</td>
 </tr>
 <tr>
 <td>Go bindings</td>
 <td style="text-align: center;">❌</td>
 <td style="text-align: center;">❌</td>
-<td style="text-align: center;">✅ (<code>ros-z-go</code>)</td>
+<td style="text-align: center;">✅ (<code>hiroz-go</code>)</td>
 </tr>
 <tr>
 <td>No ROS 2 install needed</td>
@@ -2449,12 +2449,12 @@
 </table>
 <h2 id="which-to-choose">Which to choose?<a class="headerlink" href="#which-to-choose" title="Permanent link">&para;</a></h2>
 <p><strong>Use <code>rmw_zenoh_cpp</code></strong> when you have an existing rclcpp/rclpy codebase and want Zenoh transport without rewriting anything. You get the full ROS 2 feature set — executors, composable nodes, lifecycle — with Zenoh's routing and cross-network capabilities replacing DDS.</p>
-<p><strong>Use ros-z</strong> when you are writing new code in Rust and want a minimal, dependency-light library. No ROS 2 installation, no DDS, no executor overhead. ros-z nodes interoperate transparently with <code>rmw_zenoh_cpp</code> nodes over the same Zenoh router.</p>
+<p><strong>Use hiroz</strong> when you are writing new code in Rust and want a minimal, dependency-light library. No ROS 2 installation, no DDS, no executor overhead. hiroz nodes interoperate transparently with <code>rmw_zenoh_cpp</code> nodes over the same Zenoh router.</p>
 <h2 id="resources">Resources<a class="headerlink" href="#resources" title="Permanent link">&para;</a></h2>
 <ul>
-<li><strong><a href="../ros2-to-rosz/">ROS 2 → ros-z API Mapping</a></strong> — method-by-method translation table</li>
+<li><strong><a href="../ros2-to-hiroz/">ROS 2 → hiroz API Mapping</a></strong> — method-by-method translation table</li>
 <li><strong><a href="../../experimental/rmw-zenoh-rs/">rmw-zenoh-rs</a></strong> — the RMW plugin powering <code>rmw_zenoh_cpp</code></li>
-<li><strong><a href="../../user-guide/interop/">ROS 2 Interoperability</a></strong> — running ros-z alongside rclcpp/rclpy nodes</li>
+<li><strong><a href="../../user-guide/interop/">ROS 2 Interoperability</a></strong> — running hiroz alongside rclcpp/rclpy nodes</li>
 <li><strong><a href="../../user-guide/bridge/">Cross-Distro Bridge</a></strong> — Humble ↔ Jazzy bridging</li>
 </ul>
 
@@ -2509,13 +2509,13 @@
         
         
           
-          <a href="../ros2-to-rosz/" class="md-footer__link md-footer__link--next" aria-label="Next: ROS 2 → ros-z API Mapping">
+          <a href="../ros2-to-hiroz/" class="md-footer__link md-footer__link--next" aria-label="Next: ROS 2 → hiroz API Mapping">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                ROS 2 → ros-z API Mapping
+                ROS 2 → hiroz API Mapping
               </div>
             </div>
             <div class="md-footer__button md-icon">

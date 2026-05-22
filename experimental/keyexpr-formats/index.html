@@ -6,11 +6,11 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Native Rust ROS 2 implementation built on Zenoh">
+        <meta name="description" content="High-performance Interoperable Robotics on Zenoh">
       
       
       
-        <link rel="canonical" href="https://zettascalelabs.github.io/ros-z/experimental/keyexpr-formats/">
+        <link rel="canonical" href="https://zettascalelabs.github.io/hiroz/experimental/keyexpr-formats/">
       
       
         <link rel="prev" href="../rmw-zenoh-rs/">
@@ -24,7 +24,7 @@
     
     
       
-        <title>Key Expression Formats - ros-z</title>
+        <title>Key Expression Formats - HIROZ</title>
       
     
     
@@ -96,7 +96,7 @@
 
 <header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="ros-z" class="md-header__button md-logo" aria-label="ros-z" data-md-component="logo">
+    <a href="../.." title="HIROZ" class="md-header__button md-logo" aria-label="HIROZ" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 163" overflow="hidden"><path d="M67.5,0 C70.5,10.015361 71.5,23.0353303 70.5,39.0599078 C87.5,23.5360983 102.5,15.7741935 115.5,15.7741935 C108,23.2857143 108.272452,33.9711351 112.5,33.0506912 C124,30.546851 136.5,32.5499232 150,39.0599078 L150,153.269585 C150,165.695992 139.926407,175.769585 127.5,175.769585 L61.1792721,175.769585 C54.9660687,175.769585 49.9292721,170.732789 49.9292721,164.519585 C49.9292721,162.825588 50.3118282,161.153461 51.0483941,159.627979 C55.1904226,151.049532 63.9242912,142.158178 77.25,132.953917 C99,117.930876 107.25,107.414747 107.25,87.8847926 C107.25,76.6175115 101.235622,69.7933468 93,69.1059908 C84,68.3548387 77.25,72.8617512 77.25,79.6221198 C77.25,83.1274962 78.25,86.1321045 80.25,88.6359447 L45,114.175115 C42.5,117.680492 41.25,121.686636 41.25,126.193548 C31.75,126.193548 26.5,120.935484 25.5,110.419355 L30.5,74.1136713 C24.1666667,69.2729135 19.25,63.5140809 15.75,56.8371736 C21.5833333,59.8417819 27.3527952,61.6613272 33.0583855,62.2958096 L36,43.5668203 C38.5,30.546851 41.75,22.0337942 45.75,18.0276498 C45.25,27.0414747 46.25,38.0583717 48.75,51.078341 C59.25,35.5545315 65.5,18.5284178 67.5,0 Z M55.5,59.3410138 C54.8493151,62.5994361 52.5050666,67.1299821 48.4672671,72.9331549 C49.3254255,73.6214254 49.875,74.6796138 49.875,75.8663594 C49.875,77.9406086 48.1960678,79.6221198 46.125,79.6221198 C45.3413993,79.6221198 44.6139341,79.3814062 44.0134198,78.9679649 C42.9192012,80.380157 41.7480613,81.8501288 40.5,83.3778802 C48.0409322,84.7516633 53.0409322,83.2493592 55.5,78.8709677 C58.5613983,73.4201217 58.5,65.3502304 55.5,59.3410138 Z"/></svg>
@@ -110,7 +110,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            ros-z
+            HIROZ
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -198,13 +198,13 @@
     
     
       <div class="md-header__source">
-        <a href="https://github.com/ZettaScaleLabs/ros-z" title="Go to repository" class="md-source" data-md-component="source">
+        <a href="https://github.com/ZettaScaleLabs/hiroz" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
   </div>
   <div class="md-source__repository">
-    ZettaScaleLabs/ros-z
+    ZettaScaleLabs/hiroz
   </div>
 </a>
       </div>
@@ -416,23 +416,23 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="ros-z" class="md-nav__button md-logo" aria-label="ros-z" data-md-component="logo">
+    <a href="../.." title="HIROZ" class="md-nav__button md-logo" aria-label="HIROZ" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 163" overflow="hidden"><path d="M67.5,0 C70.5,10.015361 71.5,23.0353303 70.5,39.0599078 C87.5,23.5360983 102.5,15.7741935 115.5,15.7741935 C108,23.2857143 108.272452,33.9711351 112.5,33.0506912 C124,30.546851 136.5,32.5499232 150,39.0599078 L150,153.269585 C150,165.695992 139.926407,175.769585 127.5,175.769585 L61.1792721,175.769585 C54.9660687,175.769585 49.9292721,170.732789 49.9292721,164.519585 C49.9292721,162.825588 50.3118282,161.153461 51.0483941,159.627979 C55.1904226,151.049532 63.9242912,142.158178 77.25,132.953917 C99,117.930876 107.25,107.414747 107.25,87.8847926 C107.25,76.6175115 101.235622,69.7933468 93,69.1059908 C84,68.3548387 77.25,72.8617512 77.25,79.6221198 C77.25,83.1274962 78.25,86.1321045 80.25,88.6359447 L45,114.175115 C42.5,117.680492 41.25,121.686636 41.25,126.193548 C31.75,126.193548 26.5,120.935484 25.5,110.419355 L30.5,74.1136713 C24.1666667,69.2729135 19.25,63.5140809 15.75,56.8371736 C21.5833333,59.8417819 27.3527952,61.6613272 33.0583855,62.2958096 L36,43.5668203 C38.5,30.546851 41.75,22.0337942 45.75,18.0276498 C45.25,27.0414747 46.25,38.0583717 48.75,51.078341 C59.25,35.5545315 65.5,18.5284178 67.5,0 Z M55.5,59.3410138 C54.8493151,62.5994361 52.5050666,67.1299821 48.4672671,72.9331549 C49.3254255,73.6214254 49.875,74.6796138 49.875,75.8663594 C49.875,77.9406086 48.1960678,79.6221198 46.125,79.6221198 C45.3413993,79.6221198 44.6139341,79.3814062 44.0134198,78.9679649 C42.9192012,80.380157 41.7480613,81.8501288 40.5,83.3778802 C48.0409322,84.7516633 53.0409322,83.2493592 55.5,78.8709677 C58.5613983,73.4201217 58.5,65.3502304 55.5,59.3410138 Z"/></svg>
 
     </a>
-    ros-z
+    HIROZ
   </label>
   
     <div class="md-nav__source">
-      <a href="https://github.com/ZettaScaleLabs/ros-z" title="Go to repository" class="md-source" data-md-component="source">
+      <a href="https://github.com/ZettaScaleLabs/hiroz" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
   </div>
   <div class="md-source__repository">
-    ZettaScaleLabs/ros-z
+    ZettaScaleLabs/hiroz
   </div>
 </a>
     </div>
@@ -1256,7 +1256,7 @@
   
   
   <span class="md-ellipsis">
-    ros-z-console
+    hiroz-console
     
   </span>
   
@@ -1692,12 +1692,12 @@
   
   
     <li class="md-nav__item">
-      <a href="../../reference/ros2-to-rosz/" class="md-nav__link">
+      <a href="../../reference/ros2-to-hiroz/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    ROS 2 → ros-z API Mapping
+    ROS 2 → hiroz API Mapping
     
   </span>
   
@@ -1971,9 +1971,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#ros-z-protocol-crate" class="md-nav__link">
+  <a href="#hiroz-protocol-crate" class="md-nav__link">
     <span class="md-ellipsis">
-      ros-z-protocol Crate
+      hiroz-protocol Crate
     </span>
   </a>
   
@@ -1999,9 +1999,9 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#no-messages-between-ros-z-and-rmw_zenoh_cpp" class="md-nav__link">
+  <a href="#no-messages-between-hiroz-and-rmw_zenoh_cpp" class="md-nav__link">
     <span class="md-ellipsis">
-      No Messages Between ros-z and rmw_zenoh_cpp?
+      No Messages Between hiroz and rmw_zenoh_cpp?
     </span>
   </a>
   
@@ -2349,9 +2349,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#ros-z-protocol-crate" class="md-nav__link">
+  <a href="#hiroz-protocol-crate" class="md-nav__link">
     <span class="md-ellipsis">
-      ros-z-protocol Crate
+      hiroz-protocol Crate
     </span>
   </a>
   
@@ -2377,9 +2377,9 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#no-messages-between-ros-z-and-rmw_zenoh_cpp" class="md-nav__link">
+  <a href="#no-messages-between-hiroz-and-rmw_zenoh_cpp" class="md-nav__link">
     <span class="md-ellipsis">
-      No Messages Between ros-z and rmw_zenoh_cpp?
+      No Messages Between hiroz and rmw_zenoh_cpp?
     </span>
   </a>
   
@@ -2448,7 +2448,7 @@
 
 
   
-    <a href="https://github.com/ZettaScaleLabs/ros-z/edit/main/docs/experimental/keyexpr-formats.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
+    <a href="https://github.com/ZettaScaleLabs/hiroz/edit/main/docs/experimental/keyexpr-formats.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
     </a>
@@ -2457,13 +2457,13 @@
 
 
 <h1 id="key-expression-formats">Key Expression Formats<a class="headerlink" href="#key-expression-formats" title="Permanent link">&para;</a></h1>
-<p><strong>ros-z uses key expression formats to map ROS 2 entities (topics, services, actions) to Eclipse Zenoh key expressions.</strong> The independent <code>ros-z-protocol</code> crate provides the format and determines how ros-z translates ROS 2 names for Zenoh routing and discovery.</p>
+<p><strong>hiroz uses key expression formats to map ROS 2 entities (topics, services, actions) to Eclipse Zenoh key expressions.</strong> The independent <code>hiroz-protocol</code> crate provides the format and determines how hiroz translates ROS 2 names for Zenoh routing and discovery.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Key expression format is a runtime choice that affects how ros-z maps ROS 2 entities to Zenoh key expressions. Choose the format that matches your infrastructure for proper message routing.</p>
+<p>Key expression format is a runtime choice that affects how hiroz maps ROS 2 entities to Zenoh key expressions. Choose the format that matches your infrastructure for proper message routing.</p>
 </div>
 <h2 id="available-formats">Available Formats<a class="headerlink" href="#available-formats" title="Permanent link">&para;</a></h2>
-<p>ros-z supports multiple key expression formats for interoperability with different Zenoh-ROS bridges:</p>
+<p>hiroz supports multiple key expression formats for interoperability with different Zenoh-ROS bridges:</p>
 <table>
 <thead>
 <tr>
@@ -2498,7 +2498,7 @@
 <p><strong>Use this format when:</strong></p>
 <ul>
 <li>Using <a href="https://github.com/ros2/rmw_zenoh"><code>rmw_zenoh_cpp</code></a> as your ROS 2 middleware</li>
-<li>Running pure ros-z deployments</li>
+<li>Running pure hiroz deployments</li>
 <li>Requiring domain isolation via Zenoh</li>
 </ul>
 <h3 id="ros2dds-format">Ros2Dds Format<a class="headerlink" href="#ros2dds-format" title="Permanent link">&para;</a></h3>
@@ -2523,7 +2523,7 @@
 <li>Node-based discovery and automatic schema discovery via <code>create_dyn_sub_auto()</code> are not supported with <code>Ros2Dds</code>, because the publishing node cannot be identified from discovery data.</li>
 </ul>
 <h2 id="key-expression-behavior-important">Key Expression Behavior (IMPORTANT)<a class="headerlink" href="#key-expression-behavior-important" title="Permanent link">&para;</a></h2>
-<p>Understanding how ros-z converts topic names to key expressions is critical for debugging:</p>
+<p>Understanding how hiroz converts topic names to key expressions is critical for debugging:</p>
 <h3 id="topic-key-expressions-for-data-routing">Topic Key Expressions (For Data Routing)<a class="headerlink" href="#topic-key-expressions-for-data-routing" title="Permanent link">&para;</a></h3>
 <p><strong>ALL entity types</strong> (publishers, subscriptions, services, clients, actions) use <code>strip_slashes()</code> behavior:</p>
 <ul>
@@ -2617,12 +2617,12 @@
 </ul>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
-<p>If multi-segment topics like <code>/robot/sensors/camera</code> don't receive messages, check your ros-z version. Versions before 0.1.0 had a bug where publishers incorrectly mangled topic key expressions.</p>
+<p>If multi-segment topics like <code>/robot/sensors/camera</code> don't receive messages, check your hiroz version. Versions before 0.1.0 had a bug where publishers incorrectly mangled topic key expressions.</p>
 </div>
 <h2 id="api-usage">API Usage<a class="headerlink" href="#api-usage" title="Permanent link">&para;</a></h2>
 <h3 id="specifying-format-at-context-creation">Specifying Format at Context Creation<a class="headerlink" href="#specifying-format-at-context-creation" title="Permanent link">&para;</a></h3>
-<div class="language-rust highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">use</span><span class="w"> </span><span class="n">ros_z</span><span class="p">::</span><span class="n">context</span><span class="p">::</span><span class="n">ZContextBuilder</span><span class="p">;</span>
-</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="k">use</span><span class="w"> </span><span class="n">ros_z_protocol</span><span class="p">::</span><span class="n">KeyExprFormat</span><span class="p">;</span>
+<div class="language-rust highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">use</span><span class="w"> </span><span class="n">hiroz</span><span class="p">::</span><span class="n">context</span><span class="p">::</span><span class="n">ZContextBuilder</span><span class="p">;</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="k">use</span><span class="w"> </span><span class="n">hiroz_protocol</span><span class="p">::</span><span class="n">KeyExprFormat</span><span class="p">;</span>
 </span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>
 </span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="c1">// Default (RmwZenoh)</span>
 </span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="kd">let</span><span class="w"> </span><span class="n">ctx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ZContextBuilder</span><span class="p">::</span><span class="n">default</span><span class="p">().</span><span class="n">build</span><span class="p">()</span><span class="o">?</span><span class="p">;</span>
@@ -2646,8 +2646,8 @@
 </ul>
 <h3 id="creating-entities">Creating Entities<a class="headerlink" href="#creating-entities" title="Permanent link">&para;</a></h3>
 <p>Once you create the context with a format, all entities inherit it:</p>
-<div class="language-rust highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">use</span><span class="w"> </span><span class="n">ros_z_msgs</span><span class="p">::</span><span class="n">std_msgs</span><span class="p">::</span><span class="nb">String</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">RosString</span><span class="p">;</span>
-</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="k">use</span><span class="w"> </span><span class="n">ros_z</span><span class="p">::</span><span class="n">Builder</span><span class="p">;</span>
+<div class="language-rust highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">use</span><span class="w"> </span><span class="n">hiroz_msgs</span><span class="p">::</span><span class="n">std_msgs</span><span class="p">::</span><span class="nb">String</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">RosString</span><span class="p">;</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="k">use</span><span class="w"> </span><span class="n">hiroz</span><span class="p">::</span><span class="n">Builder</span><span class="p">;</span>
 </span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>
 </span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="c1">// Create context with RmwZenoh format (default)</span>
 </span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="kd">let</span><span class="w"> </span><span class="n">ctx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ZContextBuilder</span><span class="p">::</span><span class="n">default</span><span class="p">().</span><span class="n">build</span><span class="p">()</span><span class="o">?</span><span class="p">;</span>
@@ -2682,30 +2682,30 @@
 <h2 id="architecture-diagrams">Architecture Diagrams<a class="headerlink" href="#architecture-diagrams" title="Permanent link">&para;</a></h2>
 <h3 id="rmwzenoh-format-architecture">RmwZenoh Format Architecture<a class="headerlink" href="#rmwzenoh-format-architecture" title="Permanent link">&para;</a></h3>
 <pre class="mermaid"><code>graph LR
-accTitle: RmwZenoh key expression format connecting ros-z and ROS 2 nodes
-accDescr: A ros-z node in RmwZenoh format communicates through a Zenoh router using domain-prefixed key expressions to reach a standard ROS 2 node running rmw_zenoh_cpp.
-    A[ros-z Node&lt;br/&gt;RmwZenoh Format] --&gt;|"0/chatter/**"| B[Zenoh Router&lt;br/&gt;rmw_zenoh]
+accTitle: RmwZenoh key expression format connecting hiroz and ROS 2 nodes
+accDescr: A hiroz node in RmwZenoh format communicates through a Zenoh router using domain-prefixed key expressions to reach a standard ROS 2 node running rmw_zenoh_cpp.
+    A[hiroz Node&lt;br/&gt;RmwZenoh Format] --&gt;|"0/chatter/**"| B[Zenoh Router&lt;br/&gt;rmw_zenoh]
     B --&gt;|"0/chatter/**"| C[ROS 2 Node&lt;br/&gt;rmw_zenoh_cpp]</code></pre>
 <p><strong>Use case:</strong> Native Zenoh-based ROS 2 deployment</p>
 <ul>
-<li>All nodes use rmw_zenoh or ros-z</li>
+<li>All nodes use rmw_zenoh or hiroz</li>
 <li>Direct Zenoh communication</li>
 <li>Domain isolation via key expression prefix</li>
 </ul>
 <h3 id="ros2dds-format-architecture">Ros2Dds Format Architecture<a class="headerlink" href="#ros2dds-format-architecture" title="Permanent link">&para;</a></h3>
 <pre class="mermaid"><code>graph LR
 accTitle: Ros2Dds key expression format bridging Zenoh and DDS networks
-accDescr: A ros-z node in Ros2Dds format sends messages via Zenoh to the zenoh-bridge-ros2dds, which translates them to DDS for standard ROS 2 nodes running CycloneDDS or FastDDS.
-    A[ros-z Node&lt;br/&gt;Ros2Dds Format] --&gt;|"chatter/**"| B[zenoh-bridge-ros2dds&lt;br/&gt;Router + Bridge]
+accDescr: A hiroz node in Ros2Dds format sends messages via Zenoh to the zenoh-bridge-ros2dds, which translates them to DDS for standard ROS 2 nodes running CycloneDDS or FastDDS.
+    A[hiroz Node&lt;br/&gt;Ros2Dds Format] --&gt;|"chatter/**"| B[zenoh-bridge-ros2dds&lt;br/&gt;Router + Bridge]
     B --&gt;|DDS| C[ROS 2 Node&lt;br/&gt;CycloneDDS/FastDDS]</code></pre>
 <p><strong>Use case:</strong> Bridge existing DDS systems to Zenoh</p>
 <ul>
 <li>ROS 2 nodes use standard DDS middleware</li>
 <li><code>zenoh-bridge-ros2dds</code> translates DDS ↔ Zenoh</li>
-<li>ros-z communicates via Zenoh side of bridge</li>
+<li>hiroz communicates via Zenoh side of bridge</li>
 </ul>
 <h2 id="key-expression-generation-details">Key Expression Generation Details<a class="headerlink" href="#key-expression-generation-details" title="Permanent link">&para;</a></h2>
-<p>Understanding how <code>ros-z-protocol</code> generates key expressions helps with debugging and monitoring.</p>
+<p>Understanding how <code>hiroz-protocol</code> generates key expressions helps with debugging and monitoring.</p>
 <h3 id="topic-key-expression-structure">Topic Key Expression Structure<a class="headerlink" href="#topic-key-expression-structure" title="Permanent link">&para;</a></h3>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>&lt;domain_id&gt;/&lt;topic_stripped&gt;/&lt;type&gt;/&lt;hash&gt;
 </span></code></pre></div>
@@ -2727,15 +2727,15 @@ accDescr: A ros-z node in Ros2Dds format sends messages via Zenoh to the zenoh-b
 <h3 id="liveliness-token-structure">Liveliness Token Structure<a class="headerlink" href="#liveliness-token-structure" title="Permanent link">&para;</a></h3>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>@ros2_lv/&lt;domain&gt;/&lt;entity_kind&gt;/&lt;zid&gt;/&lt;id&gt;/&lt;namespace&gt;/&lt;name&gt;/&lt;type&gt;/&lt;hash&gt;/&lt;qos&gt;
 </span></code></pre></div>
-<p><strong>ros-z mangles all name fields</strong> (/ → %):</p>
+<p><strong>hiroz mangles all name fields</strong> (/ → %):</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>Namespace: /robot/arm  →  %robot%arm
 </span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>Name:      /gripper    →  %gripper
 </span></code></pre></div>
 <p><strong>Example:</strong></p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>@ros2_lv/0/MP/01234567890abcdef/1/%robot%arm/%gripper/std_msgs::msg::String_/RIHS01_.../qos_string
 </span></code></pre></div>
-<h2 id="ros-z-protocol-crate">ros-z-protocol Crate<a class="headerlink" href="#ros-z-protocol-crate" title="Permanent link">&para;</a></h2>
-<p>The independent <code>ros-z-protocol</code> crate provides the key expression logic:</p>
+<h2 id="hiroz-protocol-crate">hiroz-protocol Crate<a class="headerlink" href="#hiroz-protocol-crate" title="Permanent link">&para;</a></h2>
+<p>The independent <code>hiroz-protocol</code> crate provides the key expression logic:</p>
 <p><strong>Features:</strong></p>
 <ul>
 <li><code>no_std</code> compatible (with <code>alloc</code>)</li>
@@ -2746,10 +2746,10 @@ accDescr: A ros-z node in Ros2Dds format sends messages via Zenoh to the zenoh-b
 </ul>
 <p><strong>Cargo features:</strong></p>
 <div class="language-toml highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="k">[dependencies]</span>
-</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="n">ros-z-protocol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">version</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;0.1&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">features</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;rmw-zenoh&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;ros2dds&quot;</span><span class="p">]</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="n">hiroz-protocol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">version</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;0.1&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">features</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;rmw-zenoh&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;ros2dds&quot;</span><span class="p">]</span><span class="w"> </span><span class="p">}</span>
 </span></code></pre></div>
-<p><strong>Using ros-z-protocol directly:</strong></p>
-<div class="language-rust highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="k">use</span><span class="w"> </span><span class="n">ros_z_protocol</span><span class="p">::{</span><span class="n">KeyExprFormat</span><span class="p">,</span><span class="w"> </span><span class="n">entity</span><span class="p">::</span><span class="o">*</span><span class="p">};</span>
+<p><strong>Using hiroz-protocol directly:</strong></p>
+<div class="language-rust highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="k">use</span><span class="w"> </span><span class="n">hiroz_protocol</span><span class="p">::{</span><span class="n">KeyExprFormat</span><span class="p">,</span><span class="w"> </span><span class="n">entity</span><span class="p">::</span><span class="o">*</span><span class="p">};</span>
 </span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>
 </span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="kd">let</span><span class="w"> </span><span class="n">format</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">KeyExprFormat</span><span class="p">::</span><span class="n">default</span><span class="p">();</span><span class="w"> </span><span class="c1">// RmwZenoh</span>
 </span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>
@@ -2762,37 +2762,37 @@ accDescr: A ros-z node in Ros2Dds format sends messages via Zenoh to the zenoh-b
 </span><span id="__span-13-11"><a id="__codelineno-13-11" name="__codelineno-13-11" href="#__codelineno-13-11"></a><span class="c1">// Parse liveliness token back to entity</span>
 </span><span id="__span-13-12"><a id="__codelineno-13-12" name="__codelineno-13-12" href="#__codelineno-13-12"></a><span class="kd">let</span><span class="w"> </span><span class="n">parsed_entity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">format</span><span class="p">.</span><span class="n">parse_liveliness</span><span class="p">(</span><span class="o">&amp;</span><span class="n">lv_ke</span><span class="p">)</span><span class="o">?</span><span class="p">;</span>
 </span></code></pre></div>
-<p>See the <a href="https://github.com/ZettaScaleLabs/ros-z/tree/main/crates/ros-z-protocol">ros-z-protocol crate</a> for details.</p>
+<p>See the <a href="https://github.com/ZettaScaleLabs/hiroz/tree/main/crates/hiroz-protocol">hiroz-protocol crate</a> for details.</p>
 <h2 id="troubleshooting">Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permanent link">&para;</a></h2>
 <h3 id="multi-segment-topics-not-working">Multi-Segment Topics Not Working?<a class="headerlink" href="#multi-segment-topics-not-working" title="Permanent link">&para;</a></h3>
 <p><strong>Symptom:</strong> Publisher publishes to <code>/robot/sensors/camera</code> but subscriber never receives messages.</p>
-<p><strong>Cause:</strong> Old versions of ros-z (before 0.1.0) incorrectly mangled slashes in topic key expressions.</p>
-<p><strong>Fix:</strong> Update to ros-z 0.1.0+ which correctly uses <code>strip_slashes()</code> for all topic key expressions.</p>
+<p><strong>Cause:</strong> Old versions of hiroz (before 0.1.0) incorrectly mangled slashes in topic key expressions.</p>
+<p><strong>Fix:</strong> Update to hiroz 0.1.0+ which correctly uses <code>strip_slashes()</code> for all topic key expressions.</p>
 <p><strong>Verify:</strong> Enable debug logging to check key expressions:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="nv">RUST_LOG</span><span class="o">=</span><span class="nv">ros_z</span><span class="o">=</span>debug<span class="w"> </span>cargo<span class="w"> </span>run<span class="w"> </span>--example<span class="w"> </span>z_pubsub
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="nv">RUST_LOG</span><span class="o">=</span><span class="nv">hiroz</span><span class="o">=</span>debug<span class="w"> </span>cargo<span class="w"> </span>run<span class="w"> </span>--example<span class="w"> </span>z_pubsub
 </span></code></pre></div>
 <p>Look for key expressions like:</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>✅ Correct:  0/robot/sensors/camera/sensor_msgs::msg::Image_/...
 </span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>❌ Wrong:    0/robot%sensors%camera/sensor_msgs::msg::Image_/...
 </span></code></pre></div>
-<h3 id="no-messages-between-ros-z-and-rmw_zenoh_cpp">No Messages Between ros-z and rmw_zenoh_cpp?<a class="headerlink" href="#no-messages-between-ros-z-and-rmw_zenoh_cpp" title="Permanent link">&para;</a></h3>
-<p><strong>Check format:</strong> Ensure ros-z uses <code>KeyExprFormat::RmwZenoh</code> (the default).</p>
+<h3 id="no-messages-between-hiroz-and-rmw_zenoh_cpp">No Messages Between hiroz and rmw_zenoh_cpp?<a class="headerlink" href="#no-messages-between-hiroz-and-rmw_zenoh_cpp" title="Permanent link">&para;</a></h3>
+<p><strong>Check format:</strong> Ensure hiroz uses <code>KeyExprFormat::RmwZenoh</code> (the default).</p>
 <p><strong>Check type hash:</strong> Enable debug logging and compare type hashes:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="nv">RUST_LOG</span><span class="o">=</span><span class="nv">ros_z</span><span class="o">=</span>debug<span class="w"> </span>cargo<span class="w"> </span>run
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="nv">RUST_LOG</span><span class="o">=</span><span class="nv">hiroz</span><span class="o">=</span>debug<span class="w"> </span>cargo<span class="w"> </span>run
 </span></code></pre></div>
-<p>Type hashes must match between ros-z and rmw_zenoh_cpp. If they don't, you may have:</p>
+<p>Type hashes must match between hiroz and rmw_zenoh_cpp. If they don't, you may have:</p>
 <ul>
 <li>Different message definitions</li>
 <li>Different ROS 2 distros</li>
 <li>Outdated generated messages</li>
 </ul>
 <h3 id="no-messages-through-zenoh-bridge-ros2dds">No Messages Through zenoh-bridge-ros2dds?<a class="headerlink" href="#no-messages-through-zenoh-bridge-ros2dds" title="Permanent link">&para;</a></h3>
-<p><strong>Check format:</strong> Ensure ros-z uses <code>KeyExprFormat::Ros2Dds</code>:</p>
+<p><strong>Check format:</strong> Ensure hiroz uses <code>KeyExprFormat::Ros2Dds</code>:</p>
 <div class="language-rust highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="kd">let</span><span class="w"> </span><span class="n">ctx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ZContextBuilder</span><span class="p">::</span><span class="n">default</span><span class="p">()</span>
 </span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="w">    </span><span class="p">.</span><span class="n">keyexpr_format</span><span class="p">(</span><span class="n">KeyExprFormat</span><span class="p">::</span><span class="n">Ros2Dds</span><span class="p">)</span>
 </span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a><span class="w">    </span><span class="p">.</span><span class="n">build</span><span class="p">()</span><span class="o">?</span><span class="p">;</span>
 </span></code></pre></div>
-<p><strong>Check bridge configuration:</strong> Verify <code>zenoh-bridge-ros2dds</code> is running and connected to the same Zenoh router as ros-z.</p>
+<p><strong>Check bridge configuration:</strong> Verify <code>zenoh-bridge-ros2dds</code> is running and connected to the same Zenoh router as hiroz.</p>
 <h2 id="format-comparison">Format Comparison<a class="headerlink" href="#format-comparison" title="Permanent link">&para;</a></h2>
 <h3 id="when-to-use-rmwzenoh-format">When to Use RmwZenoh Format<a class="headerlink" href="#when-to-use-rmwzenoh-format" title="Permanent link">&para;</a></h3>
 <p>✅ <strong>Use RmwZenoh when:</strong></p>

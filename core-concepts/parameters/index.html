@@ -6,11 +6,11 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Native Rust ROS 2 implementation built on Zenoh">
+        <meta name="description" content="High-performance Interoperable Robotics on Zenoh">
       
       
       
-        <link rel="canonical" href="https://zettascalelabs.github.io/ros-z/core-concepts/parameters/">
+        <link rel="canonical" href="https://zettascalelabs.github.io/hiroz/core-concepts/parameters/">
       
       
         <link rel="prev" href="../actions-advanced/">
@@ -24,7 +24,7 @@
     
     
       
-        <title>Parameters - ros-z</title>
+        <title>Parameters - HIROZ</title>
       
     
     
@@ -96,7 +96,7 @@
 
 <header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="ros-z" class="md-header__button md-logo" aria-label="ros-z" data-md-component="logo">
+    <a href="../.." title="HIROZ" class="md-header__button md-logo" aria-label="HIROZ" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 163" overflow="hidden"><path d="M67.5,0 C70.5,10.015361 71.5,23.0353303 70.5,39.0599078 C87.5,23.5360983 102.5,15.7741935 115.5,15.7741935 C108,23.2857143 108.272452,33.9711351 112.5,33.0506912 C124,30.546851 136.5,32.5499232 150,39.0599078 L150,153.269585 C150,165.695992 139.926407,175.769585 127.5,175.769585 L61.1792721,175.769585 C54.9660687,175.769585 49.9292721,170.732789 49.9292721,164.519585 C49.9292721,162.825588 50.3118282,161.153461 51.0483941,159.627979 C55.1904226,151.049532 63.9242912,142.158178 77.25,132.953917 C99,117.930876 107.25,107.414747 107.25,87.8847926 C107.25,76.6175115 101.235622,69.7933468 93,69.1059908 C84,68.3548387 77.25,72.8617512 77.25,79.6221198 C77.25,83.1274962 78.25,86.1321045 80.25,88.6359447 L45,114.175115 C42.5,117.680492 41.25,121.686636 41.25,126.193548 C31.75,126.193548 26.5,120.935484 25.5,110.419355 L30.5,74.1136713 C24.1666667,69.2729135 19.25,63.5140809 15.75,56.8371736 C21.5833333,59.8417819 27.3527952,61.6613272 33.0583855,62.2958096 L36,43.5668203 C38.5,30.546851 41.75,22.0337942 45.75,18.0276498 C45.25,27.0414747 46.25,38.0583717 48.75,51.078341 C59.25,35.5545315 65.5,18.5284178 67.5,0 Z M55.5,59.3410138 C54.8493151,62.5994361 52.5050666,67.1299821 48.4672671,72.9331549 C49.3254255,73.6214254 49.875,74.6796138 49.875,75.8663594 C49.875,77.9406086 48.1960678,79.6221198 46.125,79.6221198 C45.3413993,79.6221198 44.6139341,79.3814062 44.0134198,78.9679649 C42.9192012,80.380157 41.7480613,81.8501288 40.5,83.3778802 C48.0409322,84.7516633 53.0409322,83.2493592 55.5,78.8709677 C58.5613983,73.4201217 58.5,65.3502304 55.5,59.3410138 Z"/></svg>
@@ -110,7 +110,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            ros-z
+            HIROZ
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -198,13 +198,13 @@
     
     
       <div class="md-header__source">
-        <a href="https://github.com/ZettaScaleLabs/ros-z" title="Go to repository" class="md-source" data-md-component="source">
+        <a href="https://github.com/ZettaScaleLabs/hiroz" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
   </div>
   <div class="md-source__repository">
-    ZettaScaleLabs/ros-z
+    ZettaScaleLabs/hiroz
   </div>
 </a>
       </div>
@@ -416,23 +416,23 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="ros-z" class="md-nav__button md-logo" aria-label="ros-z" data-md-component="logo">
+    <a href="../.." title="HIROZ" class="md-nav__button md-logo" aria-label="HIROZ" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 163" overflow="hidden"><path d="M67.5,0 C70.5,10.015361 71.5,23.0353303 70.5,39.0599078 C87.5,23.5360983 102.5,15.7741935 115.5,15.7741935 C108,23.2857143 108.272452,33.9711351 112.5,33.0506912 C124,30.546851 136.5,32.5499232 150,39.0599078 L150,153.269585 C150,165.695992 139.926407,175.769585 127.5,175.769585 L61.1792721,175.769585 C54.9660687,175.769585 49.9292721,170.732789 49.9292721,164.519585 C49.9292721,162.825588 50.3118282,161.153461 51.0483941,159.627979 C55.1904226,151.049532 63.9242912,142.158178 77.25,132.953917 C99,117.930876 107.25,107.414747 107.25,87.8847926 C107.25,76.6175115 101.235622,69.7933468 93,69.1059908 C84,68.3548387 77.25,72.8617512 77.25,79.6221198 C77.25,83.1274962 78.25,86.1321045 80.25,88.6359447 L45,114.175115 C42.5,117.680492 41.25,121.686636 41.25,126.193548 C31.75,126.193548 26.5,120.935484 25.5,110.419355 L30.5,74.1136713 C24.1666667,69.2729135 19.25,63.5140809 15.75,56.8371736 C21.5833333,59.8417819 27.3527952,61.6613272 33.0583855,62.2958096 L36,43.5668203 C38.5,30.546851 41.75,22.0337942 45.75,18.0276498 C45.25,27.0414747 46.25,38.0583717 48.75,51.078341 C59.25,35.5545315 65.5,18.5284178 67.5,0 Z M55.5,59.3410138 C54.8493151,62.5994361 52.5050666,67.1299821 48.4672671,72.9331549 C49.3254255,73.6214254 49.875,74.6796138 49.875,75.8663594 C49.875,77.9406086 48.1960678,79.6221198 46.125,79.6221198 C45.3413993,79.6221198 44.6139341,79.3814062 44.0134198,78.9679649 C42.9192012,80.380157 41.7480613,81.8501288 40.5,83.3778802 C48.0409322,84.7516633 53.0409322,83.2493592 55.5,78.8709677 C58.5613983,73.4201217 58.5,65.3502304 55.5,59.3410138 Z"/></svg>
 
     </a>
-    ros-z
+    HIROZ
   </label>
   
     <div class="md-nav__source">
-      <a href="https://github.com/ZettaScaleLabs/ros-z" title="Go to repository" class="md-source" data-md-component="source">
+      <a href="https://github.com/ZettaScaleLabs/hiroz" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
   </div>
   <div class="md-source__repository">
-    ZettaScaleLabs/ros-z
+    ZettaScaleLabs/hiroz
   </div>
 </a>
     </div>
@@ -1510,7 +1510,7 @@
   
   
   <span class="md-ellipsis">
-    ros-z-console
+    hiroz-console
     
   </span>
   
@@ -1941,12 +1941,12 @@
   
   
     <li class="md-nav__item">
-      <a href="../../reference/ros2-to-rosz/" class="md-nav__link">
+      <a href="../../reference/ros2-to-hiroz/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    ROS 2 → ros-z API Mapping
+    ROS 2 → hiroz API Mapping
     
   </span>
   
@@ -2325,7 +2325,7 @@
 
 
   
-    <a href="https://github.com/ZettaScaleLabs/ros-z/edit/main/docs/core-concepts/parameters.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
+    <a href="https://github.com/ZettaScaleLabs/hiroz/edit/main/docs/core-concepts/parameters.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
     </a>
@@ -2334,10 +2334,10 @@
 
 
 <h1 id="parameters">Parameters<a class="headerlink" href="#parameters" title="Permanent link">&para;</a></h1>
-<p><strong>ros-z implements the full ROS 2 parameter subsystem for native nodes.</strong> Declare, get, set, and validate typed parameters at runtime — with config file loading, range constraints, and standard parameter services that interoperate with <code>ros2 param</code>.</p>
+<p><strong>hiroz implements the full ROS 2 parameter subsystem for native nodes.</strong> Declare, get, set, and validate typed parameters at runtime — with config file loading, range constraints, and standard parameter services that interoperate with <code>ros2 param</code>.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Parameters let you configure node behavior at runtime without recompilation. ros-z parameters are fully compatible with the ROS 2 parameter protocol, so <code>ros2 param list</code>, <code>ros2 param get</code>, and <code>ros2 param set</code> work out of the box against ros-z nodes.</p>
+<p>Parameters let you configure node behavior at runtime without recompilation. hiroz parameters are fully compatible with the ROS 2 parameter protocol, so <code>ros2 param list</code>, <code>ros2 param get</code>, and <code>ros2 param set</code> work out of the box against hiroz nodes.</p>
 </div>
 <h2 id="what-is-a-parameter">What is a Parameter?<a class="headerlink" href="#what-is-a-parameter" title="Permanent link">&para;</a></h2>
 <pre class="mermaid"><code>graph TD
@@ -2352,7 +2352,7 @@ accDescr: The robot_controller node owns three typed parameters and the ros2 par
 <ul>
 <li>Typed: <code>bool</code>, <code>integer</code>, <code>double</code>, <code>string</code>, or array variants</li>
 <li>Declared: nodes reject unknown parameter names by default</li>
-<li>Introspectable: <code>ros2 param list/get/set</code> works on any ros-z node</li>
+<li>Introspectable: <code>ros2 param list/get/set</code> works on any hiroz node</li>
 </ul>
 <h3 id="parameters-vs-other-config">Parameters vs other config<a class="headerlink" href="#parameters-vs-other-config" title="Permanent link">&para;</a></h3>
 <table>
@@ -2437,7 +2437,7 @@ accDescr: A CLI set command enters the node's three-stage callback pipeline wher
 <p>Only use side-effects (e.g. reconfiguring hardware) in the <strong>post-set callback</strong>. The set callback must be pure — a later parameter in the same batch might still fail.</p>
 </div>
 <h3 id="standard-parameter-services">Standard parameter services<a class="headerlink" href="#standard-parameter-services" title="Permanent link">&para;</a></h3>
-<p>Every ros-z node auto-creates these services — no extra code needed:</p>
+<p>Every hiroz node auto-creates these services — no extra code needed:</p>
 <table>
 <thead>
 <tr>
@@ -2538,12 +2538,12 @@ accDescr: A CLI set command enters the node's three-stage callback pipeline wher
     <div class="flashcard-inner">
       <div class="flashcard-front">
         <div class="flashcard-tag">Interop</div>
-        <div class="flashcard-term">How do you change a ros-z parameter from the CLI?</div>
+        <div class="flashcard-term">How do you change a hiroz parameter from the CLI?</div>
         <div class="flashcard-hint">Click to flip</div>
       </div>
       <div class="flashcard-back">
         <strong>ros2 param set /my_node max_speed 2.5</strong>
-        ros-z exposes standard parameter services so any ROS 2 tool works out of the box.
+        hiroz exposes standard parameter services so any ROS 2 tool works out of the box.
       </div>
     </div>
   </div>
@@ -2551,7 +2551,7 @@ accDescr: A CLI set command enters the node's three-stage callback pipeline wher
 
 <h2 id="visual-flow">Visual Flow<a class="headerlink" href="#visual-flow" title="Permanent link">&para;</a></h2>
 <pre class="mermaid"><code>graph TD
-accTitle: Parameter subsystem components inside a ros-z node
+accTitle: Parameter subsystem components inside a hiroz node
 accDescr: A ZNodeBuilder creates a ZNode that owns both a ParameterStore and a ParameterService; the service hosts six ZServers for all standard parameter operations and publishes parameter events.
     A[ZNodeBuilder] --&gt;|configure| B[ZNode]
     B --&gt;|owns| C[ParameterStore]
@@ -2608,7 +2608,7 @@ accDescr: A ZNodeBuilder creates a ZNode that owns both a ParameterStore and a P
 </tbody>
 </table>
 <h2 id="quick-start">Quick Start<a class="headerlink" href="#quick-start" title="Permanent link">&para;</a></h2>
-<div class="language-rust highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">use</span><span class="w"> </span><span class="n">ros_z</span><span class="p">::{</span><span class="n">Builder</span><span class="p">,</span><span class="w"> </span><span class="n">parameter</span><span class="p">::</span><span class="o">*</span><span class="p">};</span>
+<div class="language-rust highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">use</span><span class="w"> </span><span class="n">hiroz</span><span class="p">::{</span><span class="n">Builder</span><span class="p">,</span><span class="w"> </span><span class="n">parameter</span><span class="p">::</span><span class="o">*</span><span class="p">};</span>
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
 </span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="kd">let</span><span class="w"> </span><span class="n">node</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ctx</span><span class="p">.</span><span class="n">create_node</span><span class="p">(</span><span class="s">&quot;my_node&quot;</span><span class="p">).</span><span class="n">build</span><span class="p">()</span><span class="o">?</span><span class="p">;</span>
 </span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
@@ -2684,7 +2684,7 @@ accDescr: A ZNodeBuilder creates a ZNode that owns both a ParameterStore and a P
 </table>
 <h2 id="declaring-parameters">Declaring Parameters<a class="headerlink" href="#declaring-parameters" title="Permanent link">&para;</a></h2>
 <p>Declare parameters before use. A <code>ParameterDescriptor</code> specifies the name, expected type, and optional constraints:</p>
-<div class="language-rust highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">use</span><span class="w"> </span><span class="n">ros_z</span><span class="p">::</span><span class="n">parameter</span><span class="p">::</span><span class="o">*</span><span class="p">;</span>
+<div class="language-rust highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">use</span><span class="w"> </span><span class="n">hiroz</span><span class="p">::</span><span class="n">parameter</span><span class="p">::</span><span class="o">*</span><span class="p">;</span>
 </span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
 </span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="c1">// Basic declaration</span>
 </span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="kd">let</span><span class="w"> </span><span class="n">desc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ParameterDescriptor</span><span class="p">::</span><span class="n">new</span><span class="p">(</span><span class="s">&quot;timeout&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">ParameterType</span><span class="p">::</span><span class="n">Double</span><span class="p">);</span>
@@ -2772,7 +2772,7 @@ accDescr: A ZNodeBuilder creates a ZNode that owns both a ParameterStore and a P
 </span><span id="__span-3-45"><a id="__codelineno-3-45" name="__codelineno-3-45" href="#__codelineno-3-45"></a><span class="p">}</span>
 </span></code></pre></div>
 <p>The callback receives all parameters changing in a single batch. Return <code>SetParametersResult::success()</code> to accept or <code>SetParametersResult::failure("reason")</code> to reject the entire batch.</p>
-<p>ros-z treats <code>ParameterValue::NotSet</code> as an unset value for a still-declared parameter. It does <strong>not</strong> delete the parameter; call <code>undeclare_parameter</code> for that.</p>
+<p>hiroz treats <code>ParameterValue::NotSet</code> as an unset value for a still-declared parameter. It does <strong>not</strong> delete the parameter; call <code>undeclare_parameter</code> for that.</p>
 <h2 id="parameter-services">Parameter Services<a class="headerlink" href="#parameter-services" title="Permanent link">&para;</a></h2>
 <p>Each node with parameters enabled exposes 6 standard services:</p>
 <table>
@@ -2819,7 +2819,7 @@ accDescr: A ZNodeBuilder creates a ZNode that owns both a ParameterStore and a P
 <h2 id="remote-parameter-client">Remote Parameter Client<a class="headerlink" href="#remote-parameter-client" title="Permanent link">&para;</a></h2>
 <p>Use <code>ParameterClient</code> when you want a typed client for another node's parameter services:</p>
 <div class="language-rust highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">use</span><span class="w"> </span><span class="n">std</span><span class="p">::</span><span class="n">sync</span><span class="p">::</span><span class="n">Arc</span><span class="p">;</span>
-</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="k">use</span><span class="w"> </span><span class="n">ros_z</span><span class="p">::</span><span class="n">parameter</span><span class="p">::{</span><span class="n">Parameter</span><span class="p">,</span><span class="w"> </span><span class="n">ParameterClient</span><span class="p">,</span><span class="w"> </span><span class="n">ParameterTarget</span><span class="p">,</span><span class="w"> </span><span class="n">ParameterType</span><span class="p">,</span><span class="w"> </span><span class="n">ParameterValue</span><span class="p">};</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="k">use</span><span class="w"> </span><span class="n">hiroz</span><span class="p">::</span><span class="n">parameter</span><span class="p">::{</span><span class="n">Parameter</span><span class="p">,</span><span class="w"> </span><span class="n">ParameterClient</span><span class="p">,</span><span class="w"> </span><span class="n">ParameterTarget</span><span class="p">,</span><span class="w"> </span><span class="n">ParameterType</span><span class="p">,</span><span class="w"> </span><span class="n">ParameterValue</span><span class="p">};</span>
 </span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>
 </span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="kd">let</span><span class="w"> </span><span class="n">client_node</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Arc</span><span class="p">::</span><span class="n">new</span><span class="p">(</span><span class="n">ctx</span><span class="p">.</span><span class="n">create_node</span><span class="p">(</span><span class="s">&quot;param_client&quot;</span><span class="p">).</span><span class="n">build</span><span class="p">()</span><span class="o">?</span><span class="p">);</span>
 </span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="kd">let</span><span class="w"> </span><span class="n">client</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ParameterClient</span><span class="p">::</span><span class="n">new</span><span class="p">(</span>
@@ -2835,7 +2835,7 @@ accDescr: A ZNodeBuilder creates a ZNode that owns both a ParameterStore and a P
 </span></code></pre></div>
 <p><code>ParameterClient</code> currently supports <code>describe</code>, <code>get</code>, <code>get_types</code>, <code>list</code>, <code>set</code>, and <code>set_atomically</code>.</p>
 <h2 id="loading-from-yaml">Loading from YAML<a class="headerlink" href="#loading-from-yaml" title="Permanent link">&para;</a></h2>
-<p>ros-z supports the standard ROS 2 parameter YAML format:</p>
+<p>hiroz supports the standard ROS 2 parameter YAML format:</p>
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nt">/**</span><span class="p">:</span>
 </span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">  </span><span class="nt">ros__parameters</span><span class="p">:</span>
 </span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">    </span><span class="nt">global_timeout</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5.0</span>
@@ -2883,14 +2883,14 @@ accDescr: A ZNodeBuilder creates a ZNode that owns both a ParameterStore and a P
 </table>
 <p>If you use both a file and programmatic overrides, the last call wins.</p>
 <h2 id="parameter_events">/parameter_events<a class="headerlink" href="#parameter_events" title="Permanent link">&para;</a></h2>
-<p>ros-z publishes a <code>ParameterEvent</code> message to <code>/parameter_events</code> for every successful parameter change, with QoS:</p>
+<p>hiroz publishes a <code>ParameterEvent</code> message to <code>/parameter_events</code> for every successful parameter change, with QoS:</p>
 <ul>
 <li><strong>Topic</strong>: <code>/parameter_events</code> (global, shared by all nodes)</li>
 <li><strong>Reliability</strong>: Reliable</li>
 <li><strong>Durability</strong>: Transient Local</li>
 <li><strong>History</strong>: Keep Last (1000)</li>
 </ul>
-<p>ros-z classifies events as:</p>
+<p>hiroz classifies events as:</p>
 <ul>
 <li><code>new_parameters</code> on declaration</li>
 <li><code>changed_parameters</code> on successful set, including <code>ParameterValue::NotSet</code></li>
@@ -2903,7 +2903,7 @@ accDescr: A ZNodeBuilder creates a ZNode that owns both a ParameterStore and a P
 <tr>
 <th>Operation</th>
 <th>rclcpp (C++)</th>
-<th>ros-z (Rust)</th>
+<th>hiroz (Rust)</th>
 </tr>
 </thead>
 <tbody>
@@ -2966,15 +2966,15 @@ accDescr: A ZNodeBuilder creates a ZNode that owns both a ParameterStore and a P
 </table>
 <p><strong>Key differences:</strong></p>
 <ul>
-<li><strong>Error handling</strong>: ros-z returns <code>Result&lt;(), String&gt;</code> on set failures; rclcpp throws exceptions</li>
-<li><strong>Callbacks</strong>: ros-z callbacks receive <code>&amp;[Parameter]</code> (slice) and return <code>SetParametersResult</code>; rclcpp receives <code>std::vector&lt;rclcpp::Parameter&gt;</code></li>
-<li><strong>Opt-out</strong>: ros-z can disable parameter services with <code>.without_parameters()</code>; rclcpp always enables them</li>
-<li><strong>Unset values</strong>: ros-z keeps <code>ParameterValue::NotSet</code> declared; deletion is explicit via <code>undeclare_parameter</code></li>
+<li><strong>Error handling</strong>: hiroz returns <code>Result&lt;(), String&gt;</code> on set failures; rclcpp throws exceptions</li>
+<li><strong>Callbacks</strong>: hiroz callbacks receive <code>&amp;[Parameter]</code> (slice) and return <code>SetParametersResult</code>; rclcpp receives <code>std::vector&lt;rclcpp::Parameter&gt;</code></li>
+<li><strong>Opt-out</strong>: hiroz can disable parameter services with <code>.without_parameters()</code>; rclcpp always enables them</li>
+<li><strong>Unset values</strong>: hiroz keeps <code>ParameterValue::NotSet</code> declared; deletion is explicit via <code>undeclare_parameter</code></li>
 <li><strong>No <code>declare_parameter_if_not_declared</code></strong>: check <code>node.get_parameter("name").is_some()</code> first</li>
 </ul>
 <h2 id="ros-2-interoperability">ROS 2 Interoperability<a class="headerlink" href="#ros-2-interoperability" title="Permanent link">&para;</a></h2>
-<p>ros-z parameter services use the same CDR wire format and RIHS01 type hashes as rclcpp. In an environment where ROS 2 is using <a href="https://github.com/ros2/rmw_zenoh"><code>rmw_zenoh_cpp</code></a> and both sides connect to the same Eclipse Zenoh router, <code>ros2 param</code> commands work against ros-z nodes:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="c1"># List parameters on a ros-z node</span>
+<p>hiroz parameter services use the same CDR wire format and RIHS01 type hashes as rclcpp. In an environment where ROS 2 is using <a href="https://github.com/ros2/rmw_zenoh"><code>rmw_zenoh_cpp</code></a> and both sides connect to the same Eclipse Zenoh router, <code>ros2 param</code> commands work against hiroz nodes:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="c1"># List parameters on a hiroz node</span>
 </span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>ros2<span class="w"> </span>param<span class="w"> </span>list<span class="w"> </span>/my_node
 </span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>
 </span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="c1"># Get a parameter value</span>
@@ -2993,7 +2993,7 @@ accDescr: A ZNodeBuilder creates a ZNode that owns both a ParameterStore and a P
 <h2 id="focused-examples">Focused Examples<a class="headerlink" href="#focused-examples" title="Permanent link">&para;</a></h2>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>These commands run the ready-made examples from the ros-z repository. Clone it first with <code>git clone https://github.com/ZettaScaleLabs/ros-z.git &amp;&amp; cd ros-z</code>.</p>
+<p>These commands run the ready-made examples from the hiroz repository. Clone it first with <code>git clone https://github.com/ZettaScaleLabs/hiroz.git &amp;&amp; cd hiroz</code>.</p>
 </div>
 <p>The parameter examples are now split into focused binaries:</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="c1"># Start a Zenoh router first</span>
@@ -3015,7 +3015,7 @@ accDescr: A ZNodeBuilder creates a ZNode that owns both a ParameterStore and a P
 <ul>
 <li><strong><a href="../../reference/feature-flags/">Feature Flags</a></strong> — <code>rcl_interfaces</code> feature for parameter service client types</li>
 <li><strong><a href="../services/">Services</a></strong> — underlying service mechanism</li>
-<li><strong><a href="../../getting-started/quick-start/">Quick Start</a></strong> — getting started with ros-z</li>
+<li><strong><a href="../../getting-started/quick-start/">Quick Start</a></strong> — getting started with hiroz</li>
 </ul>
 
 

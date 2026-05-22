@@ -6,11 +6,11 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Native Rust ROS 2 implementation built on Zenoh">
+        <meta name="description" content="High-performance Interoperable Robotics on Zenoh">
       
       
       
-        <link rel="canonical" href="https://zettascalelabs.github.io/ros-z/bindings/python/">
+        <link rel="canonical" href="https://zettascalelabs.github.io/hiroz/bindings/python/">
       
       
         <link rel="prev" href="../python-quick-start/">
@@ -24,7 +24,7 @@
     
     
       
-        <title>Bindings - ros-z</title>
+        <title>Bindings - HIROZ</title>
       
     
     
@@ -96,7 +96,7 @@
 
 <header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="ros-z" class="md-header__button md-logo" aria-label="ros-z" data-md-component="logo">
+    <a href="../.." title="HIROZ" class="md-header__button md-logo" aria-label="HIROZ" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 163" overflow="hidden"><path d="M67.5,0 C70.5,10.015361 71.5,23.0353303 70.5,39.0599078 C87.5,23.5360983 102.5,15.7741935 115.5,15.7741935 C108,23.2857143 108.272452,33.9711351 112.5,33.0506912 C124,30.546851 136.5,32.5499232 150,39.0599078 L150,153.269585 C150,165.695992 139.926407,175.769585 127.5,175.769585 L61.1792721,175.769585 C54.9660687,175.769585 49.9292721,170.732789 49.9292721,164.519585 C49.9292721,162.825588 50.3118282,161.153461 51.0483941,159.627979 C55.1904226,151.049532 63.9242912,142.158178 77.25,132.953917 C99,117.930876 107.25,107.414747 107.25,87.8847926 C107.25,76.6175115 101.235622,69.7933468 93,69.1059908 C84,68.3548387 77.25,72.8617512 77.25,79.6221198 C77.25,83.1274962 78.25,86.1321045 80.25,88.6359447 L45,114.175115 C42.5,117.680492 41.25,121.686636 41.25,126.193548 C31.75,126.193548 26.5,120.935484 25.5,110.419355 L30.5,74.1136713 C24.1666667,69.2729135 19.25,63.5140809 15.75,56.8371736 C21.5833333,59.8417819 27.3527952,61.6613272 33.0583855,62.2958096 L36,43.5668203 C38.5,30.546851 41.75,22.0337942 45.75,18.0276498 C45.25,27.0414747 46.25,38.0583717 48.75,51.078341 C59.25,35.5545315 65.5,18.5284178 67.5,0 Z M55.5,59.3410138 C54.8493151,62.5994361 52.5050666,67.1299821 48.4672671,72.9331549 C49.3254255,73.6214254 49.875,74.6796138 49.875,75.8663594 C49.875,77.9406086 48.1960678,79.6221198 46.125,79.6221198 C45.3413993,79.6221198 44.6139341,79.3814062 44.0134198,78.9679649 C42.9192012,80.380157 41.7480613,81.8501288 40.5,83.3778802 C48.0409322,84.7516633 53.0409322,83.2493592 55.5,78.8709677 C58.5613983,73.4201217 58.5,65.3502304 55.5,59.3410138 Z"/></svg>
@@ -110,7 +110,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            ros-z
+            HIROZ
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -198,13 +198,13 @@
     
     
       <div class="md-header__source">
-        <a href="https://github.com/ZettaScaleLabs/ros-z" title="Go to repository" class="md-source" data-md-component="source">
+        <a href="https://github.com/ZettaScaleLabs/hiroz" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
   </div>
   <div class="md-source__repository">
-    ZettaScaleLabs/ros-z
+    ZettaScaleLabs/hiroz
   </div>
 </a>
       </div>
@@ -418,23 +418,23 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="ros-z" class="md-nav__button md-logo" aria-label="ros-z" data-md-component="logo">
+    <a href="../.." title="HIROZ" class="md-nav__button md-logo" aria-label="HIROZ" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 163" overflow="hidden"><path d="M67.5,0 C70.5,10.015361 71.5,23.0353303 70.5,39.0599078 C87.5,23.5360983 102.5,15.7741935 115.5,15.7741935 C108,23.2857143 108.272452,33.9711351 112.5,33.0506912 C124,30.546851 136.5,32.5499232 150,39.0599078 L150,153.269585 C150,165.695992 139.926407,175.769585 127.5,175.769585 L61.1792721,175.769585 C54.9660687,175.769585 49.9292721,170.732789 49.9292721,164.519585 C49.9292721,162.825588 50.3118282,161.153461 51.0483941,159.627979 C55.1904226,151.049532 63.9242912,142.158178 77.25,132.953917 C99,117.930876 107.25,107.414747 107.25,87.8847926 C107.25,76.6175115 101.235622,69.7933468 93,69.1059908 C84,68.3548387 77.25,72.8617512 77.25,79.6221198 C77.25,83.1274962 78.25,86.1321045 80.25,88.6359447 L45,114.175115 C42.5,117.680492 41.25,121.686636 41.25,126.193548 C31.75,126.193548 26.5,120.935484 25.5,110.419355 L30.5,74.1136713 C24.1666667,69.2729135 19.25,63.5140809 15.75,56.8371736 C21.5833333,59.8417819 27.3527952,61.6613272 33.0583855,62.2958096 L36,43.5668203 C38.5,30.546851 41.75,22.0337942 45.75,18.0276498 C45.25,27.0414747 46.25,38.0583717 48.75,51.078341 C59.25,35.5545315 65.5,18.5284178 67.5,0 Z M55.5,59.3410138 C54.8493151,62.5994361 52.5050666,67.1299821 48.4672671,72.9331549 C49.3254255,73.6214254 49.875,74.6796138 49.875,75.8663594 C49.875,77.9406086 48.1960678,79.6221198 46.125,79.6221198 C45.3413993,79.6221198 44.6139341,79.3814062 44.0134198,78.9679649 C42.9192012,80.380157 41.7480613,81.8501288 40.5,83.3778802 C48.0409322,84.7516633 53.0409322,83.2493592 55.5,78.8709677 C58.5613983,73.4201217 58.5,65.3502304 55.5,59.3410138 Z"/></svg>
 
     </a>
-    ros-z
+    HIROZ
   </label>
   
     <div class="md-nav__source">
-      <a href="https://github.com/ZettaScaleLabs/ros-z" title="Go to repository" class="md-source" data-md-component="source">
+      <a href="https://github.com/ZettaScaleLabs/hiroz" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
   </div>
   <div class="md-source__repository">
-    ZettaScaleLabs/ros-z
+    ZettaScaleLabs/hiroz
   </div>
 </a>
     </div>
@@ -1258,7 +1258,7 @@
   
   
   <span class="md-ellipsis">
-    ros-z-console
+    hiroz-console
     
   </span>
   
@@ -2113,12 +2113,12 @@
   
   
     <li class="md-nav__item">
-      <a href="../../reference/ros2-to-rosz/" class="md-nav__link">
+      <a href="../../reference/ros2-to-hiroz/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    ROS 2 → ros-z API Mapping
+    ROS 2 → hiroz API Mapping
     
   </span>
   
@@ -2662,7 +2662,7 @@
 
 
   
-    <a href="https://github.com/ZettaScaleLabs/ros-z/edit/main/docs/bindings/python.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
+    <a href="https://github.com/ZettaScaleLabs/hiroz/edit/main/docs/bindings/python.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
     </a>
@@ -2672,7 +2672,7 @@
 
 <!-- markdownlint-disable MD046 -->
 <h1 id="python-bindings">Python Bindings<a class="headerlink" href="#python-bindings" title="Permanent link">&para;</a></h1>
-<p><strong>ros-z provides Python bindings via <code>ros-z-py</code>, enabling Python applications to communicate with Rust and ROS 2 nodes using the same Eclipse Zenoh transport.</strong> The bindings use PyO3 for Rust-Python interop and msgspec for efficient message serialization.</p>
+<p><strong>hiroz provides Python bindings via <code>hiroz-py</code>, enabling Python applications to communicate with Rust and ROS 2 nodes using the same Eclipse Zenoh transport.</strong> The bindings use PyO3 for Rust-Python interop and msgspec for efficient message serialization.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Python bindings provide the same pub/sub and service patterns as Rust, with Pythonic APIs. Messages are automatically serialized/deserialized between Python objects and CDR format for ROS 2 compatibility.</p>
@@ -2681,26 +2681,26 @@
 <h3 id="pre-built-wheels-recommended">Pre-built Wheels (Recommended)<a class="headerlink" href="#pre-built-wheels-recommended" title="Permanent link">&para;</a></h3>
 <p>Pre-built wheels are available for Linux (x86_64, aarch64) and macOS (aarch64),
 Python 3.11+. No Rust toolchain required.</p>
-<p>Pick a release version from the <a href="https://github.com/ZettaScaleLabs/ros-z/releases">Releases page</a> and substitute <code>&lt;version&gt;</code> below (e.g. <code>v0.2.0</code>).</p>
+<p>Pick a release version from the <a href="https://github.com/ZettaScaleLabs/hiroz/releases">Releases page</a> and substitute <code>&lt;version&gt;</code> below (e.g. <code>v0.2.0</code>).</p>
 <p><strong>Jazzy / Kilted / Rolling:</strong></p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>pip<span class="w"> </span>install<span class="w"> </span>https://github.com/ZettaScaleLabs/ros-z/releases/download/&lt;version&gt;/ros_z_msgs_py-&lt;version&gt;-py3-none-any.whl
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>pip<span class="w"> </span>install<span class="w"> </span>https://github.com/ZettaScaleLabs/ros-z/releases/download/&lt;version&gt;/ros_z_py-&lt;version&gt;-0jazzy-cp311-abi3-linux_x86_64.whl
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>pip<span class="w"> </span>install<span class="w"> </span>https://github.com/ZettaScaleLabs/hiroz/releases/download/&lt;version&gt;/hiroz_msgs_py-&lt;version&gt;-py3-none-any.whl
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>pip<span class="w"> </span>install<span class="w"> </span>https://github.com/ZettaScaleLabs/hiroz/releases/download/&lt;version&gt;/hiroz_py-&lt;version&gt;-0jazzy-cp311-abi3-linux_x86_64.whl
 </span></code></pre></div>
 <p><strong>Humble:</strong></p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>pip<span class="w"> </span>install<span class="w"> </span>https://github.com/ZettaScaleLabs/ros-z/releases/download/&lt;version&gt;/ros_z_msgs_py-&lt;version&gt;-py3-none-any.whl
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>pip<span class="w"> </span>install<span class="w"> </span>https://github.com/ZettaScaleLabs/ros-z/releases/download/&lt;version&gt;/ros_z_py-&lt;version&gt;-0humble-cp311-abi3-linux_x86_64.whl
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>pip<span class="w"> </span>install<span class="w"> </span>https://github.com/ZettaScaleLabs/hiroz/releases/download/&lt;version&gt;/hiroz_msgs_py-&lt;version&gt;-py3-none-any.whl
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>pip<span class="w"> </span>install<span class="w"> </span>https://github.com/ZettaScaleLabs/hiroz/releases/download/&lt;version&gt;/hiroz_py-&lt;version&gt;-0humble-cp311-abi3-linux_x86_64.whl
 </span></code></pre></div>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
-<p><code>ros-z-msgs-py</code> (message definitions) is a dependency of <code>ros-z-py</code> and is installed automatically when using <code>pip install</code>. The explicit install above is only needed when pinning a specific version or installing from a direct URL.</p>
+<p><code>hiroz-msgs-py</code> (message definitions) is a dependency of <code>hiroz-py</code> and is installed automatically when using <code>pip install</code>. The explicit install above is only needed when pinning a specific version or installing from a direct URL.</p>
 </div>
 <h3 id="local-dry-run-before-releasing">Local Dry-Run (before releasing)<a class="headerlink" href="#local-dry-run-before-releasing" title="Permanent link">&para;</a></h3>
 <p>To verify the wheel build locally before pushing a release tag, use the build script
 which mirrors the CI release workflow exactly:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># Build jazzy + humble wheels into crates/ros-z-py/dist/</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># Build jazzy + humble wheels into crates/hiroz-py/dist/</span>
 </span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>./scripts/build-python-wheels.nu
 </span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
-</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="c1"># Build and immediately install into crates/ros-z-py/.venv</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="c1"># Build and immediately install into crates/hiroz-py/.venv</span>
 </span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>./scripts/build-python-wheels.nu<span class="w"> </span>--install<span class="w"> </span>jazzy
 </span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>
 </span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="c1"># Build a single distro only</span>
@@ -2718,14 +2718,14 @@ suffix) and prints ready-to-use <code>pip install</code> commands for the local 
 </ul>
 <h4 id="setup">Setup<a class="headerlink" href="#setup" title="Permanent link">&para;</a></h4>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1"># Create and activate virtual environment</span>
-</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="nb">cd</span><span class="w"> </span>crates/ros-z-py
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="nb">cd</span><span class="w"> </span>crates/hiroz-py
 </span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>python<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>.venv
 </span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="nb">source</span><span class="w"> </span>.venv/bin/activate
 </span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>
 </span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="c1"># Install message types</span>
-</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span>../ros-z-msgs/python/
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span>../hiroz-msgs/python/
 </span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>
-</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="c1"># Build and install ros-z-py</span>
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="c1"># Build and install hiroz-py</span>
 </span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>maturin<span class="w"> </span>develop
 </span></code></pre></div>
 <div class="admonition tip">
@@ -2735,16 +2735,16 @@ suffix) and prints ready-to-use <code>pip install</code> commands for the local 
 <h2 id="architecture">Architecture<a class="headerlink" href="#architecture" title="Permanent link">&para;</a></h2>
 <pre class="mermaid"><code>graph TD
 accTitle: Python bindings architecture from Python code to Zenoh network
-accDescr: Python code imports ros_z_py which calls through PyO3 into the Rust ros-z core, which uses the Zenoh transport to reach ROS 2 and Rust nodes; Python messages go through msgspec and CDR serialization.
-    A[Python Code] --&gt;|import| B[ros_z_py]
-    B --&gt;|PyO3| C[Rust ros-z]
+accDescr: Python code imports hiroz_py which calls through PyO3 into the Rust hiroz core, which uses the Zenoh transport to reach ROS 2 and Rust nodes; Python messages go through msgspec and CDR serialization.
+    A[Python Code] --&gt;|import| B[hiroz_py]
+    B --&gt;|PyO3| C[Rust hiroz]
     C --&gt;|Zenoh| D[Network]
     D --&gt;|Zenoh| E[ROS 2 / Rust Nodes]
     F[Python Message] --&gt;|msgspec| G[Struct]
     G --&gt;|serialize| H[CDR Bytes]
     H --&gt;|deserialize| I[Rust Struct]</code></pre>
 <h2 id="quick-start">Quick Start<a class="headerlink" href="#quick-start" title="Permanent link">&para;</a></h2>
-<p>Here's a complete publisher and subscriber example from <a href="https://github.com/ZettaScaleLabs/ros-z/blob/main/crates/ros-z-py/examples/topic_demo.py"><code>crates/ros-z-py/examples/topic_demo.py</code></a>:</p>
+<p>Here's a complete publisher and subscriber example from <a href="https://github.com/ZettaScaleLabs/hiroz/blob/main/crates/hiroz-py/examples/topic_demo.py"><code>crates/hiroz-py/examples/topic_demo.py</code></a>:</p>
 <h3 id="publisher-talker">Publisher (Talker)<a class="headerlink" href="#publisher-talker" title="Permanent link">&para;</a></h3>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">run_talker</span><span class="p">(</span><span class="n">ctx</span><span class="p">,</span> <span class="n">topic</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">count</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">interval</span><span class="p">:</span> <span class="nb">float</span><span class="p">):</span>
 </span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Run the talker (publisher).&quot;&quot;&quot;</span>
@@ -2795,7 +2795,7 @@ accDescr: Python code imports ros_z_py which calls through PyO3 into the Rust ro
 <tbody>
 <tr>
 <td><strong>ZContextBuilder</strong></td>
-<td>Configure ros-z environment</td>
+<td>Configure hiroz environment</td>
 <td><code>ZContextBuilder().with_domain_id(0).build()</code></td>
 </tr>
 <tr>
@@ -2831,7 +2831,7 @@ accDescr: Python code imports ros_z_py which calls through PyO3 into the Rust ro
 </tbody>
 </table>
 <h2 id="service-patterns">Service Patterns<a class="headerlink" href="#service-patterns" title="Permanent link">&para;</a></h2>
-<p>Examples from <a href="https://github.com/ZettaScaleLabs/ros-z/blob/main/crates/ros-z-py/examples/service_demo.py"><code>crates/ros-z-py/examples/service_demo.py</code></a>:</p>
+<p>Examples from <a href="https://github.com/ZettaScaleLabs/hiroz/blob/main/crates/hiroz-py/examples/service_demo.py"><code>crates/hiroz-py/examples/service_demo.py</code></a>:</p>
 <h3 id="service-server">Service Server<a class="headerlink" href="#service-server" title="Permanent link">&para;</a></h3>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">run_server</span><span class="p">(</span><span class="n">ctx</span><span class="p">,</span> <span class="n">service</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">max_requests</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
 </span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Run the AddTwoInts service server.&quot;&quot;&quot;</span>
@@ -2879,7 +2879,7 @@ accDescr: Python code imports ros_z_py which calls through PyO3 into the Rust ro
 <p>Actions extend services with long-running execution, incremental feedback, and cancellation.
 A goal is sent by the client, accepted or rejected by the server, executed with feedback
 published at each step, and finally terminated with a result.</p>
-<p>Examples from <a href="https://github.com/ZettaScaleLabs/ros-z/blob/main/crates/ros-z-py/examples/action_demo.py"><code>crates/ros-z-py/examples/action_demo.py</code></a>.</p>
+<p>Examples from <a href="https://github.com/ZettaScaleLabs/hiroz/blob/main/crates/hiroz-py/examples/action_demo.py"><code>crates/hiroz-py/examples/action_demo.py</code></a>.</p>
 <h3 id="defining-message-types">Defining Message Types<a class="headerlink" href="#defining-message-types" title="Permanent link">&para;</a></h3>
 <p>Actions require three message structs: Goal, Result, and Feedback.
 Each must have a <code>__msgtype__</code> class attribute:</p>
@@ -2899,7 +2899,7 @@ Each must have a <code>__msgtype__</code> class attribute:</p>
 </span></code></pre></div>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
-<p>Types from <code>ros_z_msgs_py</code> already have <code>__msgtype__</code> and a ROS 2 type hash. Inline
+<p>Types from <code>hiroz_msgs_py</code> already have <code>__msgtype__</code> and a ROS 2 type hash. Inline
 <code>msgspec.Struct</code> types (as above) use a zero hash and are <strong>Python-to-Python only</strong> —
 they are not compatible with <a href="https://github.com/ros2/rmw_zenoh"><code>rmw_zenoh_cpp</code></a> typed actions.</p>
 </div>
@@ -3039,7 +3039,7 @@ they are not compatible with <a href="https://github.com/ros2/rmw_zenoh"><code>r
 </tr>
 </tbody>
 </table>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="n">status</span> <span class="o">=</span> <span class="n">ros_z_py</span><span class="o">.</span><span class="n">GoalStatus</span><span class="p">(</span><span class="n">handle</span><span class="o">.</span><span class="n">status</span><span class="p">)</span>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="n">status</span> <span class="o">=</span> <span class="n">hiroz_py</span><span class="o">.</span><span class="n">GoalStatus</span><span class="p">(</span><span class="n">handle</span><span class="o">.</span><span class="n">status</span><span class="p">)</span>
 </span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="k">if</span> <span class="n">status</span><span class="o">.</span><span class="n">is_terminal</span><span class="p">():</span>
 </span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Done:&quot;</span><span class="p">,</span> <span class="n">status</span><span class="p">)</span>
 </span></code></pre></div>
@@ -3050,7 +3050,7 @@ they are not compatible with <a href="https://github.com/ros2/rmw_zenoh"><code>r
 </div>
 <h2 id="complex-messages">Complex Messages<a class="headerlink" href="#complex-messages" title="Permanent link">&para;</a></h2>
 <p>Python bindings support nested message types like <code>geometry_msgs/Twist</code>:</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">ros_z_py</span><span class="w"> </span><span class="kn">import</span> <span class="n">geometry_msgs</span>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">hiroz_py</span><span class="w"> </span><span class="kn">import</span> <span class="n">geometry_msgs</span>
 </span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>
 </span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="c1"># Create a Twist message with nested Vector3</span>
 </span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="n">twist</span> <span class="o">=</span> <span class="n">geometry_msgs</span><span class="o">.</span><span class="n">Twist</span><span class="p">(</span>
@@ -3064,14 +3064,14 @@ they are not compatible with <a href="https://github.com/ros2/rmw_zenoh"><code>r
 <h2 id="context-configuration">Context Configuration<a class="headerlink" href="#context-configuration" title="Permanent link">&para;</a></h2>
 <h3 id="connect-to-specific-endpoint">Connect to Specific Endpoint<a class="headerlink" href="#connect-to-specific-endpoint" title="Permanent link">&para;</a></h3>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="n">ctx</span> <span class="o">=</span> <span class="p">(</span>
-</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>    <span class="n">ros_z_py</span><span class="o">.</span><span class="n">ZContextBuilder</span><span class="p">()</span>
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>    <span class="n">hiroz_py</span><span class="o">.</span><span class="n">ZContextBuilder</span><span class="p">()</span>
 </span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>    <span class="o">.</span><span class="n">with_connect_endpoints</span><span class="p">([</span><span class="s2">&quot;tcp/192.168.1.100:7447&quot;</span><span class="p">])</span>
 </span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>    <span class="o">.</span><span class="n">build</span><span class="p">()</span>
 </span><span id="__span-13-5"><a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a><span class="p">)</span>
 </span></code></pre></div>
 <h3 id="disable-multicast-scouting">Disable Multicast Scouting<a class="headerlink" href="#disable-multicast-scouting" title="Permanent link">&para;</a></h3>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="n">ctx</span> <span class="o">=</span> <span class="p">(</span>
-</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>    <span class="n">ros_z_py</span><span class="o">.</span><span class="n">ZContextBuilder</span><span class="p">()</span>
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>    <span class="n">hiroz_py</span><span class="o">.</span><span class="n">ZContextBuilder</span><span class="p">()</span>
 </span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>    <span class="o">.</span><span class="n">with_domain_id</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 </span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>    <span class="o">.</span><span class="n">disable_multicast_scouting</span><span class="p">()</span>
 </span><span id="__span-14-5"><a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a>    <span class="o">.</span><span class="n">build</span><span class="p">()</span>
@@ -3081,9 +3081,9 @@ they are not compatible with <a href="https://github.com/ros2/rmw_zenoh"><code>r
 <div class="language-python highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="n">node</span> <span class="o">=</span> <span class="n">ctx</span><span class="o">.</span><span class="n">create_node</span><span class="p">(</span><span class="s2">&quot;my_node&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">with_namespace</span><span class="p">(</span><span class="s2">&quot;/robot1&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">build</span><span class="p">()</span>
 </span></code></pre></div>
 <h2 id="performance-zero-copy-large-payloads">Performance: Zero-Copy Large Payloads<a class="headerlink" href="#performance-zero-copy-large-payloads" title="Permanent link">&para;</a></h2>
-<p>When working with large byte arrays (sensor data, images, point clouds), ros-z-py minimizes memory copies using a zero-copy optimization for <code>uint8[]</code> and <code>byte[]</code> fields.</p>
+<p>When working with large byte arrays (sensor data, images, point clouds), hiroz-py minimizes memory copies using a zero-copy optimization for <code>uint8[]</code> and <code>byte[]</code> fields.</p>
 <h3 id="zbufview">ZBufView<a class="headerlink" href="#zbufview" title="Permanent link">&para;</a></h3>
-<p>When a subscriber receives a message, ros-z exposes byte array fields as a <code>ZBufView</code> — a zero-copy view into the received network buffer. <code>ZBufView</code> implements Python's buffer protocol:</p>
+<p>When a subscriber receives a message, hiroz exposes byte array fields as a <code>ZBufView</code> — a zero-copy view into the received network buffer. <code>ZBufView</code> implements Python's buffer protocol:</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="n">msg</span> <span class="o">=</span> <span class="n">sub</span><span class="o">.</span><span class="n">recv</span><span class="p">(</span><span class="n">timeout</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
 </span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="c1"># msg.data is a ZBufView — no copy has occurred</span>
 </span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>
@@ -3148,7 +3148,7 @@ they are not compatible with <a href="https://github.com/ros2/rmw_zenoh"><code>r
 <p>The optimization operates at three layers:</p>
 <ol>
 <li>
-<p><strong>Deserialization bypass</strong>: When the Python subscriber receives a message, ros-z stores the raw network buffer (ZBuf) in a thread-local. During CDR deserialization, byte array fields create sub-views into this buffer instead of copying (<code>ZSlice::subslice()</code>).</p>
+<p><strong>Deserialization bypass</strong>: When the Python subscriber receives a message, hiroz stores the raw network buffer (ZBuf) in a thread-local. During CDR deserialization, byte array fields create sub-views into this buffer instead of copying (<code>ZSlice::subslice()</code>).</p>
 </li>
 <li>
 <p><strong>Buffer protocol</strong>: <code>ZBufView</code> wraps the ZBuf and exposes its bytes to Python via <code>__getbuffer__</code>/<code>__releasebuffer__</code>. For contiguous buffers (the common case), this is a direct pointer — no copy at all.</p>
@@ -3161,28 +3161,28 @@ they are not compatible with <a href="https://github.com/ros2/rmw_zenoh"><code>r
 <p>Python nodes interoperate with ROS 2 C++ nodes via the shared Zenoh transport. See the dedicated <strong><a href="../../user-guide/interop/">ROS 2 Interoperability</a></strong> chapter for setup instructions.</p>
 <h2 id="running-tests">Running Tests<a class="headerlink" href="#running-tests" title="Permanent link">&para;</a></h2>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="c1"># Python unit tests</span>
-</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="nb">cd</span><span class="w"> </span>crates/ros-z-py
+</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="nb">cd</span><span class="w"> </span>crates/hiroz-py
 </span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a><span class="nb">source</span><span class="w"> </span>.venv/bin/activate
 </span><span id="__span-18-4"><a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a>python<span class="w"> </span>-m<span class="w"> </span>pytest<span class="w"> </span>tests/<span class="w"> </span>-v
 </span><span id="__span-18-5"><a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a>
 </span><span id="__span-18-6"><a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a><span class="c1"># Python-Rust interop tests</span>
-</span><span id="__span-18-7"><a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a>cargo<span class="w"> </span><span class="nb">test</span><span class="w"> </span>--features<span class="w"> </span>python-interop<span class="w"> </span>-p<span class="w"> </span>ros-z-tests<span class="w"> </span>--test<span class="w"> </span>python_interop<span class="w"> </span>--<span class="w"> </span>--test-threads<span class="o">=</span><span class="m">1</span>
+</span><span id="__span-18-7"><a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a>cargo<span class="w"> </span><span class="nb">test</span><span class="w"> </span>--features<span class="w"> </span>python-interop<span class="w"> </span>-p<span class="w"> </span>hiroz-tests<span class="w"> </span>--test<span class="w"> </span>python_interop<span class="w"> </span>--<span class="w"> </span>--test-threads<span class="o">=</span><span class="m">1</span>
 </span></code></pre></div>
 <h2 id="troubleshooting">Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permanent link">&para;</a></h2>
 <details class="question">
-<summary>Import errors when using ros_z_py</summary>
+<summary>Import errors when using hiroz_py</summary>
 <p>This error occurs when the package hasn't been built or installed correctly.
 <strong>Solution:</strong> Rebuild and install the package:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="nb">cd</span><span class="w"> </span>crates/ros-z-py
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="nb">cd</span><span class="w"> </span>crates/hiroz-py
 </span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="nb">source</span><span class="w"> </span>.venv/bin/activate
-</span><span id="__span-19-3"><a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a>pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span>../ros-z-msgs/python/
+</span><span id="__span-19-3"><a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a>pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span>../hiroz-msgs/python/
 </span><span id="__span-19-4"><a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a>maturin<span class="w"> </span>develop
 </span></code></pre></div>
 </details>
 <details class="question">
 <summary>Message type not found</summary>
 <p>This error occurs when trying to use a message type that isn't supported by the Python bindings.
-<strong>Solution:</strong> Check the supported message types by looking at the match arms in <code>crates/ros-z-py/src/node.rs</code>.
+<strong>Solution:</strong> Check the supported message types by looking at the match arms in <code>crates/hiroz-py/src/node.rs</code>.
 Currently supported: <code>std_msgs/String</code>, <code>std_msgs/ByteMultiArray</code>, <code>geometry_msgs/Vector3</code>,
 <code>geometry_msgs/Twist</code>, <code>sensor_msgs/LaserScan</code>, and <code>example_interfaces/AddTwoInts</code>.</p>
 <p>Ensure you are passing a message class object (e.g., <code>std_msgs.String</code>), not a string.</p>
@@ -3200,7 +3200,7 @@ Currently supported: <code>std_msgs/String</code>, <code>std_msgs/ByteMultiArray
 </details>
 <h2 id="resources">Resources<a class="headerlink" href="#resources" title="Permanent link">&para;</a></h2>
 <ul>
-<li><strong><a href="../python-codegen/">Code Generation Internals</a></strong> - How ros-z generates Python bindings</li>
+<li><strong><a href="../python-codegen/">Code Generation Internals</a></strong> - How hiroz generates Python bindings</li>
 <li><strong><a href="../../core-concepts/pubsub/">Pub/Sub</a></strong> - Deep dive into pub-sub patterns</li>
 <li><strong><a href="../../core-concepts/services/">Services</a></strong> - Request-response communication</li>
 <li><strong><a href="../../user-guide/message-generation/">Message Generation</a></strong> - How message types work</li>

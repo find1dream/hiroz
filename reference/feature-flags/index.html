@@ -6,11 +6,11 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Native Rust ROS 2 implementation built on Zenoh">
+        <meta name="description" content="High-performance Interoperable Robotics on Zenoh">
       
       
       
-        <link rel="canonical" href="https://zettascalelabs.github.io/ros-z/reference/feature-flags/">
+        <link rel="canonical" href="https://zettascalelabs.github.io/hiroz/reference/feature-flags/">
       
       
         <link rel="prev" href="../../experimental/keyexpr-formats/">
@@ -24,7 +24,7 @@
     
     
       
-        <title>Feature Flags - ros-z</title>
+        <title>Feature Flags - HIROZ</title>
       
     
     
@@ -96,7 +96,7 @@
 
 <header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="ros-z" class="md-header__button md-logo" aria-label="ros-z" data-md-component="logo">
+    <a href="../.." title="HIROZ" class="md-header__button md-logo" aria-label="HIROZ" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 163" overflow="hidden"><path d="M67.5,0 C70.5,10.015361 71.5,23.0353303 70.5,39.0599078 C87.5,23.5360983 102.5,15.7741935 115.5,15.7741935 C108,23.2857143 108.272452,33.9711351 112.5,33.0506912 C124,30.546851 136.5,32.5499232 150,39.0599078 L150,153.269585 C150,165.695992 139.926407,175.769585 127.5,175.769585 L61.1792721,175.769585 C54.9660687,175.769585 49.9292721,170.732789 49.9292721,164.519585 C49.9292721,162.825588 50.3118282,161.153461 51.0483941,159.627979 C55.1904226,151.049532 63.9242912,142.158178 77.25,132.953917 C99,117.930876 107.25,107.414747 107.25,87.8847926 C107.25,76.6175115 101.235622,69.7933468 93,69.1059908 C84,68.3548387 77.25,72.8617512 77.25,79.6221198 C77.25,83.1274962 78.25,86.1321045 80.25,88.6359447 L45,114.175115 C42.5,117.680492 41.25,121.686636 41.25,126.193548 C31.75,126.193548 26.5,120.935484 25.5,110.419355 L30.5,74.1136713 C24.1666667,69.2729135 19.25,63.5140809 15.75,56.8371736 C21.5833333,59.8417819 27.3527952,61.6613272 33.0583855,62.2958096 L36,43.5668203 C38.5,30.546851 41.75,22.0337942 45.75,18.0276498 C45.25,27.0414747 46.25,38.0583717 48.75,51.078341 C59.25,35.5545315 65.5,18.5284178 67.5,0 Z M55.5,59.3410138 C54.8493151,62.5994361 52.5050666,67.1299821 48.4672671,72.9331549 C49.3254255,73.6214254 49.875,74.6796138 49.875,75.8663594 C49.875,77.9406086 48.1960678,79.6221198 46.125,79.6221198 C45.3413993,79.6221198 44.6139341,79.3814062 44.0134198,78.9679649 C42.9192012,80.380157 41.7480613,81.8501288 40.5,83.3778802 C48.0409322,84.7516633 53.0409322,83.2493592 55.5,78.8709677 C58.5613983,73.4201217 58.5,65.3502304 55.5,59.3410138 Z"/></svg>
@@ -110,7 +110,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            ros-z
+            HIROZ
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -198,13 +198,13 @@
     
     
       <div class="md-header__source">
-        <a href="https://github.com/ZettaScaleLabs/ros-z" title="Go to repository" class="md-source" data-md-component="source">
+        <a href="https://github.com/ZettaScaleLabs/hiroz" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
   </div>
   <div class="md-source__repository">
-    ZettaScaleLabs/ros-z
+    ZettaScaleLabs/hiroz
   </div>
 </a>
       </div>
@@ -416,23 +416,23 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="ros-z" class="md-nav__button md-logo" aria-label="ros-z" data-md-component="logo">
+    <a href="../.." title="HIROZ" class="md-nav__button md-logo" aria-label="HIROZ" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 163" overflow="hidden"><path d="M67.5,0 C70.5,10.015361 71.5,23.0353303 70.5,39.0599078 C87.5,23.5360983 102.5,15.7741935 115.5,15.7741935 C108,23.2857143 108.272452,33.9711351 112.5,33.0506912 C124,30.546851 136.5,32.5499232 150,39.0599078 L150,153.269585 C150,165.695992 139.926407,175.769585 127.5,175.769585 L61.1792721,175.769585 C54.9660687,175.769585 49.9292721,170.732789 49.9292721,164.519585 C49.9292721,162.825588 50.3118282,161.153461 51.0483941,159.627979 C55.1904226,151.049532 63.9242912,142.158178 77.25,132.953917 C99,117.930876 107.25,107.414747 107.25,87.8847926 C107.25,76.6175115 101.235622,69.7933468 93,69.1059908 C84,68.3548387 77.25,72.8617512 77.25,79.6221198 C77.25,83.1274962 78.25,86.1321045 80.25,88.6359447 L45,114.175115 C42.5,117.680492 41.25,121.686636 41.25,126.193548 C31.75,126.193548 26.5,120.935484 25.5,110.419355 L30.5,74.1136713 C24.1666667,69.2729135 19.25,63.5140809 15.75,56.8371736 C21.5833333,59.8417819 27.3527952,61.6613272 33.0583855,62.2958096 L36,43.5668203 C38.5,30.546851 41.75,22.0337942 45.75,18.0276498 C45.25,27.0414747 46.25,38.0583717 48.75,51.078341 C59.25,35.5545315 65.5,18.5284178 67.5,0 Z M55.5,59.3410138 C54.8493151,62.5994361 52.5050666,67.1299821 48.4672671,72.9331549 C49.3254255,73.6214254 49.875,74.6796138 49.875,75.8663594 C49.875,77.9406086 48.1960678,79.6221198 46.125,79.6221198 C45.3413993,79.6221198 44.6139341,79.3814062 44.0134198,78.9679649 C42.9192012,80.380157 41.7480613,81.8501288 40.5,83.3778802 C48.0409322,84.7516633 53.0409322,83.2493592 55.5,78.8709677 C58.5613983,73.4201217 58.5,65.3502304 55.5,59.3410138 Z"/></svg>
 
     </a>
-    ros-z
+    HIROZ
   </label>
   
     <div class="md-nav__source">
-      <a href="https://github.com/ZettaScaleLabs/ros-z" title="Go to repository" class="md-source" data-md-component="source">
+      <a href="https://github.com/ZettaScaleLabs/hiroz" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
   </div>
   <div class="md-source__repository">
-    ZettaScaleLabs/ros-z
+    ZettaScaleLabs/hiroz
   </div>
 </a>
     </div>
@@ -1256,7 +1256,7 @@
   
   
   <span class="md-ellipsis">
-    ros-z-console
+    hiroz-console
     
   </span>
   
@@ -1692,12 +1692,12 @@
   
   
     <li class="md-nav__item">
-      <a href="../ros2-to-rosz/" class="md-nav__link">
+      <a href="../ros2-to-hiroz/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    ROS 2 → ros-z API Mapping
+    ROS 2 → hiroz API Mapping
     
   </span>
   
@@ -1820,13 +1820,13 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#ros-z-core-features" class="md-nav__link">
+  <a href="#hiroz-core-features" class="md-nav__link">
     <span class="md-ellipsis">
-      ros-z Core Features
+      hiroz Core Features
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="ros-z Core Features">
+    <nav class="md-nav" aria-label="hiroz Core Features">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1895,13 +1895,13 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#ros-z-msgs-features" class="md-nav__link">
+  <a href="#hiroz-msgs-features" class="md-nav__link">
     <span class="md-ellipsis">
-      ros-z-msgs Features
+      hiroz-msgs Features
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="ros-z-msgs Features">
+    <nav class="md-nav" aria-label="hiroz-msgs Features">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1946,13 +1946,13 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#ros-z-codegen-features" class="md-nav__link">
+  <a href="#hiroz-codegen-features" class="md-nav__link">
     <span class="md-ellipsis">
-      ros-z-codegen Features
+      hiroz-codegen Features
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="ros-z-codegen Features">
+    <nav class="md-nav" aria-label="hiroz-codegen Features">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -2205,13 +2205,13 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#ros-z-core-features" class="md-nav__link">
+  <a href="#hiroz-core-features" class="md-nav__link">
     <span class="md-ellipsis">
-      ros-z Core Features
+      hiroz Core Features
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="ros-z Core Features">
+    <nav class="md-nav" aria-label="hiroz Core Features">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -2280,13 +2280,13 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#ros-z-msgs-features" class="md-nav__link">
+  <a href="#hiroz-msgs-features" class="md-nav__link">
     <span class="md-ellipsis">
-      ros-z-msgs Features
+      hiroz-msgs Features
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="ros-z-msgs Features">
+    <nav class="md-nav" aria-label="hiroz-msgs Features">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -2331,13 +2331,13 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#ros-z-codegen-features" class="md-nav__link">
+  <a href="#hiroz-codegen-features" class="md-nav__link">
     <span class="md-ellipsis">
-      ros-z-codegen Features
+      hiroz-codegen Features
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="ros-z-codegen Features">
+    <nav class="md-nav" aria-label="hiroz-codegen Features">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -2508,7 +2508,7 @@
 
 
   
-    <a href="https://github.com/ZettaScaleLabs/ros-z/edit/main/docs/reference/feature-flags.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
+    <a href="https://github.com/ZettaScaleLabs/hiroz/edit/main/docs/reference/feature-flags.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
     </a>
@@ -2554,10 +2554,10 @@
 </tr>
 </tbody>
 </table>
-<h2 id="ros-z-core-features">ros-z Core Features<a class="headerlink" href="#ros-z-core-features" title="Permanent link">&para;</a></h2>
+<h2 id="hiroz-core-features">hiroz Core Features<a class="headerlink" href="#hiroz-core-features" title="Permanent link">&para;</a></h2>
 <h3 id="protobuf"><code>protobuf</code><a class="headerlink" href="#protobuf" title="Permanent link">&para;</a></h3>
 <p>Enables Protocol Buffers serialization using <code>prost</code>.</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>cargo<span class="w"> </span>build<span class="w"> </span>-p<span class="w"> </span>ros-z<span class="w"> </span>--features<span class="w"> </span>protobuf
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>cargo<span class="w"> </span>build<span class="w"> </span>-p<span class="w"> </span>hiroz<span class="w"> </span>--features<span class="w"> </span>protobuf
 </span></code></pre></div>
 <p><strong>Use cases:</strong></p>
 <ul>
@@ -2572,7 +2572,7 @@
 <p>Protobuf is optional. CDR serialization (default) provides full ROS 2 compatibility without additional dependencies.</p>
 </div>
 <h2 id="distribution-compatibility-features">Distribution Compatibility Features<a class="headerlink" href="#distribution-compatibility-features" title="Permanent link">&para;</a></h2>
-<p><strong>ros-z defaults to ROS 2 Jazzy</strong>. Use distribution features to target other ROS 2 versions.</p>
+<p><strong>hiroz defaults to ROS 2 Jazzy</strong>. Use distribution features to target other ROS 2 versions.</p>
 <h3 id="jazzy-default"><code>jazzy</code> (default)<a class="headerlink" href="#jazzy-default" title="Permanent link">&para;</a></h3>
 <p>Targets ROS 2 Jazzy Jalisco with modern type hash support.</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># Automatically enabled (default)</span>
@@ -2607,7 +2607,7 @@
 <p><strong>See also:</strong> <a href="../../getting-started/distro-compatibility/">ROS 2 Distribution Compatibility</a> for detailed documentation.</p>
 <h3 id="rcl-z"><code>rcl-z</code><a class="headerlink" href="#rcl-z" title="Permanent link">&para;</a></h3>
 <p>Enables RCL (ROS Client Library) integration for C/C++ interoperability.</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>cargo<span class="w"> </span>build<span class="w"> </span>-p<span class="w"> </span>ros-z<span class="w"> </span>--features<span class="w"> </span>rcl-z
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>cargo<span class="w"> </span>build<span class="w"> </span>-p<span class="w"> </span>hiroz<span class="w"> </span>--features<span class="w"> </span>rcl-z
 </span></code></pre></div>
 <p><strong>Use cases:</strong></p>
 <ul>
@@ -2620,10 +2620,10 @@
 <p class="admonition-title">Warning</p>
 <p>This feature requires you to source ROS 2 before building. See <a href="../../getting-started/building/">Building Guide</a> for setup instructions.</p>
 </div>
-<h2 id="ros-z-msgs-features">ros-z-msgs Features<a class="headerlink" href="#ros-z-msgs-features" title="Permanent link">&para;</a></h2>
+<h2 id="hiroz-msgs-features">hiroz-msgs Features<a class="headerlink" href="#hiroz-msgs-features" title="Permanent link">&para;</a></h2>
 <h3 id="default-features">Default Features<a class="headerlink" href="#default-features" title="Permanent link">&para;</a></h3>
 <p>The default build includes commonly used message types via <code>core_msgs</code>:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>cargo<span class="w"> </span>build<span class="w"> </span>-p<span class="w"> </span>ros-z-msgs
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>cargo<span class="w"> </span>build<span class="w"> </span>-p<span class="w"> </span>hiroz-msgs
 </span></code></pre></div>
 <p><strong>Includes:</strong></p>
 <ul>
@@ -2639,7 +2639,7 @@
 <p>All messages are vendored in assets - no ROS 2 installation required. Feature flags control which packages to include in your build.</p>
 </div>
 <h3 id="individual-package-features">Individual Package Features<a class="headerlink" href="#individual-package-features" title="Permanent link">&para;</a></h3>
-<p>ros-z bundles all packages in assets so they work without ROS 2:</p>
+<p>hiroz bundles all packages in assets so they work without ROS 2:</p>
 <table>
 <thead>
 <tr>
@@ -2693,48 +2693,48 @@
 </table>
 <p><strong>Usage:</strong></p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1"># Single package</span>
-</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>cargo<span class="w"> </span>build<span class="w"> </span>-p<span class="w"> </span>ros-z-msgs<span class="w"> </span>--no-default-features<span class="w"> </span>--features<span class="w"> </span>std_msgs
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>cargo<span class="w"> </span>build<span class="w"> </span>-p<span class="w"> </span>hiroz-msgs<span class="w"> </span>--no-default-features<span class="w"> </span>--features<span class="w"> </span>std_msgs
 </span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>
 </span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="c1"># Multiple packages</span>
-</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>cargo<span class="w"> </span>build<span class="w"> </span>-p<span class="w"> </span>ros-z-msgs<span class="w"> </span>--no-default-features<span class="w"> </span>--features<span class="w"> </span><span class="s2">&quot;std_msgs,geometry_msgs&quot;</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>cargo<span class="w"> </span>build<span class="w"> </span>-p<span class="w"> </span>hiroz-msgs<span class="w"> </span>--no-default-features<span class="w"> </span>--features<span class="w"> </span><span class="s2">&quot;std_msgs,geometry_msgs&quot;</span>
 </span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>
 </span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="c1"># Default (core_msgs)</span>
-</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>cargo<span class="w"> </span>build<span class="w"> </span>-p<span class="w"> </span>ros-z-msgs
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>cargo<span class="w"> </span>build<span class="w"> </span>-p<span class="w"> </span>hiroz-msgs
 </span></code></pre></div>
 <h3 id="convenience-aliases">Convenience Aliases<a class="headerlink" href="#convenience-aliases" title="Permanent link">&para;</a></h3>
 <p><strong><code>core_msgs</code> (default):</strong></p>
 <p>The most commonly used packages for ROS 2 development.</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>cargo<span class="w"> </span>build<span class="w"> </span>-p<span class="w"> </span>ros-z-msgs<span class="w">  </span><span class="c1"># Uses core_msgs by default</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>cargo<span class="w"> </span>build<span class="w"> </span>-p<span class="w"> </span>hiroz-msgs<span class="w">  </span><span class="c1"># Uses core_msgs by default</span>
 </span></code></pre></div>
 <p>Enables: <code>std_msgs</code>, <code>geometry_msgs</code>, <code>sensor_msgs</code>, <code>nav_msgs</code>, <code>example_interfaces</code>, <code>action_tutorials_interfaces</code></p>
 <p><strong><code>common_interfaces</code>:</strong></p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>cargo<span class="w"> </span>build<span class="w"> </span>-p<span class="w"> </span>ros-z-msgs<span class="w"> </span>--features<span class="w"> </span>common_interfaces
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>cargo<span class="w"> </span>build<span class="w"> </span>-p<span class="w"> </span>hiroz-msgs<span class="w"> </span>--features<span class="w"> </span>common_interfaces
 </span></code></pre></div>
 <p>Enables: <code>std_msgs</code>, <code>geometry_msgs</code>, <code>sensor_msgs</code></p>
 <p><strong><code>bundled_msgs</code>:</strong></p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>cargo<span class="w"> </span>build<span class="w"> </span>-p<span class="w"> </span>ros-z-msgs<span class="w"> </span>--features<span class="w"> </span>bundled_msgs
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>cargo<span class="w"> </span>build<span class="w"> </span>-p<span class="w"> </span>hiroz-msgs<span class="w"> </span>--features<span class="w"> </span>bundled_msgs
 </span></code></pre></div>
 <p>Enables: <code>std_msgs</code>, <code>geometry_msgs</code>, <code>sensor_msgs</code>, <code>nav_msgs</code></p>
 <p><strong><code>robotics</code>:</strong></p>
 <p>Alias for <code>core_msgs</code>.</p>
 <p><strong><code>all_msgs</code>:</strong></p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>cargo<span class="w"> </span>build<span class="w"> </span>-p<span class="w"> </span>ros-z-msgs<span class="w"> </span>--features<span class="w"> </span>all_msgs
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>cargo<span class="w"> </span>build<span class="w"> </span>-p<span class="w"> </span>hiroz-msgs<span class="w"> </span>--features<span class="w"> </span>all_msgs
 </span></code></pre></div>
 <p>Enables: All available packages including <code>test_msgs</code></p>
 <h3 id="protobuf-types">Protobuf Types<a class="headerlink" href="#protobuf-types" title="Permanent link">&para;</a></h3>
 <p>Generate protobuf types alongside ROS messages:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>cargo<span class="w"> </span>build<span class="w"> </span>-p<span class="w"> </span>ros-z-msgs<span class="w"> </span>--features<span class="w"> </span>protobuf
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>cargo<span class="w"> </span>build<span class="w"> </span>-p<span class="w"> </span>hiroz-msgs<span class="w"> </span>--features<span class="w"> </span>protobuf
 </span></code></pre></div>
-<p><strong>Note:</strong> Requires <code>ros-z/protobuf</code> feature enabled as well.</p>
-<h2 id="ros-z-codegen-features">ros-z-codegen Features<a class="headerlink" href="#ros-z-codegen-features" title="Permanent link">&para;</a></h2>
+<p><strong>Note:</strong> Requires <code>hiroz/protobuf</code> feature enabled as well.</p>
+<h2 id="hiroz-codegen-features">hiroz-codegen Features<a class="headerlink" href="#hiroz-codegen-features" title="Permanent link">&para;</a></h2>
 <h3 id="protobuf-code-generation">Protobuf Code Generation<a class="headerlink" href="#protobuf-code-generation" title="Permanent link">&para;</a></h3>
 <p>Enable protobuf code generation support:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>cargo<span class="w"> </span>build<span class="w"> </span>-p<span class="w"> </span>ros-z-codegen<span class="w"> </span>--features<span class="w"> </span>protobuf
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>cargo<span class="w"> </span>build<span class="w"> </span>-p<span class="w"> </span>hiroz-codegen<span class="w"> </span>--features<span class="w"> </span>protobuf
 </span></code></pre></div>
 <p><strong>Use case:</strong> Building tools that generate protobuf code from ROS messages</p>
 <h2 id="feature-dependency-graph">Feature Dependency Graph<a class="headerlink" href="#feature-dependency-graph" title="Permanent link">&para;</a></h2>
 <pre class="mermaid"><code>graph TD
-accTitle: Feature flag dependency graph for ros-z message packages
+accTitle: Feature flag dependency graph for hiroz message packages
 accDescr: The all_msgs feature depends on bundled_msgs plus example, action tutorial, and test message packages; bundled_msgs and core_msgs both cover the four core geometry, sensor, nav, and std message packages.
     A[all_msgs] --&gt; B[bundled_msgs]
     A --&gt; C[example_interfaces]
@@ -2755,20 +2755,20 @@ accDescr: The all_msgs feature depends on bundled_msgs plus example, action tuto
 <h2 id="common-feature-combinations">Common Feature Combinations<a class="headerlink" href="#common-feature-combinations" title="Permanent link">&para;</a></h2>
 <h3 id="minimal-development">Minimal Development<a class="headerlink" href="#minimal-development" title="Permanent link">&para;</a></h3>
 <p>Core library only, no messages:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>cargo<span class="w"> </span>build<span class="w"> </span>-p<span class="w"> </span>ros-z
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>cargo<span class="w"> </span>build<span class="w"> </span>-p<span class="w"> </span>hiroz
 </span></code></pre></div>
 <p><strong>Dependencies:</strong> Rust, Cargo
 <strong>Use case:</strong> Custom messages only</p>
 <h3 id="standard-development">Standard Development<a class="headerlink" href="#standard-development" title="Permanent link">&para;</a></h3>
 <p>Core with common message types:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>cargo<span class="w"> </span>build<span class="w"> </span>-p<span class="w"> </span>ros-z-msgs<span class="w">  </span><span class="c1"># Uses default common_interfaces</span>
-</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>cargo<span class="w"> </span>build<span class="w"> </span>-p<span class="w"> </span>ros-z
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>cargo<span class="w"> </span>build<span class="w"> </span>-p<span class="w"> </span>hiroz-msgs<span class="w">  </span><span class="c1"># Uses default common_interfaces</span>
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>cargo<span class="w"> </span>build<span class="w"> </span>-p<span class="w"> </span>hiroz
 </span></code></pre></div>
 <p><strong>Dependencies:</strong> Rust, Cargo
 <strong>Use case:</strong> Most applications</p>
 <h3 id="full-message-set">Full Message Set<a class="headerlink" href="#full-message-set" title="Permanent link">&para;</a></h3>
 <p>All available message packages:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>cargo<span class="w"> </span>build<span class="w"> </span>-p<span class="w"> </span>ros-z-msgs<span class="w"> </span>--features<span class="w"> </span>all_msgs
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>cargo<span class="w"> </span>build<span class="w"> </span>-p<span class="w"> </span>hiroz-msgs<span class="w"> </span>--features<span class="w"> </span>all_msgs
 </span></code></pre></div>
 <p><strong>Dependencies:</strong> Rust, Cargo
 <strong>Use case:</strong> Access to all bundled message types including test_msgs</p>
@@ -2781,9 +2781,9 @@ accDescr: The all_msgs feature depends on bundled_msgs plus example, action tuto
 <strong>Use case:</strong> Hybrid Rust/C++ applications</p>
 <h3 id="protobuf-development">Protobuf Development<a class="headerlink" href="#protobuf-development" title="Permanent link">&para;</a></h3>
 <p>Core with protobuf serialization:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>cargo<span class="w"> </span>build<span class="w"> </span>-p<span class="w"> </span>ros-z-codegen<span class="w"> </span>--features<span class="w"> </span>protobuf
-</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>cargo<span class="w"> </span>build<span class="w"> </span>-p<span class="w"> </span>ros-z-msgs<span class="w"> </span>--features<span class="w"> </span>protobuf
-</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>cargo<span class="w"> </span>build<span class="w"> </span>-p<span class="w"> </span>ros-z<span class="w"> </span>--features<span class="w"> </span>protobuf
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>cargo<span class="w"> </span>build<span class="w"> </span>-p<span class="w"> </span>hiroz-codegen<span class="w"> </span>--features<span class="w"> </span>protobuf
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>cargo<span class="w"> </span>build<span class="w"> </span>-p<span class="w"> </span>hiroz-msgs<span class="w"> </span>--features<span class="w"> </span>protobuf
+</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>cargo<span class="w"> </span>build<span class="w"> </span>-p<span class="w"> </span>hiroz<span class="w"> </span>--features<span class="w"> </span>protobuf
 </span></code></pre></div>
 <p><strong>Dependencies:</strong> Rust, Cargo, Protobuf compiler
 <strong>Use case:</strong> Cross-language data exchange</p>
@@ -2799,79 +2799,79 @@ accDescr: The all_msgs feature depends on bundled_msgs plus example, action tuto
 </thead>
 <tbody>
 <tr>
-<td>ros-z</td>
+<td>hiroz</td>
 <td>(none)</td>
 <td>No</td>
 <td>None</td>
 </tr>
 <tr>
-<td>ros-z</td>
+<td>hiroz</td>
 <td>jazzy (default)</td>
 <td>No</td>
 <td>None</td>
 </tr>
 <tr>
-<td>ros-z</td>
+<td>hiroz</td>
 <td>humble</td>
 <td>No</td>
 <td>None</td>
 </tr>
 <tr>
-<td>ros-z</td>
+<td>hiroz</td>
 <td>rolling</td>
 <td>No</td>
 <td>None</td>
 </tr>
 <tr>
-<td>ros-z</td>
+<td>hiroz</td>
 <td>protobuf</td>
 <td>No</td>
 <td>prost, prost-types</td>
 </tr>
 <tr>
-<td>ros-z</td>
+<td>hiroz</td>
 <td>rcl-z</td>
 <td>Yes</td>
 <td>RCL libraries</td>
 </tr>
 <tr>
-<td>ros-z-msgs</td>
+<td>hiroz-msgs</td>
 <td>core_msgs (default)</td>
 <td>No</td>
 <td>None (bundled)</td>
 </tr>
 <tr>
-<td>ros-z-msgs</td>
+<td>hiroz-msgs</td>
 <td>bundled_msgs</td>
 <td>No</td>
 <td>None (bundled)</td>
 </tr>
 <tr>
-<td>ros-z-msgs</td>
+<td>hiroz-msgs</td>
 <td>all_msgs</td>
 <td>No</td>
 <td>None (bundled)</td>
 </tr>
 <tr>
-<td>ros-z-msgs</td>
+<td>hiroz-msgs</td>
 <td>protobuf</td>
 <td>No</td>
 <td>prost, prost-types</td>
 </tr>
 <tr>
-<td>ros-z-msgs</td>
+<td>hiroz-msgs</td>
 <td>jazzy (default)</td>
 <td>No</td>
 <td>None</td>
 </tr>
 <tr>
-<td>ros-z-msgs</td>
+<td>hiroz-msgs</td>
 <td>humble</td>
 <td>No</td>
 <td>None</td>
 </tr>
 <tr>
-<td>ros-z-codegen</td>
+<td>hiroz-codegen</td>
 <td>protobuf</td>
 <td>No</td>
 <td>prost-build</td>
@@ -2880,14 +2880,14 @@ accDescr: The all_msgs feature depends on bundled_msgs plus example, action tuto
 </table>
 <h2 id="checking-active-features">Checking Active Features<a class="headerlink" href="#checking-active-features" title="Permanent link">&para;</a></h2>
 <p>View enabled features for a package:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="c1"># Show features for ros-z-msgs</span>
-</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>cargo<span class="w"> </span>tree<span class="w"> </span>-p<span class="w"> </span>ros-z-msgs<span class="w"> </span>-e<span class="w"> </span>features
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="c1"># Show features for hiroz-msgs</span>
+</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>cargo<span class="w"> </span>tree<span class="w"> </span>-p<span class="w"> </span>hiroz-msgs<span class="w"> </span>-e<span class="w"> </span>features
 </span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>
 </span><span id="__span-18-4"><a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a><span class="c1"># Show all workspace features</span>
 </span><span id="__span-18-5"><a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a>cargo<span class="w"> </span>tree<span class="w"> </span>-e<span class="w"> </span>features
 </span><span id="__span-18-6"><a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a>
 </span><span id="__span-18-7"><a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a><span class="c1"># Build with specific features and verify</span>
-</span><span id="__span-18-8"><a id="__codelineno-18-8" name="__codelineno-18-8" href="#__codelineno-18-8"></a>cargo<span class="w"> </span>build<span class="w"> </span>-p<span class="w"> </span>ros-z-msgs<span class="w"> </span>--features<span class="w"> </span>std_msgs,geometry_msgs<span class="w"> </span>-v
+</span><span id="__span-18-8"><a id="__codelineno-18-8" name="__codelineno-18-8" href="#__codelineno-18-8"></a>cargo<span class="w"> </span>build<span class="w"> </span>-p<span class="w"> </span>hiroz-msgs<span class="w"> </span>--features<span class="w"> </span>std_msgs,geometry_msgs<span class="w"> </span>-v
 </span></code></pre></div>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
@@ -2895,7 +2895,7 @@ accDescr: The all_msgs feature depends on bundled_msgs plus example, action tuto
 </div>
 <h2 id="feature-selection-strategy">Feature Selection Strategy<a class="headerlink" href="#feature-selection-strategy" title="Permanent link">&para;</a></h2>
 <pre class="mermaid"><code>flowchart TD
-accTitle: Feature selection strategy flowchart for ros-z message features
+accTitle: Feature selection strategy flowchart for hiroz message features
 accDescr: A decision flowchart that directs projects needing no ROS messages to zero features, and those needing messages to core_msgs for common types, individual packages for minimal sets, or all_msgs for the full collection.
     A[Start Project] --&gt; B{Need ROS messages?}
     B --&gt;|No| C[Zero features&lt;br/&gt;Custom messages]
@@ -2940,7 +2940,7 @@ accDescr: A decision flowchart that directs projects needing no ROS messages to 
 <ul>
 <li><strong><a href="../../getting-started/building/">Building Guide</a></strong> - Build procedures for each scenario</li>
 <li><strong><a href="../../getting-started/distro-compatibility/">ROS 2 Distribution Compatibility</a></strong> - Target Jazzy, Humble, or other distributions</li>
-<li><strong><a href="../../user-guide/message-generation/">Message Generation</a></strong> - How ros-z generates messages</li>
+<li><strong><a href="../../user-guide/message-generation/">Message Generation</a></strong> - How hiroz generates messages</li>
 </ul>
 <p><strong>Start with default features and add more as your project evolves. Feature flags provide flexibility without forcing early architectural decisions.</strong></p>
 

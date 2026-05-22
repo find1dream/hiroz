@@ -6,11 +6,11 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Native Rust ROS 2 implementation built on Zenoh">
+        <meta name="description" content="High-performance Interoperable Robotics on Zenoh">
       
       
       
-        <link rel="canonical" href="https://zettascalelabs.github.io/ros-z/core-concepts/services/">
+        <link rel="canonical" href="https://zettascalelabs.github.io/hiroz/core-concepts/services/">
       
       
         <link rel="prev" href="../pubsub/">
@@ -24,7 +24,7 @@
     
     
       
-        <title>Services - ros-z</title>
+        <title>Services - HIROZ</title>
       
     
     
@@ -96,7 +96,7 @@
 
 <header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="ros-z" class="md-header__button md-logo" aria-label="ros-z" data-md-component="logo">
+    <a href="../.." title="HIROZ" class="md-header__button md-logo" aria-label="HIROZ" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 163" overflow="hidden"><path d="M67.5,0 C70.5,10.015361 71.5,23.0353303 70.5,39.0599078 C87.5,23.5360983 102.5,15.7741935 115.5,15.7741935 C108,23.2857143 108.272452,33.9711351 112.5,33.0506912 C124,30.546851 136.5,32.5499232 150,39.0599078 L150,153.269585 C150,165.695992 139.926407,175.769585 127.5,175.769585 L61.1792721,175.769585 C54.9660687,175.769585 49.9292721,170.732789 49.9292721,164.519585 C49.9292721,162.825588 50.3118282,161.153461 51.0483941,159.627979 C55.1904226,151.049532 63.9242912,142.158178 77.25,132.953917 C99,117.930876 107.25,107.414747 107.25,87.8847926 C107.25,76.6175115 101.235622,69.7933468 93,69.1059908 C84,68.3548387 77.25,72.8617512 77.25,79.6221198 C77.25,83.1274962 78.25,86.1321045 80.25,88.6359447 L45,114.175115 C42.5,117.680492 41.25,121.686636 41.25,126.193548 C31.75,126.193548 26.5,120.935484 25.5,110.419355 L30.5,74.1136713 C24.1666667,69.2729135 19.25,63.5140809 15.75,56.8371736 C21.5833333,59.8417819 27.3527952,61.6613272 33.0583855,62.2958096 L36,43.5668203 C38.5,30.546851 41.75,22.0337942 45.75,18.0276498 C45.25,27.0414747 46.25,38.0583717 48.75,51.078341 C59.25,35.5545315 65.5,18.5284178 67.5,0 Z M55.5,59.3410138 C54.8493151,62.5994361 52.5050666,67.1299821 48.4672671,72.9331549 C49.3254255,73.6214254 49.875,74.6796138 49.875,75.8663594 C49.875,77.9406086 48.1960678,79.6221198 46.125,79.6221198 C45.3413993,79.6221198 44.6139341,79.3814062 44.0134198,78.9679649 C42.9192012,80.380157 41.7480613,81.8501288 40.5,83.3778802 C48.0409322,84.7516633 53.0409322,83.2493592 55.5,78.8709677 C58.5613983,73.4201217 58.5,65.3502304 55.5,59.3410138 Z"/></svg>
@@ -110,7 +110,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            ros-z
+            HIROZ
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -198,13 +198,13 @@
     
     
       <div class="md-header__source">
-        <a href="https://github.com/ZettaScaleLabs/ros-z" title="Go to repository" class="md-source" data-md-component="source">
+        <a href="https://github.com/ZettaScaleLabs/hiroz" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
   </div>
   <div class="md-source__repository">
-    ZettaScaleLabs/ros-z
+    ZettaScaleLabs/hiroz
   </div>
 </a>
       </div>
@@ -416,23 +416,23 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="ros-z" class="md-nav__button md-logo" aria-label="ros-z" data-md-component="logo">
+    <a href="../.." title="HIROZ" class="md-nav__button md-logo" aria-label="HIROZ" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 163" overflow="hidden"><path d="M67.5,0 C70.5,10.015361 71.5,23.0353303 70.5,39.0599078 C87.5,23.5360983 102.5,15.7741935 115.5,15.7741935 C108,23.2857143 108.272452,33.9711351 112.5,33.0506912 C124,30.546851 136.5,32.5499232 150,39.0599078 L150,153.269585 C150,165.695992 139.926407,175.769585 127.5,175.769585 L61.1792721,175.769585 C54.9660687,175.769585 49.9292721,170.732789 49.9292721,164.519585 C49.9292721,162.825588 50.3118282,161.153461 51.0483941,159.627979 C55.1904226,151.049532 63.9242912,142.158178 77.25,132.953917 C99,117.930876 107.25,107.414747 107.25,87.8847926 C107.25,76.6175115 101.235622,69.7933468 93,69.1059908 C84,68.3548387 77.25,72.8617512 77.25,79.6221198 C77.25,83.1274962 78.25,86.1321045 80.25,88.6359447 L45,114.175115 C42.5,117.680492 41.25,121.686636 41.25,126.193548 C31.75,126.193548 26.5,120.935484 25.5,110.419355 L30.5,74.1136713 C24.1666667,69.2729135 19.25,63.5140809 15.75,56.8371736 C21.5833333,59.8417819 27.3527952,61.6613272 33.0583855,62.2958096 L36,43.5668203 C38.5,30.546851 41.75,22.0337942 45.75,18.0276498 C45.25,27.0414747 46.25,38.0583717 48.75,51.078341 C59.25,35.5545315 65.5,18.5284178 67.5,0 Z M55.5,59.3410138 C54.8493151,62.5994361 52.5050666,67.1299821 48.4672671,72.9331549 C49.3254255,73.6214254 49.875,74.6796138 49.875,75.8663594 C49.875,77.9406086 48.1960678,79.6221198 46.125,79.6221198 C45.3413993,79.6221198 44.6139341,79.3814062 44.0134198,78.9679649 C42.9192012,80.380157 41.7480613,81.8501288 40.5,83.3778802 C48.0409322,84.7516633 53.0409322,83.2493592 55.5,78.8709677 C58.5613983,73.4201217 58.5,65.3502304 55.5,59.3410138 Z"/></svg>
 
     </a>
-    ros-z
+    HIROZ
   </label>
   
     <div class="md-nav__source">
-      <a href="https://github.com/ZettaScaleLabs/ros-z" title="Go to repository" class="md-source" data-md-component="source">
+      <a href="https://github.com/ZettaScaleLabs/hiroz" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
   </div>
   <div class="md-source__repository">
-    ZettaScaleLabs/ros-z
+    ZettaScaleLabs/hiroz
   </div>
 </a>
     </div>
@@ -1537,7 +1537,7 @@
   
   
   <span class="md-ellipsis">
-    ros-z-console
+    hiroz-console
     
   </span>
   
@@ -1968,12 +1968,12 @@
   
   
     <li class="md-nav__item">
-      <a href="../../reference/ros2-to-rosz/" class="md-nav__link">
+      <a href="../../reference/ros2-to-hiroz/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    ROS 2 → ros-z API Mapping
+    ROS 2 → hiroz API Mapping
     
   </span>
   
@@ -2379,7 +2379,7 @@
 
 
   
-    <a href="https://github.com/ZettaScaleLabs/ros-z/edit/main/docs/core-concepts/services.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
+    <a href="https://github.com/ZettaScaleLabs/hiroz/edit/main/docs/core-concepts/services.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
     </a>
@@ -2392,10 +2392,10 @@
 <p class="admonition-title">Go users</p>
 <p>The code examples in this chapter are <strong>Rust</strong>. The Go service API is callback-based — handlers are registered instead of using <code>take_request()</code>. For Go service patterns and the typed service API, see the <a href="../../bindings/go/">Go Bindings</a> chapter.</p>
 </div>
-<p><strong>ros-z implements ROS 2's service pattern with type-safe request-response communication over Eclipse Zenoh.</strong> This enables synchronous, point-to-point interactions between nodes using a pull-based model for full control over request processing.</p>
+<p><strong>hiroz implements ROS 2's service pattern with type-safe request-response communication over Eclipse Zenoh.</strong> This enables synchronous, point-to-point interactions between nodes using a pull-based model for full control over request processing.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Services provide request-response communication for operations that need immediate feedback. Unlike topics, services are bidirectional and ensure a response for each request. ros-z uses a pull model that gives you explicit control over when to process requests.</p>
+<p>Services provide request-response communication for operations that need immediate feedback. Unlike topics, services are bidirectional and ensure a response for each request. hiroz uses a pull model that gives you explicit control over when to process requests.</p>
 </div>
 <h2 id="what-is-a-service">What is a Service?<a class="headerlink" href="#what-is-a-service" title="Permanent link">&para;</a></h2>
 <pre class="mermaid"><code>sequenceDiagram
@@ -2467,7 +2467,7 @@ accDescr: A decision tree that routes continuous data streams to Topics, fast si
 </span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a># Response (below the ---)
 </span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>uint32 sum
 </span></code></pre></div>
-<p>Two sections, separated by <code>---</code>. Each is a message definition. ros-z generates a Rust trait:</p>
+<p>Two sections, separated by <code>---</code>. Each is a message definition. hiroz generates a Rust trait:</p>
 <div class="language-rust highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">trait</span><span class="w"> </span><span class="n">AddTwoInts</span><span class="p">:</span><span class="w"> </span><span class="nc">ZService</span><span class="w"> </span><span class="p">{</span>
 </span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">    </span><span class="k">type</span><span class="w"> </span><span class="nc">Request</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="n">AddTwoIntsRequest</span><span class="p">;</span><span class="w">   </span><span class="c1">// { a: u32, b: u32 }</span>
 </span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span><span class="k">type</span><span class="w"> </span><span class="nc">Response</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">AddTwoIntsResponse</span><span class="p">;</span><span class="w">  </span><span class="c1">// { sum: u32 }</span>
@@ -2536,7 +2536,7 @@ accDescr: The client sends a request to the Zenoh router, which waits indefinite
         <div class="flashcard-hint">Click to flip</div>
       </div>
       <div class="flashcard-back">
-        The call blocks until the server comes online or a timeout fires. ros-z uses Zenoh's query timeout (default: 10 minutes — configure with <strong>queries_default_timeout</strong>).
+        The call blocks until the server comes online or a timeout fires. hiroz uses Zenoh's query timeout (default: 10 minutes — configure with <strong>queries_default_timeout</strong>).
       </div>
     </div>
   </div>
@@ -2544,7 +2544,7 @@ accDescr: The client sends a request to the Zenoh router, which waits indefinite
     <div class="flashcard-inner">
       <div class="flashcard-front">
         <div class="flashcard-tag">Pull Model</div>
-        <div class="flashcard-term">What is the pull model in ros-z?</div>
+        <div class="flashcard-term">What is the pull model in hiroz?</div>
         <div class="flashcard-hint">Click to flip</div>
       </div>
       <div class="flashcard-back">
@@ -2613,11 +2613,11 @@ accDescr: ZContextBuilder creates a ZContext that spawns both a client node and 
 </tbody>
 </table>
 <h2 id="service-server-example">Service Server Example<a class="headerlink" href="#service-server-example" title="Permanent link">&para;</a></h2>
-<p>A server that adds two integers. Full source: <a href="https://github.com/ZettaScaleLabs/ros-z/blob/main/crates/ros-z/examples/demo_nodes/add_two_ints_server.rs"><code>crates/ros-z/examples/demo_nodes/add_two_ints_server.rs</code></a></p>
+<p>A server that adds two integers. Full source: <a href="https://github.com/ZettaScaleLabs/hiroz/blob/main/crates/hiroz/examples/demo_nodes/add_two_ints_server.rs"><code>crates/hiroz/examples/demo_nodes/add_two_ints_server.rs</code></a></p>
 <div class="language-rust highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="sd">/// AddTwoInts server node that provides a service to add two integers</span>
 </span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="sd">///</span>
 </span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="sd">/// # Arguments</span>
-</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="sd">/// * `ctx` - The ROS-Z context</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="sd">/// * `ctx` - The hiroz context</span>
 </span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="sd">/// * `max_requests` - Optional maximum number of requests to handle. If None, handles requests indefinitely.</span>
 </span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="k">pub</span><span class="w"> </span><span class="k">fn</span><span class="w"> </span><span class="nf">run_add_two_ints_server</span><span class="p">(</span><span class="n">ctx</span><span class="p">:</span><span class="w"> </span><span class="nc">ZContext</span><span class="p">,</span><span class="w"> </span><span class="n">max_requests</span><span class="p">:</span><span class="w"> </span><span class="nb">Option</span><span class="o">&lt;</span><span class="kt">usize</span><span class="o">&gt;</span><span class="p">)</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="nb">Result</span><span class="o">&lt;</span><span class="p">()</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
 </span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">    </span><span class="c1">// Create a node named &quot;add_two_ints_server&quot;</span>
@@ -2676,11 +2676,11 @@ accDescr: ZContextBuilder creates a ZContext that spawns both a client node and 
 <p>Jump to <a href="#complete-service-workflow">Complete Service Workflow</a> below to see server and client exchange requests with one command per terminal.</p>
 </div>
 <h2 id="service-client-example">Service Client Example<a class="headerlink" href="#service-client-example" title="Permanent link">&para;</a></h2>
-<p>A client that sends an addition request and prints the result. Full source: <a href="https://github.com/ZettaScaleLabs/ros-z/blob/main/crates/ros-z/examples/demo_nodes/add_two_ints_client.rs"><code>crates/ros-z/examples/demo_nodes/add_two_ints_client.rs</code></a></p>
+<p>A client that sends an addition request and prints the result. Full source: <a href="https://github.com/ZettaScaleLabs/hiroz/blob/main/crates/hiroz/examples/demo_nodes/add_two_ints_client.rs"><code>crates/hiroz/examples/demo_nodes/add_two_ints_client.rs</code></a></p>
 <div class="language-rust highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="sd">/// AddTwoInts client node that calls the service to add two integers</span>
 </span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="sd">///</span>
 </span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="sd">/// # Arguments</span>
-</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="sd">/// * `ctx` - The ROS-Z context</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="sd">/// * `ctx` - The hiroz context</span>
 </span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="sd">/// * `a` - First number to add</span>
 </span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="sd">/// * `b` - Second number to add</span>
 </span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="sd">/// * `async_mode` - Whether to use async response waiting</span>
@@ -2725,7 +2725,7 @@ accDescr: ZContextBuilder creates a ZContext that spawns both a client node and 
 <h2 id="complete-service-workflow">Complete Service Workflow<a class="headerlink" href="#complete-service-workflow" title="Permanent link">&para;</a></h2>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>These commands run the ready-made examples from the ros-z repository. Clone it first with <code>git clone https://github.com/ZettaScaleLabs/ros-z.git &amp;&amp; cd ros-z</code>. If you're building your own project, run your binaries with <code>cargo run</code> instead.</p>
+<p>These commands run the ready-made examples from the hiroz repository. Clone it first with <code>git clone https://github.com/ZettaScaleLabs/hiroz.git &amp;&amp; cd hiroz</code>. If you're building your own project, run your binaries with <code>cargo run</code> instead.</p>
 </div>
 <p><strong>Terminal 1 — Start Zenoh Router:</strong></p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>cargo<span class="w"> </span>run<span class="w"> </span>--example<span class="w"> </span>zenoh_router
@@ -2747,14 +2747,14 @@ accDescr: ZContextBuilder creates a ZContext that spawns both a client node and 
 <p>The server processes each client request immediately, demonstrating synchronous request-response communication over Zenoh.</p>
 </div>
 <h2 id="service-server-patterns">Service Server Patterns<a class="headerlink" href="#service-server-patterns" title="Permanent link">&para;</a></h2>
-<p>Service servers in ros-z follow a <strong>pull model</strong> pattern, similar to subscribers. You explicitly receive requests when ready to process them, giving you full control over request handling timing and concurrency.</p>
+<p>Service servers in hiroz follow a <strong>pull model</strong> pattern, similar to subscribers. You explicitly receive requests when ready to process them, giving you full control over request handling timing and concurrency.</p>
 <div class="admonition info">
 <p class="admonition-title">Info</p>
 <p>This pull-based approach is consistent with subscriber's <code>recv()</code> pattern, allowing you to control when work happens without callbacks interrupting your flow.</p>
 </div>
 <h3 id="pattern-1-blocking-request-handling">Pattern 1: Blocking Request Handling<a class="headerlink" href="#pattern-1-blocking-request-handling" title="Permanent link">&para;</a></h3>
 <p>Best for: Simple synchronous service implementations</p>
-<div class="language-rust highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="k">use</span><span class="w"> </span><span class="n">ros_z</span><span class="p">::</span><span class="n">Builder</span><span class="p">;</span>
+<div class="language-rust highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="k">use</span><span class="w"> </span><span class="n">hiroz</span><span class="p">::</span><span class="n">Builder</span><span class="p">;</span>
 </span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>
 </span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="kd">let</span><span class="w"> </span><span class="k">mut</span><span class="w"> </span><span class="n">service</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">node</span>
 </span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="w">    </span><span class="p">.</span><span class="n">create_service</span><span class="p">::</span><span class="o">&lt;</span><span class="n">ServiceType</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;service_name&quot;</span><span class="p">)</span>
@@ -2769,7 +2769,7 @@ accDescr: ZContextBuilder creates a ZContext that spawns both a client node and 
 <p><code>take_request()</code> blocks until a request arrives. The server variable must be <code>mut</code> because <code>take_request</code> takes <code>&amp;mut self</code>. The returned <code>ServiceRequest</code> owns the reply channel — call <code>req.reply_blocking(&amp;response)</code> to send the response. Access message fields via <code>req.message()</code>.</p>
 <h3 id="pattern-2-async-request-handling">Pattern 2: Async Request Handling<a class="headerlink" href="#pattern-2-async-request-handling" title="Permanent link">&para;</a></h3>
 <p>Best for: Services that need to await other operations</p>
-<div class="language-rust highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="k">use</span><span class="w"> </span><span class="n">ros_z</span><span class="p">::</span><span class="n">Builder</span><span class="p">;</span>
+<div class="language-rust highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="k">use</span><span class="w"> </span><span class="n">hiroz</span><span class="p">::</span><span class="n">Builder</span><span class="p">;</span>
 </span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>
 </span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="kd">let</span><span class="w"> </span><span class="k">mut</span><span class="w"> </span><span class="n">service</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">node</span>
 </span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="w">    </span><span class="p">.</span><span class="n">create_service</span><span class="p">::</span><span class="o">&lt;</span><span class="n">ServiceType</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;service_name&quot;</span><span class="p">)</span>
@@ -2817,7 +2817,7 @@ accDescr: ZContextBuilder creates a ZContext that spawns both a client node and 
 <p>Service clients use a single <code>call</code> method — send and receive in one await.</p>
 <h3 id="pattern-1-call-with-timeout">Pattern 1: Call with Timeout<a class="headerlink" href="#pattern-1-call-with-timeout" title="Permanent link">&para;</a></h3>
 <p>Best for: Simple request-response where you want to fail fast on a slow or absent server</p>
-<div class="language-rust highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="k">use</span><span class="w"> </span><span class="n">ros_z</span><span class="p">::</span><span class="n">Builder</span><span class="p">;</span>
+<div class="language-rust highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="k">use</span><span class="w"> </span><span class="n">hiroz</span><span class="p">::</span><span class="n">Builder</span><span class="p">;</span>
 </span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="k">use</span><span class="w"> </span><span class="n">std</span><span class="p">::</span><span class="n">time</span><span class="p">::</span><span class="n">Duration</span><span class="p">;</span>
 </span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>
 </span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="kd">let</span><span class="w"> </span><span class="n">client</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">node</span>
@@ -2829,7 +2829,7 @@ accDescr: ZContextBuilder creates a ZContext that spawns both a client node and 
 </span></code></pre></div>
 <h3 id="pattern-2-call-without-explicit-timeout">Pattern 2: Call without Explicit Timeout<a class="headerlink" href="#pattern-2-call-without-explicit-timeout" title="Permanent link">&para;</a></h3>
 <p>Best for: Integration with async codebases where you manage timeouts externally (e.g., <code>tokio::time::timeout</code>)</p>
-<div class="language-rust highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="k">use</span><span class="w"> </span><span class="n">ros_z</span><span class="p">::</span><span class="n">Builder</span><span class="p">;</span>
+<div class="language-rust highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="k">use</span><span class="w"> </span><span class="n">hiroz</span><span class="p">::</span><span class="n">Builder</span><span class="p">;</span>
 </span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>
 </span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="kd">let</span><span class="w"> </span><span class="n">client</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">node</span>
 </span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="w">    </span><span class="p">.</span><span class="n">create_client</span><span class="p">::</span><span class="o">&lt;</span><span class="n">ServiceType</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;service_name&quot;</span><span class="p">)</span>
@@ -2840,10 +2840,10 @@ accDescr: ZContextBuilder creates a ZContext that spawns both a client node and 
 </span></code></pre></div>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
-<p><code>use ros_z::Builder;</code> must be in scope to call <code>.build()</code>. Both patterns require an async runtime such as <code>tokio</code>. For logging, call <code>zenoh::init_log_from_env_or("error")</code> before building the context.</p>
+<p><code>use hiroz::Builder;</code> must be in scope to call <code>.build()</code>. Both patterns require an async runtime such as <code>tokio</code>. For logging, call <code>zenoh::init_log_from_env_or("error")</code> before building the context.</p>
 </div>
 <h2 id="ros-2-interoperability">ROS 2 Interoperability<a class="headerlink" href="#ros-2-interoperability" title="Permanent link">&para;</a></h2>
-<p>ros-z services interoperate with ROS 2 C++ and Python nodes when both sides share the same Zenoh transport:</p>
+<p>hiroz services interoperate with ROS 2 C++ and Python nodes when both sides share the same Zenoh transport:</p>
 <p><strong>Requirements:</strong></p>
 <ul>
 <li>ROS 2 nodes must use <a href="https://github.com/ros2/rmw_zenoh"><code>rmw_zenoh_cpp</code></a> (<code>export RMW_IMPLEMENTATION=rmw_zenoh_cpp</code>)</li>
@@ -2853,7 +2853,7 @@ accDescr: ZContextBuilder creates a ZContext that spawns both a client node and 
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="c1"># List available services</span>
 </span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>ros2<span class="w"> </span>service<span class="w"> </span>list
 </span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>
-</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="c1"># Call ros-z service from ROS 2 CLI</span>
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="c1"># Call hiroz service from ROS 2 CLI</span>
 </span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>ros2<span class="w"> </span>service<span class="w"> </span>call<span class="w"> </span>/add_two_ints<span class="w"> </span>example_interfaces/srv/AddTwoInts<span class="w"> </span><span class="s2">&quot;{a: 42, b: 58}&quot;</span>
 </span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>
 </span><span id="__span-11-7"><a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a><span class="c1"># Show service type</span>
