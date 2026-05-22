@@ -110,7 +110,7 @@ func NewProductionServiceServer() (*ProductionServiceServer, error) {
 }
 
 func (s *ProductionServiceServer) Start() error {
-	// Create ROS-Z context and node
+	// Create hiroz context and node
 	rosCtx, err := hiroz.NewContext().WithDomainID(0).Build()
 	if err != nil {
 		return fmt.Errorf("failed to create context: %w", err)

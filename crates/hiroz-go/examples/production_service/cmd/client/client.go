@@ -79,7 +79,7 @@ func NewProductionClient(ctx context.Context) (*ProductionClient, error) {
 
 	childCtx, cancel := context.WithCancel(ctx)
 
-	// Create ROS-Z context and node
+	// Create hiroz context and node
 	rosCtx, err := hiroz.NewContext().WithDomainID(0).Build()
 	if err != nil {
 		cancel()

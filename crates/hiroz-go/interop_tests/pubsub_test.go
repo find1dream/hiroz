@@ -61,15 +61,15 @@ func TestGoPublisherToROS2Subscriber(t *testing.T) {
 	time.Sleep(2 * time.Second) // Wait for subscriber + discovery
 
 	// Create hiroz-go publisher
-	roszCtx, err := hiroz.NewContext().
+	hirozCtx, err := hiroz.NewContext().
 		WithConnectEndpoints(router.Endpoint()).DisableMulticastScouting().
 		Build()
 	if err != nil {
 		t.Fatalf("Failed to create context: %v", err)
 	}
-	defer roszCtx.Close()
+	defer hirozCtx.Close()
 
-	node, err := roszCtx.CreateNode("go_publisher").Build()
+	node, err := hirozCtx.CreateNode("go_publisher").Build()
 	if err != nil {
 		t.Fatalf("Failed to create node: %v", err)
 	}
@@ -129,15 +129,15 @@ func TestROS2PublisherToGoSubscriber(t *testing.T) {
 	time.Sleep(time.Second)
 
 	// Create hiroz-go subscriber
-	roszCtx, err := hiroz.NewContext().
+	hirozCtx, err := hiroz.NewContext().
 		WithConnectEndpoints(router.Endpoint()).DisableMulticastScouting().
 		Build()
 	if err != nil {
 		t.Fatalf("Failed to create context: %v", err)
 	}
-	defer roszCtx.Close()
+	defer hirozCtx.Close()
 
-	node, err := roszCtx.CreateNode("go_subscriber").Build()
+	node, err := hirozCtx.CreateNode("go_subscriber").Build()
 	if err != nil {
 		t.Fatalf("Failed to create node: %v", err)
 	}

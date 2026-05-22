@@ -24,7 +24,7 @@ package interop_tests
 //
 // # How Rust processes are configured
 //
-// The Rust binaries use ZContextBuilder, which reads the ROSZ_CONFIG_OVERRIDE
+// The Rust binaries use ZContextBuilder, which reads the ZENOH_CONFIG_OVERRIDE
 // environment variable (key=value;key=value format) to override config keys on
 // top of the default ROS session config.  Each test injects this variable to
 // point the Rust process at the per-test Zenoh router.
@@ -66,21 +66,21 @@ func rustExampleBinary(name string) (string, bool) {
 }
 
 // rustEnv returns the environment for a Rust hiroz process, injecting
-// ROSZ_CONFIG_OVERRIDE so it connects to the per-test Zenoh router.
+// ZENOH_CONFIG_OVERRIDE so it connects to the per-test Zenoh router.
 func rustEnv(router *ZenohRouter) []string {
 	override := fmt.Sprintf(
 		`mode="client";connect/endpoints=["tcp/127.0.0.1:%d"];scouting/multicast/enabled=false`,
 		router.port,
 	)
 	env := os.Environ()
-	// Replace any existing ROSZ_CONFIG_OVERRIDE
+	// Replace any existing ZENOH_CONFIG_OVERRIDE
 	filtered := env[:0]
 	for _, e := range env {
-		if !strings.HasPrefix(e, "ROSZ_CONFIG_OVERRIDE=") {
+		if !strings.HasPrefix(e, "ZENOH_CONFIG_OVERRIDE=") {
 			filtered = append(filtered, e)
 		}
 	}
-	return append(filtered, "ROSZ_CONFIG_OVERRIDE="+override)
+	return append(filtered, "ZENOH_CONFIG_OVERRIDE="+override)
 }
 
 // TestGoPublisherToRustSubscriber publishes from Go and verifies a Rust

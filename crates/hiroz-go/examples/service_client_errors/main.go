@@ -71,10 +71,10 @@ func main() {
 		}
 
 		// Check if it's a HirozError and handle specific error codes
-		if roszErr, ok := callErr.(hiroz.HirozError); ok {
-			log.Printf("Service call failed with code %d: %s", roszErr.Code(), roszErr.Message())
+		if hirozErr, ok := callErr.(hiroz.HirozError); ok {
+			log.Printf("Service call failed with code %d: %s", hirozErr.Code(), hirozErr.Message())
 
-			switch roszErr.Code() {
+			switch hirozErr.Code() {
 			case hiroz.ErrorCodeServiceTimeout:
 				// Timeout - retry with backoff
 				if attempt < maxRetries {
@@ -99,7 +99,7 @@ func main() {
 
 			default:
 				// Unknown error code
-				log.Printf("Unknown error code: %d", roszErr.Code())
+				log.Printf("Unknown error code: %d", hirozErr.Code())
 			}
 
 			// Use errors.Is for idiomatic timeout check

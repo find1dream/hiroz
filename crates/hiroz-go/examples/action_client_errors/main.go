@@ -57,10 +57,10 @@ func main() {
 	goalHandle, err := client.SendGoal(goal)
 	if err != nil {
 		// Check if goal was rejected
-		if roszErr, ok := err.(hiroz.HirozError); ok {
-			log.Printf("Goal failed with code %d: %s", roszErr.Code(), roszErr.Message())
+		if hirozErr, ok := err.(hiroz.HirozError); ok {
+			log.Printf("Goal failed with code %d: %s", hirozErr.Code(), hirozErr.Message())
 
-			if errors.Is(roszErr, hiroz.ErrGoalRejected) {
+			if errors.Is(hirozErr, hiroz.ErrGoalRejected) {
 				log.Println("✗ Goal was rejected by the action server")
 				log.Println()
 				log.Println("Possible reasons for rejection:")
@@ -75,13 +75,13 @@ func main() {
 				return
 			}
 
-			switch roszErr.Code() {
+			switch hirozErr.Code() {
 			case hiroz.ErrorCodeActionGoalRejected:
 				log.Println("Goal explicitly rejected")
 			case hiroz.ErrorCodeServiceTimeout:
 				log.Println("Goal send timed out (server may be unresponsive)")
 			default:
-				log.Printf("Unexpected error code: %d", roszErr.Code())
+				log.Printf("Unexpected error code: %d", hirozErr.Code())
 			}
 		}
 
@@ -97,10 +97,10 @@ func main() {
 	resultBytes, err := goalHandle.GetResult()
 	if err != nil {
 		// Check for result retrieval errors
-		if roszErr, ok := err.(hiroz.HirozError); ok {
-			log.Printf("Get result failed with code %d: %s", roszErr.Code(), roszErr.Message())
+		if hirozErr, ok := err.(hiroz.HirozError); ok {
+			log.Printf("Get result failed with code %d: %s", hirozErr.Code(), hirozErr.Message())
 
-			switch roszErr.Code() {
+			switch hirozErr.Code() {
 			case hiroz.ErrorCodeActionResultFailed:
 				log.Println("✗ Failed to retrieve action result")
 				log.Println("  - Goal may have been aborted")
@@ -110,7 +110,7 @@ func main() {
 				log.Println("  - Goal may still be executing")
 				log.Println("  - Consider increasing timeout")
 			default:
-				log.Printf("Unexpected error: %v", roszErr)
+				log.Printf("Unexpected error: %v", hirozErr)
 			}
 		}
 
@@ -129,8 +129,8 @@ func main() {
 	log.Println()
 	log.Println("Cancellation example:")
 	log.Println("  err := goalHandle.Cancel()")
-	log.Println("  if roszErr, ok := err.(hiroz.HirozError); ok {")
-	log.Println("    if roszErr.Code() == hiroz.ErrorCodeActionCancelFailed {")
+	log.Println("  if hirozErr, ok := err.(hiroz.HirozError); ok {")
+	log.Println("    if hirozErr.Code() == hiroz.ErrorCodeActionCancelFailed {")
 	log.Println("      // Handle cancellation failure")
 	log.Println("    }")
 	log.Println("  }")

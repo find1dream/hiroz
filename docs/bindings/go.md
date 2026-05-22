@@ -366,7 +366,7 @@ if errors.Is(err, hiroz.ErrTimeout)     { /* no server responded */ }
 Inspect the error code directly when you need fine-grained handling:
 
 ```go
-var e hiroz.RoszError
+var e hiroz.HirozError
 if errors.As(err, &e) {
     switch e.Code() {
     case hiroz.ErrorCodeServiceTimeout:
@@ -387,10 +387,10 @@ if errors.As(err, &e) {
 Set `HIROZ_LOG` to control the hiroz package log level:
 
 ```bash
-ROSZ_LOG=debug go run main.go   # all callbacks, CDR lengths, FFI calls
-ROSZ_LOG=info  go run main.go   # lifecycle events
-ROSZ_LOG=warn  go run main.go   # default — silent in production
-ROSZ_LOG=error go run main.go   # errors only
+HIROZ_LOG=debug go run main.go   # all callbacks, CDR lengths, FFI calls
+HIROZ_LOG=info  go run main.go   # lifecycle events
+HIROZ_LOG=warn  go run main.go   # default — silent in production
+HIROZ_LOG=error go run main.go   # errors only
 ```
 
 Logs go to stderr via Go's `log/slog` structured text format. For Zenoh-level tracing add `WithLogging()` to the context builder and set `RUST_LOG=zenoh=debug`.

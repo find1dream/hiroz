@@ -1,13 +1,13 @@
 # Go Bindings
 
-**ros-z provides Go bindings via `ros-z-go`, enabling Go applications to communicate with Rust and ROS 2 nodes using the same Zenoh transport.** The bindings use CGO to call the Rust FFI layer and provide idiomatic Go APIs for pub/sub, services, and actions.
+**hiroz provides Go bindings via `hiroz-go`, enabling Go applications to communicate with Rust and ROS 2 nodes using the same Zenoh transport.** The bindings use CGO to call the Rust FFI layer and provide idiomatic Go APIs for pub/sub, services, and actions.
 
 ```admonish note
 Go bindings use the same Zenoh transport as Rust nodes. Messages are serialized/deserialized using CDR format for full ROS 2 compatibility.
 ```
 
 ```admonish success title="Production Ready"
-Phase 1 and Phase 2 improvements (v0.2+) provide memory safety via `cgo.Handle` and `runtime.Pinner`, structured error handling with `RoszError`, and flexible message delivery via the `Handler[T]` interface.
+Phase 1 and Phase 2 improvements (v0.2+) provide memory safety via `cgo.Handle` and `runtime.Pinner`, structured error handling with `HirozError`, and flexible message delivery via the `Handler[T]` interface.
 ```
 
 ## 30-Second Quickstart
@@ -16,10 +16,10 @@ Phase 1 and Phase 2 improvements (v0.2+) provide memory safety via `cgo.Handle` 
 
 ```bash
 # One-command setup (no ROS 2 required!)
-just -f crates/ros-z-go/justfile quickstart
+just -f crates/hiroz-go/justfile quickstart
 
 # Run a live demo (publisher + subscriber)
-just -f crates/ros-z-go/justfile demo
+just -f crates/hiroz-go/justfile demo
 ```
 
 You'll see a publisher sending messages and a subscriber receiving them. **No ROS 2 installation required!**
@@ -33,9 +33,9 @@ The quickstart command:
 After quickstart, you'll have:
 
 ```text
-target/release/libros_z.a          # Rust FFI library
-crates/ros-z-go/rosz/ros_z_ffi.h   # C header (auto-generated)
-crates/ros-z-go/generated/         # Go message types
+target/release/libhiroz.a          # Rust FFI library
+crates/hiroz-go/hiroz/hiroz_ffi.h   # C header (auto-generated)
+crates/hiroz-go/generated/         # Go message types
   ├── std_msgs/
   ├── geometry_msgs/
   └── example_interfaces/
@@ -50,7 +50,7 @@ For troubleshooting, see [Common Errors](#common-errors) below.
 ```mermaid
 graph TD
     A[Go Code] -->|CGO| B[C FFI Layer]
-    B -->|cbindgen| C[Rust ros-z]
+    B -->|cbindgen| C[Rust hiroz]
     C -->|Zenoh| D[Network]
     D -->|Zenoh| E[ROS 2 / Rust / Python Nodes]
 
@@ -62,7 +62,7 @@ graph TD
 
 ### Memory Safety
 
-**ros-z-go uses modern Go features for safe CGO interop:**
+**hiroz-go uses modern Go features for safe CGO interop:**
 
 - **`cgo.Handle` (Go 1.17+)**: Type-safe callback storage with GC integration
   - Replaces manual callback registries
@@ -90,7 +90,7 @@ graph TD
 just build-rust
 
 # Build Go bindings
-cd crates/ros-z-go && go build ./...
+cd crates/hiroz-go && go build ./...
 
 # Run tests
 just test-go
@@ -107,7 +107,7 @@ To use standard ROS 2 message types:
 just codegen
 ```
 
-This produces Go message structs in `crates/ros-z-go/generated/` with CDR serialization.
+This produces Go message structs in `crates/hiroz-go/generated/` with CDR serialization.
 
 ## Quick Start
 
@@ -121,12 +121,12 @@ import (
     "log"
     "time"
 
-    "github.com/ZettaScaleLabs/ros-z-go/rosz"
-    "github.com/ZettaScaleLabs/ros-z-go/generated/std_msgs"
+    "github.com/ZettaScaleLabs/hiroz/crates/hiroz-go/hiroz"
+    "github.com/ZettaScaleLabs/hiroz/crates/hiroz-go/generated/std_msgs"
 )
 
 func main() {
-    ctx, _ := rosz.NewContext().WithDomainID(0).Build()
+    ctx, _ := hiroz.NewContext().WithDomainID(0).Build()
     defer ctx.Close()
 
     node, _ := ctx.CreateNode("go_talker").Build()
@@ -149,7 +149,7 @@ func main() {
 
 ```go
 func main() {
-    ctx, _ := rosz.NewContext().WithDomainID(0).Build()
+    ctx, _ := hiroz.NewContext().WithDomainID(0).Build()
     defer ctx.Close()
 
     node, _ := ctx.CreateNode("go_listener").Build()
@@ -170,14 +170,14 @@ func main() {
 
 ```go
 func main() {
-    ctx, _ := rosz.NewContext().WithDomainID(0).Build()
+    ctx, _ := hiroz.NewContext().WithDomainID(0).Build()
     defer ctx.Close()
 
     node, _ := ctx.CreateNode("go_listener").Build()
     defer node.Close()
 
     // Create a channel handler
-    handler := rosz.NewFifoChannel[[]byte](10)
+    handler := hiroz.NewFifoChannel[[]byte](10)
     callback, drop, ch := handler.ToCbDropHandler()
     defer drop()
 
@@ -200,7 +200,7 @@ func main() {
 #### Option 1: Typed Callback
 
 ```go
-sub, err := rosz.BuildWithTypedCallback(
+sub, err := hiroz.BuildWithTypedCallback(
     node.CreateSubscriber("chatter"),
     func(msg *std_msgs.String) {
         log.Printf("Received: %s", msg.Data)  // Already deserialized!
@@ -213,7 +213,7 @@ defer sub.Close()
 #### Option 2: Typed Channel
 
 ```go
-sub, ch, cleanup, err := rosz.SubscriberWithChannel[*std_msgs.String](
+sub, ch, cleanup, err := hiroz.SubscriberWithChannel[*std_msgs.String](
     node.CreateSubscriber("chatter"), 10)
 defer cleanup()  // Close the channel
 defer sub.Close()
@@ -228,8 +228,8 @@ for msg := range ch {
 #### Option 3: Typed Handler Integration
 
 ```go
-handler := rosz.NewFifoChannel[*std_msgs.String](10)
-sub, ch, cleanup, err := rosz.SubscriberWithHandler(
+handler := hiroz.NewFifoChannel[*std_msgs.String](10)
+sub, ch, cleanup, err := hiroz.SubscriberWithHandler(
     node.CreateSubscriber("chatter"), handler)
 defer cleanup()  // Close the handler
 defer sub.Close()
@@ -245,25 +245,25 @@ All three methods automatically deserialize messages and handle errors internall
 
 ### Structured Errors
 
-**ros-z-go provides `RoszError` for programmatic error handling:**
+**hiroz-go provides `HirozError` for programmatic error handling:**
 
 ```go
-import "github.com/ZettaScaleLabs/ros-z-go/rosz"
+import "github.com/ZettaScaleLabs/hiroz/crates/hiroz-go/hiroz"
 
 // Service call with error handling
 resp, err := client.Call(req)
 if err != nil {
-    if roszErr, ok := err.(rosz.RoszError); ok {
-        switch roszErr.Code() {
-        case rosz.ErrorCodeServiceTimeout:
+    if hirozErr, ok := err.(hiroz.HirozError); ok {
+        switch hirozErr.Code() {
+        case hiroz.ErrorCodeServiceTimeout:
             // Retry logic
             log.Println("Service timed out, retrying...")
-        case rosz.ErrorCodeServiceCallFailed:
+        case hiroz.ErrorCodeServiceCallFailed:
             // Handle service failure
-            log.Printf("Service failed: %s", roszErr.Message())
+            log.Printf("Service failed: %s", hirozErr.Message())
         default:
             // General error handling
-            log.Fatalf("Service error: %v", roszErr)
+            log.Fatalf("Service error: %v", hirozErr)
         }
     }
 }
@@ -271,7 +271,7 @@ if err != nil {
 
 ### Error Codes
 
-Key error codes defined in `rosz/error.go`:
+Key error codes defined in `hiroz/error.go`:
 
 - `ErrorCodeSuccess` (0) - Operation completed successfully
 - `ErrorCodeServiceTimeout` (-10) - Service call timed out
@@ -283,11 +283,11 @@ Key error codes defined in `rosz/error.go`:
 ### Convenience Methods
 
 ```go
-if err.(rosz.RoszError).IsTimeout() {
+if err.(hiroz.HirozError).IsTimeout() {
     // Handle timeout specifically
 }
 
-if err.(rosz.RoszError).IsRejected() {
+if err.(hiroz.HirozError).IsRejected() {
     // Handle action goal rejection
 }
 ```
@@ -302,7 +302,7 @@ for attempt := 1; attempt <= maxRetries; attempt++ {
         break // Success
     }
 
-    if roszErr, ok := err.(rosz.RoszError); ok && roszErr.IsTimeout() {
+    if hirozErr, ok := err.(hiroz.HirozError); ok && hirozErr.IsTimeout() {
         if attempt < maxRetries {
             backoff := time.Duration(attempt) * time.Second
             log.Printf("Timeout, retrying in %v...", backoff)
@@ -317,12 +317,12 @@ for attempt := 1; attempt <= maxRetries; attempt++ {
 
 ## Handler Interface
 
-ros-z-go supports three message delivery patterns via the `Handler[T]` interface:
+hiroz-go supports three message delivery patterns via the `Handler[T]` interface:
 
 ### 1. Closure (Direct Callback)
 
 ```go
-handler := rosz.NewClosure(
+handler := hiroz.NewClosure(
     func(data []byte) { processMessage(data) },
     func() { cleanup() },
 )
@@ -335,7 +335,7 @@ handler := rosz.NewClosure(
 ### 2. FifoChannel (Buffered, Blocking)
 
 ```go
-handler := rosz.NewFifoChannel[[]byte](10)
+handler := hiroz.NewFifoChannel[[]byte](10)
 callback, drop, ch := handler.ToCbDropHandler()
 defer drop()
 
@@ -352,7 +352,7 @@ for data := range ch {
 ### 3. RingChannel (Non-blocking, Drops Oldest)
 
 ```go
-handler := rosz.NewRingChannel[[]byte](5)
+handler := hiroz.NewRingChannel[[]byte](5)
 callback, drop, ch := handler.ToCbDropHandler()
 defer drop()
 
@@ -423,7 +423,7 @@ defer client.Close()
 goal := &example_interfaces.FibonacciGoal{Order: 10}
 goalHandle, err := client.SendGoal(goal)
 if err != nil {
-    if roszErr, ok := err.(rosz.RoszError); ok && roszErr.IsRejected() {
+    if hirozErr, ok := err.(hiroz.HirozError); ok && hirozErr.IsRejected() {
         log.Println("Goal was rejected by server")
         return
     }
@@ -484,7 +484,7 @@ defer server.Close()
 # Pure Go tests (no FFI dependencies)
 just test-go-pure  # 30 tests - message serialization, interfaces
 
-# FFI unit tests (requires libros_z.a)
+# FFI unit tests (requires libhiroz.a)
 just test-go-ffi   # 26 tests - error handling, callbacks, handlers
 
 # All Go tests
@@ -497,14 +497,14 @@ just test-integration  # 11 tests - ROS 2 interop
 ### Running Specific Tests
 
 ```bash
-cd crates/ros-z-go/rosz
-go test -v -run TestRoszError
+cd crates/hiroz-go/hiroz
+go test -v -run TestHirozError
 go test -v -run TestHandler
 ```
 
 ## Examples
 
-The `crates/ros-z-go/examples/` directory contains comprehensive examples:
+The `crates/hiroz-go/examples/` directory contains comprehensive examples:
 
 ### Basic Examples
 
@@ -536,7 +536,7 @@ Demonstrates:
 Run the demo:
 
 ```bash
-just -f crates/ros-z-go/justfile demo-production
+just -f crates/hiroz-go/justfile demo-production
 ```
 
 See `examples/production_service/README.md` for detailed pattern explanations and deployment checklist.
@@ -548,7 +548,7 @@ See `examples/production_service/README.md` for detailed pattern explanations an
 just build-rust
 
 # Run an example
-cd crates/ros-z-go/examples/publisher
+cd crates/hiroz-go/examples/publisher
 CGO_LDFLAGS="-L../../../target/release" go run main.go
 ```
 
@@ -559,7 +559,7 @@ CGO_LDFLAGS="-L../../../target/release" go run main.go
 Using channels enables elegant concurrent patterns:
 
 ```go
-handler := rosz.NewFifoChannel[[]byte](100)
+handler := hiroz.NewFifoChannel[[]byte](100)
 callback, drop, ch := handler.ToCbDropHandler()
 defer drop()
 
@@ -596,7 +596,7 @@ type Message interface {
 }
 ```
 
-See `crates/ros-z-go/testdata/` for examples of hand-written message types.
+See `crates/hiroz-go/testdata/` for examples of hand-written message types.
 
 ## Performance Considerations
 
@@ -640,8 +640,8 @@ if err := client.Call(req); err != nil {
 
 // After (with structured errors)
 if err := client.Call(req); err != nil {
-    if roszErr, ok := err.(rosz.RoszError); ok {
-        if roszErr.IsTimeout() {
+    if hirozErr, ok := err.(hiroz.HirozError); ok {
+        if hirozErr.IsTimeout() {
             // Handle timeout specifically
         }
     }
@@ -657,7 +657,7 @@ sub.BuildWithCallback(msg, func(data []byte) {
 })
 
 // After (with channels)
-handler := rosz.NewFifoChannel[[]byte](10)
+handler := hiroz.NewFifoChannel[[]byte](10)
 callback, drop, ch := handler.ToCbDropHandler()
 defer drop()
 sub.BuildWithCallback(msg, callback)
@@ -672,10 +672,10 @@ Quick reference for common issues and solutions:
 
 | Error | Cause | Solution |
 |-------|-------|----------|
-| `undefined reference to ros_z_*` | Rust FFI library not built | Run `just build-rust` or `cargo build --release --features ffi` |
-| `cannot find package generated` | Messages not generated | Run `just -f crates/ros-z-go/justfile codegen-bundled` |
-| `ld: library not found for -lros_z` | Wrong CGO_LDFLAGS path | Use `just run-example <name>` instead of direct `go run` |
-| Type hash mismatch with ROS 2 | Message definition version mismatch | Check ROS distro compatibility, enable `RUST_LOG=ros_z=debug` |
+| `undefined reference to hiroz_*` | Rust FFI library not built | Run `just build-rust` or `cargo build --release --features ffi` |
+| `cannot find package generated` | Messages not generated | Run `just -f crates/hiroz-go/justfile codegen-bundled` |
+| `ld: library not found for -lhiroz` | Wrong CGO_LDFLAGS path | Use `just run-example <name>` instead of direct `go run` |
+| Type hash mismatch with ROS 2 | Message definition version mismatch | Check ROS distro compatibility, enable `RUST_LOG=hiroz=debug` |
 | Import cycle error | Circular dependencies | Check package structure, avoid cross-imports |
 | Subscriber receives no messages | Type mismatch or network issue | Verify type hashes, check Zenoh router connection |
 
@@ -683,20 +683,20 @@ Quick reference for common issues and solutions:
 
 ```bash
 # Check all prerequisites
-just -f crates/ros-z-go/justfile verify
+just -f crates/hiroz-go/justfile verify
 ```
 
 This checks:
 
-- ✓ libros_z.a exists
-- ✓ ros_z_ffi.h exists
+- ✓ libhiroz.a exists
+- ✓ hiroz_ffi.h exists
 - ✓ Generated messages exist
 
 ## Troubleshooting
 
 ### CGO Linker Errors
 
-**Symptom**: `undefined reference to ros_z_*` or `ld: library not found`
+**Symptom**: `undefined reference to hiroz_*` or `ld: library not found`
 
 **Solution**:
 
@@ -708,7 +708,7 @@ just build-rust
 cargo build --release --features ffi
 
 # For examples, use the helper (handles CGO_LDFLAGS automatically)
-just -f crates/ros-z-go/justfile run-example publisher
+just -f crates/hiroz-go/justfile run-example publisher
 ```
 
 ### Type Hash Mismatches
@@ -719,7 +719,7 @@ just -f crates/ros-z-go/justfile run-example publisher
 
 ```bash
 # Enable debug logging to see type hashes
-RUST_LOG=ros_z=debug cargo run --example publisher
+RUST_LOG=hiroz=debug cargo run --example publisher
 ```
 
 Look for `RIHS01_` hash in logs and compare with ROS 2:
@@ -728,7 +728,7 @@ Look for `RIHS01_` hash in logs and compare with ROS 2:
 ros2 interface show std_msgs/msg/String
 ```
 
-The hash after `RIHS01_` must match exactly between ros-z and ROS 2.
+The hash after `RIHS01_` must match exactly between hiroz and ROS 2.
 
 ### Performance Issues
 
@@ -741,7 +741,7 @@ The hash after `RIHS01_` must match exactly between ros-z and ROS 2.
 
 ### Do I need ROS 2 installed?
 
-**No!** ros-z-go uses bundled message definitions for common types (std_msgs, geometry_msgs, example_interfaces).
+**No!** hiroz-go uses bundled message definitions for common types (std_msgs, geometry_msgs, example_interfaces).
 
 You only need ROS 2 if you want to:
 
@@ -751,7 +751,7 @@ You only need ROS 2 if you want to:
 
 ### Do I need a Zenoh router?
 
-**No for local testing.** Messages work between ros-z nodes on the same machine without a router.
+**No for local testing.** Messages work between hiroz nodes on the same machine without a router.
 
 Use a router for:
 
@@ -761,19 +761,19 @@ Use a router for:
 
 ### Why do examples use CGO_LDFLAGS?
 
-Go needs to know where `libros_z.a` lives for CGO linking. The helper commands handle this automatically:
+Go needs to know where `libhiroz.a` lives for CGO linking. The helper commands handle this automatically:
 
 ```bash
 # Instead of:
 CGO_LDFLAGS="-L../../target/release" go run .
 
 # Use:
-just -f crates/ros-z-go/justfile run-example publisher
+just -f crates/hiroz-go/justfile run-example publisher
 ```
 
-### How does ros-z-go compare to other ROS Go libraries?
+### How does hiroz-go compare to other ROS Go libraries?
 
-| Feature | ros-z-go | rclgo | rclpy (Python) |
+| Feature | hiroz-go | rclgo | rclpy (Python) |
 |---------|----------|-------|----------------|
 | **ROS 2 dependency** | Optional | Required | Required |
 | **Performance** | High (Zenoh) | Medium (DDS) | Low (Python) |
@@ -783,12 +783,12 @@ just -f crates/ros-z-go/justfile run-example publisher
 | **Learning curve** | Medium | High | Low |
 | **Best for** | Cloud-native, high-perf | ROS 2 integration | Prototyping |
 
-### Can I use ros-z-go in production?
+### Can I use hiroz-go in production?
 
 **Yes.** Phase 2 improvements provide:
 
 - Memory-safe CGO interop (`cgo.Handle`, `runtime.Pinner`)
-- Structured error handling (`RoszError`)
+- Structured error handling (`HirozError`)
 - Flexible message delivery patterns (Closure, FIFO, Ring)
 - Full test coverage (56 Go tests + integration tests)
 
@@ -796,24 +796,24 @@ just -f crates/ros-z-go/justfile run-example publisher
 
 ```bash
 # Setup
-just -f crates/ros-z-go/justfile quickstart   # One-command setup
-just -f crates/ros-z-go/justfile verify       # Check installation
+just -f crates/hiroz-go/justfile quickstart   # One-command setup
+just -f crates/hiroz-go/justfile verify       # Check installation
 
 # Code Generation
-just -f crates/ros-z-go/justfile codegen-bundled  # Generate common messages
+just -f crates/hiroz-go/justfile codegen-bundled  # Generate common messages
 
 # Running Examples
-just -f crates/ros-z-go/justfile run-example <name>  # Run any example
-just -f crates/ros-z-go/justfile demo         # Live pub/sub demo
+just -f crates/hiroz-go/justfile run-example <name>  # Run any example
+just -f crates/hiroz-go/justfile demo         # Live pub/sub demo
 
 # Building
 just build-rust                               # Build Rust FFI library
-cd crates/ros-z-go && go build ./...         # Build Go packages
+cd crates/hiroz-go && go build ./...         # Build Go packages
 ```
 
 ## References
 
-- **Source**: [`ros-z-go/rosz/`](https://github.com/ZettaScaleLabs/ros-z/tree/main/crates/ros-z-go/rosz)
-- **Examples**: [`ros-z-go/examples/`](https://github.com/ZettaScaleLabs/ros-z/tree/main/crates/ros-z-go/examples)
-- **Tests**: [`ros-z-go/rosz/*_test.go`](https://github.com/ZettaScaleLabs/ros-z/tree/main/crates/ros-z-go/rosz)
-- **FFI Layer**: [`ros-z/src/ffi/`](https://github.com/ZettaScaleLabs/ros-z/tree/main/crates/ros-z/src/ffi)
+- **Source**: [`hiroz-go/hiroz/`](https://github.com/ZettaScaleLabs/ros-z/tree/main/crates/hiroz-go/hiroz)
+- **Examples**: [`hiroz-go/examples/`](https://github.com/ZettaScaleLabs/ros-z/tree/main/crates/hiroz-go/examples)
+- **Tests**: [`hiroz-go/hiroz/*_test.go`](https://github.com/ZettaScaleLabs/ros-z/tree/main/crates/hiroz-go/hiroz)
+- **FFI Layer**: [`hiroz/src/ffi/`](https://github.com/ZettaScaleLabs/ros-z/tree/main/crates/hiroz/src/ffi)

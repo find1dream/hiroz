@@ -144,7 +144,7 @@ func TestMain(m *testing.M) {
 
 	// go test -v activates full debug output from the Go bindings.
 	if testing.Verbose() {
-		os.Setenv("ROSZ_LOG", "DEBUG")
+		os.Setenv("HIROZ_LOG", "DEBUG")
 	}
 
 	// Run tests

@@ -22,8 +22,8 @@ This file explains how to integrate the Go bindings documentation into the main 
 
 ```bash
 # In main repository (not worktree)
-cd /path/to/ros-z  # Main repo
-cp /path/to/worktree/ros-z-go/_tmp/go_bindings_mdbook.md book/src/chapters/go_bindings.md
+cd /path/to/hiroz  # Main repo
+cp /path/to/worktree/hiroz-go/_tmp/go_bindings_mdbook.md book/src/chapters/go_bindings.md
 
 # Build and preview
 mdbook serve book
@@ -37,7 +37,7 @@ git commit -m "docs(go): update Go bindings chapter with Phase 1 & 2 improvement
 
 ```bash
 # In main repository
-git fetch origin dev/ros-z-go
+git fetch origin dev/hiroz-go
 
 # Cherry-pick the documentation commit (if applicable)
 # OR manually copy the file and commit
@@ -53,7 +53,7 @@ git fetch origin dev/ros-z-go
    - Automatic memory management
 
 2. **Error Handling** (new major section)
-   - RoszError type
+   - HirozError type
    - Error codes reference
    - Convenience methods (IsTimeout, IsRejected)
    - Retry patterns
@@ -133,12 +133,12 @@ After integrating, verify:
 
 ## Related Commits
 
-This documentation reflects the following commits from dev/ros-z-go:
+This documentation reflects the following commits from dev/hiroz-go:
 
 - `ee959c9` - refactor(go): use cgo.Handle and runtime.Pinner for callbacks
 - `1032a34` - feat(go): add structured error type with FFI error codes
 - `1e4b4b5` - feat(go): add Handler interface with channel delivery options
-- `c0b1bf2` - docs(go): add comprehensive README for ros-z-go package
+- `c0b1bf2` - docs(go): add comprehensive README for hiroz-go package
 - `0e3eea6` - docs(go): add enhanced examples showcasing new features
 
 ## Notes
