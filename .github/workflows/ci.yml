@@ -44,6 +44,17 @@ jobs:
 
       - name: Install Nix
         uses: cachix/install-nix-action@v31
+        with:
+          extra_nix_config: |
+            extra-substituters = https://hiroz.cachix.org
+            extra-trusted-public-keys = hiroz.cachix.org-1:wKJuqEckTG0DL3Df7Ly9OVsg5S5TGBHtvlPGs+vlqrY=
+
+      - name: Setup Cachix
+        uses: cachix/cachix-action@v15
+        with:
+          name: hiroz
+          authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
+          skipPush: 'true'
 
       - name: Check formatting
         run: nix build .#checks.x86_64-linux.pre-commit-check -L
@@ -78,6 +89,18 @@ jobs:
       - name: Install Nix (Linux)
         if: runner.os == 'Linux'
         uses: cachix/install-nix-action@v31
+        with:
+          extra_nix_config: |
+            extra-substituters = https://hiroz.cachix.org
+            extra-trusted-public-keys = hiroz.cachix.org-1:wKJuqEckTG0DL3Df7Ly9OVsg5S5TGBHtvlPGs+vlqrY=
+
+      - name: Setup Cachix (Linux)
+        if: runner.os == 'Linux'
+        uses: cachix/cachix-action@v15
+        with:
+          name: hiroz
+          authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
+          skipPush: 'true'
 
       - name: Install Nushell (Linux via Nix)
         if: runner.os == 'Linux'
@@ -162,6 +185,17 @@ jobs:
 
       - name: Install Nix (Linux)
         uses: cachix/install-nix-action@v31
+        with:
+          extra_nix_config: |
+            extra-substituters = https://hiroz.cachix.org
+            extra-trusted-public-keys = hiroz.cachix.org-1:wKJuqEckTG0DL3Df7Ly9OVsg5S5TGBHtvlPGs+vlqrY=
+
+      - name: Setup Cachix
+        uses: cachix/cachix-action@v15
+        with:
+          name: hiroz
+          authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
+          skipPush: 'true'
 
       - name: Install Nushell (Linux via Nix)
         run: |
@@ -209,6 +243,17 @@ jobs:
 
       - name: Install Nix
         uses: cachix/install-nix-action@v31
+        with:
+          extra_nix_config: |
+            extra-substituters = https://hiroz.cachix.org
+            extra-trusted-public-keys = hiroz.cachix.org-1:wKJuqEckTG0DL3Df7Ly9OVsg5S5TGBHtvlPGs+vlqrY=
+
+      - name: Setup Cachix
+        uses: cachix/cachix-action@v15
+        with:
+          name: hiroz
+          authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
+          skipPush: 'true'
 
       - name: Install Nushell
         run: nix profile install nixpkgs#nushell
@@ -275,6 +320,18 @@ jobs:
       - name: Install Nix (Linux)
         if: runner.os == 'Linux'
         uses: cachix/install-nix-action@v31
+        with:
+          extra_nix_config: |
+            extra-substituters = https://hiroz.cachix.org
+            extra-trusted-public-keys = hiroz.cachix.org-1:wKJuqEckTG0DL3Df7Ly9OVsg5S5TGBHtvlPGs+vlqrY=
+
+      - name: Setup Cachix (Linux)
+        if: runner.os == 'Linux'
+        uses: cachix/cachix-action@v15
+        with:
+          name: hiroz
+          authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
+          skipPush: 'true'
 
       - name: Install Nushell (Linux via Nix)
         if: runner.os == 'Linux'
@@ -417,8 +474,9 @@ jobs:
         uses: cachix/install-nix-action@v31
         with:
           extra_nix_config: |
-            extra-substituters = https://ros.cachix.org
+            extra-substituters = https://ros.cachix.org https://hiroz.cachix.org
             extra-trusted-public-keys = ros.cachix.org-1:dSyZxI8geDCJrwgvCOHDoAfOm5sV1wCPjBkKL+38Rvo=
+            extra-trusted-public-keys = hiroz.cachix.org-1:wKJuqEckTG0DL3Df7Ly9OVsg5S5TGBHtvlPGs+vlqrY=
 
       - name: Setup Cachix
         uses: cachix/cachix-action@v15
@@ -532,8 +590,9 @@ jobs:
         uses: cachix/install-nix-action@v31
         with:
           extra_nix_config: |
-            extra-substituters = https://ros.cachix.org
+            extra-substituters = https://ros.cachix.org https://hiroz.cachix.org
             extra-trusted-public-keys = ros.cachix.org-1:dSyZxI8geDCJrwgvCOHDoAfOm5sV1wCPjBkKL+38Rvo=
+            extra-trusted-public-keys = hiroz.cachix.org-1:wKJuqEckTG0DL3Df7Ly9OVsg5S5TGBHtvlPGs+vlqrY=
 
       - name: Setup Cachix
         uses: cachix/cachix-action@v15
@@ -541,7 +600,6 @@ jobs:
           name: hiroz
           authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
           skipPush: ${{ github.event_name == 'pull_request' }}
-
 
       - name: Install Nushell
         run: |
@@ -582,8 +640,9 @@ jobs:
         uses: cachix/install-nix-action@v31
         with:
           extra_nix_config: |
-            extra-substituters = https://ros.cachix.org
+            extra-substituters = https://ros.cachix.org https://hiroz.cachix.org
             extra-trusted-public-keys = ros.cachix.org-1:dSyZxI8geDCJrwgvCOHDoAfOm5sV1wCPjBkKL+38Rvo=
+            extra-trusted-public-keys = hiroz.cachix.org-1:wKJuqEckTG0DL3Df7Ly9OVsg5S5TGBHtvlPGs+vlqrY=
 
       - name: Setup Cachix
         uses: cachix/cachix-action@v15
