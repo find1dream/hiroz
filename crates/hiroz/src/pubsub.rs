@@ -6,7 +6,7 @@ use tracing::{debug, trace, warn};
 use zenoh::liveliness::LivelinessToken;
 use zenoh::{Result, Session, Wait, sample::Sample};
 #[allow(deprecated)]
-use zenoh_ext::{PublicationCache, SessionExt, SubscriberBuilderExt};
+use zenoh_ext::{PublicationCache, SessionExt};
 
 use crate::Builder;
 use crate::attachment::{Attachment, GidArray};
@@ -353,6 +353,8 @@ where
 
         // For TransientLocal publishers, declare a PublicationCache that answers
         // get() queries from late-joining QueryingSubscribers.
+        let is_transient_local =
+            matches!(self.entity.qos.durability, QosDurability::TransientLocal);
         #[allow(deprecated)]
         let pub_cache: Option<PublicationCache> = if is_transient_local {
             let history = match self.entity.qos.history {
