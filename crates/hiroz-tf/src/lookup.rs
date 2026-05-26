@@ -1,5 +1,5 @@
-use ros_z::time::ZTime;
-use ros_z_msgs::geometry_msgs::{Transform, TransformStamped};
+use hiroz::time::ZTime;
+use hiroz_msgs::geometry_msgs::{Transform, TransformStamped};
 
 use crate::LookupError;
 use crate::buffer::BufferInner;
@@ -66,7 +66,7 @@ impl BufferInner {
         let result = math::compose_transforms(&t_lca_from_source, &t_target_from_lca);
 
         Ok(TransformStamped {
-            header: ros_z_msgs::std_msgs::Header {
+            header: hiroz_msgs::std_msgs::Header {
                 frame_id: target.to_string(),
                 stamp: ztime_to_stamp(time),
             },
@@ -166,18 +166,18 @@ impl BufferInner {
 
 fn identity_stamped(frame: &str) -> TransformStamped {
     TransformStamped {
-        header: ros_z_msgs::std_msgs::Header {
+        header: hiroz_msgs::std_msgs::Header {
             frame_id: frame.to_string(),
-            stamp: ros_z_msgs::builtin_interfaces::Time { sec: 0, nanosec: 0 },
+            stamp: hiroz_msgs::builtin_interfaces::Time { sec: 0, nanosec: 0 },
         },
         child_frame_id: frame.to_string(),
         transform: math::identity_transform(),
     }
 }
 
-fn ztime_to_stamp(t: ZTime) -> ros_z_msgs::builtin_interfaces::Time {
+fn ztime_to_stamp(t: ZTime) -> hiroz_msgs::builtin_interfaces::Time {
     let nanos = t.as_unix_nanos().max(0) as u64;
-    ros_z_msgs::builtin_interfaces::Time {
+    hiroz_msgs::builtin_interfaces::Time {
         sec: (nanos / 1_000_000_000) as i32,
         nanosec: (nanos % 1_000_000_000) as u32,
     }
@@ -187,10 +187,10 @@ fn ztime_to_stamp(t: ZTime) -> ros_z_msgs::builtin_interfaces::Time {
 mod tests {
     use super::*;
     use crate::buffer::BufferInner;
-    use ros_z_msgs::builtin_interfaces::Time;
-    use ros_z_msgs::geometry_msgs::{Quaternion, Transform, Vector3};
-    use ros_z_msgs::std_msgs::Header;
-    use ros_z_msgs::tf2_msgs::TFMessage;
+    use hiroz_msgs::builtin_interfaces::Time;
+    use hiroz_msgs::geometry_msgs::{Quaternion, Transform, Vector3};
+    use hiroz_msgs::std_msgs::Header;
+    use hiroz_msgs::tf2_msgs::TFMessage;
 
     fn make_tf_at(parent: &str, child: &str, sec: i32, x: f64) -> TransformStamped {
         TransformStamped {

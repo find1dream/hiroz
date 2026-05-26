@@ -1,12 +1,12 @@
 use std::num::NonZeroUsize;
 
-use ros_z::Builder;
-use ros_z::msg::NativeCdrSerdes;
-use ros_z::node::ZNode;
-use ros_z::pubsub::ZPub;
-use ros_z::qos::{QosDurability, QosHistory, QosProfile, QosReliability};
-use ros_z_msgs::geometry_msgs::TransformStamped;
-use ros_z_msgs::tf2_msgs::TFMessage;
+use hiroz::Builder;
+use hiroz::msg::NativeCdrSerdes;
+use hiroz::node::ZNode;
+use hiroz::pubsub::ZPub;
+use hiroz::qos::{QosDurability, QosHistory, QosProfile, QosReliability};
+use hiroz_msgs::geometry_msgs::TransformStamped;
+use hiroz_msgs::tf2_msgs::TFMessage;
 
 type TfPub = ZPub<TFMessage, NativeCdrSerdes<TFMessage>>;
 
@@ -100,7 +100,7 @@ fn zero_timestamps(transforms: Vec<TransformStamped>) -> Vec<TransformStamped> {
     transforms
         .into_iter()
         .map(|mut tf| {
-            tf.header.stamp = ros_z_msgs::builtin_interfaces::Time { sec: 0, nanosec: 0 };
+            tf.header.stamp = hiroz_msgs::builtin_interfaces::Time { sec: 0, nanosec: 0 };
             tf
         })
         .collect()
@@ -109,9 +109,9 @@ fn zero_timestamps(transforms: Vec<TransformStamped>) -> Vec<TransformStamped> {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use ros_z_msgs::builtin_interfaces::Time;
-    use ros_z_msgs::geometry_msgs::{Quaternion, Transform, Vector3};
-    use ros_z_msgs::std_msgs::Header;
+    use hiroz_msgs::builtin_interfaces::Time;
+    use hiroz_msgs::geometry_msgs::{Quaternion, Transform, Vector3};
+    use hiroz_msgs::std_msgs::Header;
 
     fn make_tf(parent: &str, child: &str, sec: i32) -> TransformStamped {
         TransformStamped {

@@ -1,4 +1,4 @@
-//! TF2 transform listener and buffer for ros-z.
+//! TF2 transform listener and buffer for hiroz.
 //!
 //! Subscribes to `/tf` (dynamic) and `/tf_static` (TransientLocal) and provides
 //! `lookup_transform` with multi-hop LCA traversal and linear/slerp interpolation.
@@ -6,8 +6,8 @@
 //! # Quick start
 //!
 //! ```rust,ignore
-//! use ros_z::prelude::*;
-//! use ros_z_tf::Buffer;
+//! use hiroz::prelude::*;
+//! use hiroz_tf::Buffer;
 //!
 //! #[tokio::main]
 //! async fn main() -> zenoh::Result<()> {
@@ -32,14 +32,14 @@ use std::num::NonZeroUsize;
 use std::sync::Arc;
 use std::time::Duration;
 
+use hiroz::msg::NativeCdrSerdes;
+use hiroz::node::ZNode;
+use hiroz::pubsub::ZSub;
+use hiroz::qos::{QosDurability, QosHistory, QosProfile, QosReliability};
+use hiroz::time::ZTime;
+use hiroz_msgs::geometry_msgs::TransformStamped;
+use hiroz_msgs::tf2_msgs::TFMessage;
 use parking_lot::RwLock;
-use ros_z::msg::NativeCdrSerdes;
-use ros_z::node::ZNode;
-use ros_z::pubsub::ZSub;
-use ros_z::qos::{QosDurability, QosHistory, QosProfile, QosReliability};
-use ros_z::time::ZTime;
-use ros_z_msgs::geometry_msgs::TransformStamped;
-use ros_z_msgs::tf2_msgs::TFMessage;
 use tokio::sync::Notify;
 
 mod broadcaster;

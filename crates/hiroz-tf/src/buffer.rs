@@ -2,9 +2,9 @@ use std::collections::{BTreeMap, HashMap};
 use std::sync::Arc;
 use std::time::Duration;
 
-use ros_z::time::ZTime;
-use ros_z_msgs::geometry_msgs::TransformStamped;
-use ros_z_msgs::tf2_msgs::TFMessage;
+use hiroz::time::ZTime;
+use hiroz_msgs::geometry_msgs::TransformStamped;
+use hiroz_msgs::tf2_msgs::TFMessage;
 use tokio::sync::Notify;
 
 /// Default maximum age of dynamic transforms to retain (10 seconds, matching tf2).
@@ -112,7 +112,7 @@ impl BufferInner {
 }
 
 /// Convert a `builtin_interfaces::Time` stamp to `ZTime`.
-pub(crate) fn stamp_to_ztime(stamp: &ros_z_msgs::builtin_interfaces::Time) -> ZTime {
+pub(crate) fn stamp_to_ztime(stamp: &hiroz_msgs::builtin_interfaces::Time) -> ZTime {
     let total_nanos = (stamp.sec as i64)
         .saturating_mul(1_000_000_000)
         .saturating_add(stamp.nanosec as i64);
@@ -122,9 +122,9 @@ pub(crate) fn stamp_to_ztime(stamp: &ros_z_msgs::builtin_interfaces::Time) -> ZT
 #[cfg(test)]
 mod tests {
     use super::*;
-    use ros_z_msgs::builtin_interfaces::Time;
-    use ros_z_msgs::geometry_msgs::{Quaternion, Transform, Vector3};
-    use ros_z_msgs::std_msgs::Header;
+    use hiroz_msgs::builtin_interfaces::Time;
+    use hiroz_msgs::geometry_msgs::{Quaternion, Transform, Vector3};
+    use hiroz_msgs::std_msgs::Header;
 
     fn make_tf(parent: &str, child: &str, sec: i32) -> TransformStamped {
         TransformStamped {
