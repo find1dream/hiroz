@@ -214,6 +214,26 @@ where
         + 'static,
 {
     type Serdes = NativeCdrSerdes<T>;
+
+    /// Accurate size for SHM allocation.
+    ///
+    /// The trait default (`size_of::<Self>() * 2 + 4`) ignores dynamic-field
+    /// payloads, so in the generic publish path a `PointCloud2`/`Image` was
+    /// estimated at ~244 B regardless of its real size — below the SHM
+    /// threshold, so large sensor messages silently skipped zero-copy; and when
+    /// the threshold was lowered to admit them, `serialize_to_shm` allocated the
+    /// undersized buffer and the serializer overflowed it.
+    ///
+    /// Every type reaching this blanket impl already implements
+    /// `CdrSerializedSize` (the same accurate, codegen-generated size walk used
+    /// by serialization), so use it: 4 B CDR encapsulation header + the body
+    /// size measured from body offset 0. The `+ 16` absorbs any alignment slack
+    /// so the buffer is always a safe upper bound; `ShmWriter` truncates the
+    /// published `ZBuf` to the bytes actually written, so the pad costs nothing
+    /// on the wire.
+    fn estimated_serialized_size(&self) -> usize {
+        4 + hiroz_cdr::CdrSerializedSize::cdr_serialized_size(self, 0) + 16
+    }
 }
 
 // ── Serde-based CDR serialization (existing path, kept for non-generated types) ───────────
