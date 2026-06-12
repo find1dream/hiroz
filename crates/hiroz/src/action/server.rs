@@ -888,6 +888,19 @@ impl<A: ZAction> GoalHandle<A, Requested> {
     ///
     /// This sends an acceptance response to the client and updates the server state.
     pub fn accept(mut self) -> GoalHandle<A, Accepted> {
+        // Insert before replying — client may fire get_result before we'd register the goal.
+        self.server.goal_manager().modify(|manager| {
+            let expires_at = manager.goal_timeout.map(|timeout| Instant::now() + timeout);
+            manager.goals.insert(
+                self.info.goal_id,
+                ServerGoalState::Accepted {
+                    goal: self.goal.clone(),
+                    timestamp: Instant::now(),
+                    expires_at,
+                },
+            );
+        });
+
         // Send acceptance response
         // Use timestamp from GoalInfo which is already in sec/nanosec format
         let response = SendGoalResponse {
@@ -905,19 +918,6 @@ impl<A: ZAction> GoalHandle<A, Requested> {
                 .attachment(attachment)
                 .wait();
         }
-
-        // Update server state to ACCEPTED
-        self.server.goal_manager().modify(|manager| {
-            let expires_at = manager.goal_timeout.map(|timeout| Instant::now() + timeout);
-            manager.goals.insert(
-                self.info.goal_id,
-                ServerGoalState::Accepted {
-                    goal: self.goal.clone(),
-                    timestamp: Instant::now(),
-                    expires_at,
-                },
-            );
-        });
 
         // Publish status update
         self.server.publish_status();
