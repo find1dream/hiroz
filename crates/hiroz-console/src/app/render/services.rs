@@ -51,33 +51,22 @@ impl App {
 
     /// Render service detail panel content
     pub fn render_service_detail(&mut self) -> String {
-        let graph = self.core.graph.lock();
-        let filter_text = self.filter_input.to_lowercase();
-
-        // Get filtered services
-        let filtered_services: Vec<_> = graph
-            .get_service_names_and_types()
-            .iter()
-            .filter(|(service, type_name)| {
-                if filter_text.is_empty() {
-                    true
-                } else {
-                    service.to_lowercase().contains(&filter_text)
-                        || type_name.to_lowercase().contains(&filter_text)
-                }
-            })
-            .map(|(s, tn)| (s.clone(), tn.clone()))
-            .collect();
-
+        // Resolve the selected service from the same filtered list the list pane
+        // renders, so the detail always matches what's highlighted.
+        let filtered_services = self.filtered_services();
         let Some((service, type_name)) = filtered_services.get(self.selected_index) else {
             return "No service selected".to_string();
         };
+        let service = service.clone();
+        let type_name = type_name.clone();
+
+        let graph = self.core.graph.lock();
 
         let server_count = graph
-            .get_entities_by_service(EndpointKind::Service, service)
+            .get_entities_by_service(EndpointKind::Service, &service)
             .len();
         let client_count = graph
-            .get_entities_by_service(EndpointKind::Client, service)
+            .get_entities_by_service(EndpointKind::Client, &service)
             .len();
 
         let mut detail = format!("Service: {}\nType: {}\n", service, type_name);
@@ -94,7 +83,7 @@ impl App {
         ));
 
         if self.detail_state.publishers_expanded {
-            let server_entities = graph.get_entities_by_service(EndpointKind::Service, service);
+            let server_entities = graph.get_entities_by_service(EndpointKind::Service, &service);
             if !server_entities.is_empty() {
                 detail.push_str("\n\n");
                 for (idx, entity) in server_entities.iter().enumerate() {
@@ -130,7 +119,7 @@ impl App {
         ));
 
         if self.detail_state.clients_expanded {
-            let client_entities = graph.get_entities_by_service(EndpointKind::Client, service);
+            let client_entities = graph.get_entities_by_service(EndpointKind::Client, &service);
             if !client_entities.is_empty() {
                 detail.push_str("\n\n");
                 for (idx, entity) in client_entities.iter().enumerate() {

@@ -83,32 +83,21 @@ impl App {
 
     /// Render topic detail panel content
     pub fn render_topic_detail(&mut self) -> String {
-        let graph = self.core.graph.lock();
-        let filter_text = self.filter_input.to_lowercase();
-
-        // Get filtered topics
-        let filtered_topics: Vec<_> = graph
-            .get_topic_names_and_types()
-            .iter()
-            .filter(|(topic, type_name)| {
-                if filter_text.is_empty() {
-                    true
-                } else {
-                    topic.to_lowercase().contains(&filter_text)
-                        || type_name.to_lowercase().contains(&filter_text)
-                }
-            })
-            .map(|(t, tn)| (t.clone(), tn.clone()))
-            .collect();
-
+        // Resolve the selected topic from the same filtered list the list pane
+        // renders, so the detail always matches what's highlighted.
+        let filtered_topics = self.filtered_topics();
         let Some((topic, type_name)) = filtered_topics.get(self.selected_index) else {
             return "No topic selected".to_string();
         };
+        let topic = topic.clone();
+        let type_name = type_name.clone();
+
+        let graph = self.core.graph.lock();
 
         let mut detail = format!("Topic: {}\nType: {}\n", topic, type_name);
 
         // Show cached rate if available
-        if let Some(cached) = self.rate_cache.get(topic) {
+        if let Some(cached) = self.rate_cache.get(&topic) {
             let age = Instant::now().duration_since(cached.last_updated);
             if age < self.rate_cache_ttl {
                 detail.push_str(&format!(
@@ -128,7 +117,7 @@ impl App {
         }
 
         // Render publishers section
-        let pub_entities = graph.get_entities_by_topic(EndpointKind::Publisher, topic);
+        let pub_entities = graph.get_entities_by_topic(EndpointKind::Publisher, &topic);
         if !pub_entities.is_empty() {
             let is_focused = self.focus_pane == FocusPane::Detail;
             let is_selected = self.detail_state.selected_section == DetailSection::Publishers;
@@ -175,7 +164,7 @@ impl App {
         }
 
         // Render subscribers section
-        let sub_entities = graph.get_entities_by_topic(EndpointKind::Subscription, topic);
+        let sub_entities = graph.get_entities_by_topic(EndpointKind::Subscription, &topic);
         if !sub_entities.is_empty() {
             let is_focused = self.focus_pane == FocusPane::Detail;
             let is_selected = self.detail_state.selected_section == DetailSection::Subscribers;

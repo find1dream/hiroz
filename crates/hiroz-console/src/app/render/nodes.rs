@@ -46,27 +46,16 @@ impl App {
 
     /// Render node detail panel content
     pub fn render_node_detail(&self) -> String {
-        let graph = self.core.graph.lock();
-        let filter_text = self.filter_input.to_lowercase();
-
-        // Get filtered nodes
-        let filtered_nodes: Vec<_> = graph
-            .get_node_names()
-            .iter()
-            .filter(|(name, namespace)| {
-                if filter_text.is_empty() {
-                    true
-                } else {
-                    name.to_lowercase().contains(&filter_text)
-                        || namespace.to_lowercase().contains(&filter_text)
-                }
-            })
-            .map(|(n, ns)| (n.clone(), ns.clone()))
-            .collect();
-
+        // Resolve the selected node from the same filtered list the list pane
+        // renders, so the detail always matches what's highlighted.
+        let filtered_nodes = self.filtered_nodes();
         let Some((name, namespace)) = filtered_nodes.get(self.selected_index) else {
             return "No node selected".to_string();
         };
+        let name = name.clone();
+        let namespace = namespace.clone();
+
+        let graph = self.core.graph.lock();
 
         let node_key = (namespace.clone(), name.clone());
         let publishers =

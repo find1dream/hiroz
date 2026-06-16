@@ -83,8 +83,10 @@ struct Cli {
 async fn main() -> Result<(), Box<dyn std::error::Error + Send + Sync>> {
     let cli = Cli::parse();
 
-    // Initialize logger
-    core::logger::init_logger(cli.json, cli.debug);
+    // Initialize logger. The interactive TUI owns the terminal, so its logs go
+    // to a file rather than stderr (which would corrupt the display).
+    let tui_mode = !cli.headless && cli.export.is_none();
+    core::logger::init_logger(cli.json, cli.debug, tui_mode);
 
     // Create core engine
     let core = Arc::new(CoreEngine::new(&cli.router, cli.domain, cli.backend).await?);
@@ -273,9 +275,9 @@ async fn handle_key_event(
         KeyCode::End => {
             // Select last item
             let max = match app.current_panel {
-                Panel::Topics => app.cached_topics.len().saturating_sub(1),
-                Panel::Nodes => app.cached_nodes.len().saturating_sub(1),
-                Panel::Services => app.cached_services.len().saturating_sub(1),
+                Panel::Topics => app.filtered_topics().len().saturating_sub(1),
+                Panel::Nodes => app.filtered_nodes().len().saturating_sub(1),
+                Panel::Services => app.filtered_services().len().saturating_sub(1),
                 Panel::Measure => 0,
             };
             app.selected_index = max;
@@ -367,8 +369,7 @@ async fn handle_key_event(
                 // Clear all measurements in Measure tab
                 app.clear_measuring_topics();
             } else if app.current_panel == Panel::Topics
-                && !app.cached_topics.is_empty()
-                && let Some((topic, _)) = app.cached_topics.get(app.selected_index)
+                && let Some((topic, _)) = app.filtered_topics().get(app.selected_index)
             {
                 // Quick rate check in Topics tab
                 let topic = topic.clone();
@@ -391,17 +392,13 @@ async fn handle_key_event(
         KeyCode::Char('m') => {
             match app.current_panel {
                 Panel::Topics => {
-                    if !app.cached_topics.is_empty()
-                        && let Some((topic, _)) = app.cached_topics.get(app.selected_index)
-                    {
+                    if let Some((topic, _)) = app.filtered_topics().get(app.selected_index) {
                         let topic = topic.clone();
                         app.toggle_measuring_topic(&topic).await;
                     }
                 }
                 Panel::Services => {
-                    if !app.cached_services.is_empty()
-                        && let Some((service, _)) = app.cached_services.get(app.selected_index)
-                    {
+                    if let Some((service, _)) = app.filtered_services().get(app.selected_index) {
                         let service = service.clone();
                         app.toggle_measuring_topic(&service).await;
                     }

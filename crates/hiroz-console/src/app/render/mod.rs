@@ -272,6 +272,7 @@ impl App {
         if !items.is_empty() && self.selected_index >= items.len() {
             self.selected_index = items.len() - 1;
         }
+        let items_len = items.len();
 
         // Build title with filter info
         let panel_name = match self.current_panel {
@@ -302,7 +303,18 @@ impl App {
                 .border_type(border_type(is_focused)),
         );
 
-        f.render_widget(list, area);
+        // Drive the list's selection through ListState so the viewport scrolls
+        // to keep the selected item visible (otherwise only the first page shows).
+        let display_len = items_len;
+        let selected = if self.current_panel == Panel::Measure {
+            self.measure_selected_index
+        } else {
+            self.selected_index
+        };
+        self.list_state
+            .select((display_len > 0).then_some(selected.min(display_len.saturating_sub(1))));
+
+        f.render_stateful_widget(list, area, &mut self.list_state);
     }
 
     fn render_detail(&mut self, f: &mut Frame, area: Rect) {

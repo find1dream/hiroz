@@ -18,7 +18,7 @@ use std::{
 };
 
 use parking_lot::Mutex;
-use ratatui::widgets::ScrollbarState;
+use ratatui::widgets::{ListState, ScrollbarState};
 use rusqlite::Connection;
 
 use crate::core::engine::{Backend, CoreEngine};
@@ -38,6 +38,8 @@ pub struct App {
     // Panel state
     pub current_panel: Panel,
     pub selected_index: usize,
+    /// Scroll/selection state for the main list widget (drives viewport scrolling)
+    pub list_state: ListState,
     pub quit: bool,
 
     // Focus state
@@ -83,6 +85,8 @@ pub struct App {
     pub topic_metrics: Arc<Mutex<HashMap<String, TopicMetrics>>>,
     pub multi_subscribers: Vec<zenoh::pubsub::Subscriber<()>>,
     pub measure_selected_index: usize,
+    /// When the multi-topic counters were last rolled up into rates.
+    pub multi_metrics_last_update: Instant,
 
     // Recording state
     pub recording_active: bool,
@@ -156,6 +160,7 @@ impl App {
             backend: core.backend,
             current_panel: Panel::Topics,
             selected_index: 0,
+            list_state: ListState::default(),
             quit: false,
             focus_pane: FocusPane::List,
             detail_state: DetailState::default(),
@@ -180,6 +185,7 @@ impl App {
             topic_metrics: Arc::new(Mutex::new(HashMap::new())),
             multi_subscribers: Vec::new(),
             measure_selected_index: 0,
+            multi_metrics_last_update: Instant::now(),
             recording_active: false,
             recording_id: None,
         })
@@ -220,7 +226,45 @@ impl App {
         self.cached_topics = graph.get_topic_names_and_types();
         self.cached_nodes = graph.get_node_names();
         self.cached_services = graph.get_service_names_and_types();
+        drop(graph);
+
+        // Keep lists in a stable, alphabetical order so navigation and the
+        // detail/action lookups stay consistent frame-to-frame.
+        self.cached_topics.sort_by(|a, b| a.0.cmp(&b.0));
+        self.cached_services.sort_by(|a, b| a.0.cmp(&b.0));
+        // Nodes are displayed as "<namespace>/<name>", so sort by that key.
+        self.cached_nodes
+            .sort_by(|a, b| (&a.1, &a.0).cmp(&(&b.1, &b.0)));
+
         self.cache_timestamp = std::time::Instant::now();
+    }
+
+    /// Topics matching the current filter, in display order.
+    ///
+    /// This is the single source of truth for what the Topics list shows, so
+    /// `selected_index` resolves to the same item across rendering, navigation,
+    /// and actions (rate/measure).
+    pub fn filtered_topics(&self) -> Vec<(String, String)> {
+        let filter_text = self.filter_input.to_lowercase();
+        self.filter_items(&self.cached_topics, &filter_text, |(t, tn)| {
+            vec![t.clone(), tn.clone()]
+        })
+    }
+
+    /// Services matching the current filter, in display order.
+    pub fn filtered_services(&self) -> Vec<(String, String)> {
+        let filter_text = self.filter_input.to_lowercase();
+        self.filter_items(&self.cached_services, &filter_text, |(s, tn)| {
+            vec![s.clone(), tn.clone()]
+        })
+    }
+
+    /// Nodes matching the current filter, in display order.
+    pub fn filtered_nodes(&self) -> Vec<(String, String)> {
+        let filter_text = self.filter_input.to_lowercase();
+        self.filter_items(&self.cached_nodes, &filter_text, |(n, ns)| {
+            vec![n.clone(), ns.clone()]
+        })
     }
 
     pub fn select_next(&mut self) {
@@ -231,9 +275,9 @@ impl App {
             }
         } else {
             let max = match self.current_panel {
-                Panel::Topics => self.cached_topics.len(),
-                Panel::Nodes => self.cached_nodes.len(),
-                Panel::Services => self.cached_services.len(),
+                Panel::Topics => self.filtered_topics().len(),
+                Panel::Nodes => self.filtered_nodes().len(),
+                Panel::Services => self.filtered_services().len(),
                 Panel::Measure => 0,
             };
             if max > 0 && self.selected_index < max - 1 {
@@ -563,13 +607,26 @@ impl App {
     }
 
     /// Update metrics for all monitored topics (called in update loop)
+    ///
+    /// The render loop calls this every iteration (≤ `POLL_TIMEOUT_MS`), but the
+    /// per-topic callbacks accumulate raw counts. We only roll those counts up
+    /// into rates on a ~1s cadence and divide by the *actual* elapsed time, so
+    /// the result is messages-per-second rather than messages-per-loop-iteration.
     pub fn update_multi_metrics(&mut self) {
+        let now = Instant::now();
+        let elapsed = now.duration_since(self.multi_metrics_last_update);
+        if elapsed < Duration::from_secs(1) {
+            return;
+        }
+        self.multi_metrics_last_update = now;
+        let elapsed_secs = elapsed.as_secs_f64();
+
         let mut metrics = self.topic_metrics.lock();
 
         for (_topic, tm) in metrics.iter_mut() {
-            // Raw per-second values
-            let instant_rate = tm.msg_count as f64;
-            let instant_bw = tm.byte_count as f64 / BYTES_PER_KB;
+            // Normalize raw counts by the real elapsed window to get per-second rates
+            let instant_rate = tm.msg_count as f64 / elapsed_secs;
+            let instant_bw = (tm.byte_count as f64 / BYTES_PER_KB) / elapsed_secs;
 
             // Update history with raw values (for sparkline)
             if tm.rate_history.len() >= HISTORY_LENGTH {

@@ -1368,6 +1368,7 @@ dependencies = [
  "tokio",
  "tokio-util",
  "tracing",
+ "tracing-subscriber",
  "uuid",
  "zenoh",
  "zenoh-buffers",
@@ -1523,6 +1524,7 @@ dependencies = [
  "hiroz-cdr",
  "hiroz-msgs",
  "hiroz-schema",
+ "hiroz-tf",
  "nix 0.29.0",
  "once_cell",
  "prost",
@@ -1533,6 +1535,17 @@ dependencies = [
  "tracing-subscriber",
  "zenoh",
  "zenoh-buffers",
+]
+
+[[package]]
+name = "hiroz-tf"
+version = "0.1.0"
+dependencies = [
+ "hiroz",
+ "hiroz-msgs",
+ "parking_lot",
+ "tokio",
+ "zenoh",
 ]
 
 [[package]]
