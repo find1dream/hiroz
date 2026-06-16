@@ -1163,6 +1163,32 @@ impl ZNode {
         self.create_dyn_sub_impl(topic, Some(schema_type_info(&schema)), schema)
     }
 
+    /// Create a dynamic subscriber using `schema` for decoding but an
+    /// externally supplied RIHS01 type hash for endpoint matching.
+    ///
+    /// Use this when the schema was obtained out-of-band (e.g. parsed from
+    /// local `.msg` files) so its *computed* hash may not byte-for-byte match
+    /// the publisher's. The publisher's actual hash is already known from the
+    /// graph, so we route with that and decode with the local field layout.
+    /// Decoding only depends on field order/types, not the hash.
+    ///
+    /// * `rihs_hash` - The publisher's RIHS01 hash string (e.g. from the graph
+    ///   endpoint's type info). An unparseable value falls back to a zero hash.
+    pub fn create_dyn_sub_with_hash(
+        &self,
+        topic: &str,
+        schema: Arc<MessageSchema>,
+        rihs_hash: &str,
+    ) -> DynSubBuilder {
+        self.create_dyn_sub_impl(
+            topic,
+            Some(crate::dynamic::type_info::schema_type_info_with_hash(
+                &schema, rihs_hash,
+            )),
+            schema,
+        )
+    }
+
     fn create_dyn_pub_impl(
         &self,
         topic: &str,

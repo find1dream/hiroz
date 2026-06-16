@@ -6,11 +6,16 @@ use std::time::Instant;
 use serde::{Deserialize, Serialize};
 
 // Constants
-pub const HISTORY_LENGTH: usize = 60;
+pub const HISTORY_LENGTH: usize = 30;
 pub const HASH_TRUNCATE_LEN: usize = 16;
 pub const PAGE_SCROLL_AMOUNT: usize = 10;
 pub const LIST_PANE_PERCENTAGE: u16 = 40;
 pub const DETAIL_PANE_PERCENTAGE: u16 = 60;
+// Measure panel uses three columns: topic list, sparklines, and live echo.
+// The echo (message contents) window gets the most room.
+pub const MEASURE_LIST_PERCENTAGE: u16 = 30;
+pub const MEASURE_GRAPH_PERCENTAGE: u16 = 20;
+pub const MEASURE_ECHO_PERCENTAGE: u16 = 50;
 pub const BYTES_PER_KB: f64 = 1024.0;
 pub const POLL_TIMEOUT_MS: u64 = 50;
 pub const QUICK_MEASURE_DURATION_SECS: u64 = 2;
@@ -39,7 +44,7 @@ impl Default for Config {
     }
 }
 
-#[derive(Clone, Copy, PartialEq, Debug, Default)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, Debug, Default)]
 pub enum Panel {
     #[default]
     Topics,

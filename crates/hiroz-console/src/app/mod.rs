@@ -20,7 +20,9 @@ use std::{
 use parking_lot::Mutex;
 use ratatui::widgets::{ListState, ScrollbarState};
 use rusqlite::Connection;
+use tokio::sync::watch;
 
+use crate::core::echo::{EchoState, run_echo_worker};
 use crate::core::engine::{Backend, CoreEngine};
 
 pub use state::*;
@@ -38,6 +40,9 @@ pub struct App {
     // Panel state
     pub current_panel: Panel,
     pub selected_index: usize,
+    /// Remembers each panel's selected index so returning to a panel restores
+    /// its position instead of jumping back to the top.
+    pub panel_selected: HashMap<Panel, usize>,
     /// Scroll/selection state for the main list widget (drives viewport scrolling)
     pub list_state: ListState,
     pub quit: bool,
@@ -91,6 +96,18 @@ pub struct App {
     // Recording state
     pub recording_active: bool,
     pub recording_id: Option<i64>,
+
+    // Live message echo for the selected Measure topic
+    pub echo_state: Arc<Mutex<EchoState>>,
+    echo_tx: watch::Sender<Option<String>>,
+    /// Last topic pushed to the echo worker, to avoid redundant notifications.
+    last_echo_request: Option<String>,
+    /// Top visible line of the echo scrollback (clamped during render).
+    pub echo_scroll: usize,
+    /// When true, the echo view stays pinned to the newest line (tail).
+    pub echo_follow: bool,
+    /// Visible height of the echo pane, set during render for paging math.
+    pub echo_viewport: usize,
 }
 
 impl App {
@@ -151,6 +168,15 @@ impl App {
         // Load configuration
         let config = Self::load_config();
 
+        // Spawn the background echo worker that follows the selected Measure topic.
+        let echo_state = Arc::new(Mutex::new(EchoState::default()));
+        let (echo_tx, echo_rx) = watch::channel(None);
+        tokio::spawn(run_echo_worker(
+            core.clone(),
+            echo_state.clone(),
+            echo_rx,
+        ));
+
         Ok(Self {
             core: core.clone(),
             session: core.session.clone(),
@@ -160,6 +186,7 @@ impl App {
             backend: core.backend,
             current_panel: Panel::Topics,
             selected_index: 0,
+            panel_selected: HashMap::new(),
             list_state: ListState::default(),
             quit: false,
             focus_pane: FocusPane::List,
@@ -188,7 +215,51 @@ impl App {
             multi_metrics_last_update: Instant::now(),
             recording_active: false,
             recording_id: None,
+            echo_state,
+            echo_tx,
+            last_echo_request: None,
+            echo_scroll: 0,
+            echo_follow: true,
+            echo_viewport: 0,
         })
+    }
+
+    /// Tell the echo worker which topic to follow: the selected Measure topic,
+    /// or nothing when the Measure panel isn't active. Cheap to call every frame.
+    pub fn sync_echo_subscription(&mut self) {
+        let desired = if self.current_panel == Panel::Measure {
+            self.get_sorted_measuring_topics()
+                .get(self.measure_selected_index)
+                .cloned()
+        } else {
+            None
+        };
+
+        if desired != self.last_echo_request {
+            let _ = self.echo_tx.send(desired.clone());
+            self.last_echo_request = desired;
+            // New topic → fresh buffer, jump back to following the tail.
+            self.echo_scroll = 0;
+            self.echo_follow = true;
+        }
+    }
+
+    /// Scroll the echo pane up by `n` lines (into history), detaching from tail.
+    pub fn echo_scroll_up(&mut self, n: usize) {
+        self.echo_follow = false;
+        self.echo_scroll = self.echo_scroll.saturating_sub(n);
+    }
+
+    /// Scroll the echo pane down by `n` lines. Render clamps and re-attaches to
+    /// the tail once the bottom is reached.
+    pub fn echo_scroll_down(&mut self, n: usize) {
+        self.echo_follow = false;
+        self.echo_scroll = self.echo_scroll.saturating_add(n);
+    }
+
+    /// Half the echo viewport height, for Ctrl-U/Ctrl-D paging (min 1).
+    pub fn echo_half_page(&self) -> usize {
+        (self.echo_viewport / 2).max(1)
     }
 
     fn load_config() -> Config {
@@ -265,6 +336,31 @@ impl App {
         self.filter_items(&self.cached_nodes, &filter_text, |(n, ns)| {
             vec![n.clone(), ns.clone()]
         })
+    }
+
+    /// Switch to a panel, remembering the current panel's selection and
+    /// restoring the target panel's last-known selection.
+    ///
+    /// The Measure panel tracks its own selection (`measure_selected_index`),
+    /// so it is left untouched here.
+    pub fn set_panel(&mut self, panel: Panel) {
+        if panel == self.current_panel {
+            return;
+        }
+
+        if self.current_panel != Panel::Measure {
+            self.panel_selected
+                .insert(self.current_panel, self.selected_index);
+        }
+
+        self.current_panel = panel;
+
+        if panel != Panel::Measure {
+            // An out-of-range restore is clamped against the live list each frame.
+            self.selected_index = self.panel_selected.get(&panel).copied().unwrap_or(0);
+        }
+
+        self.detail_scroll = 0;
     }
 
     pub fn select_next(&mut self) {
@@ -677,10 +773,16 @@ impl App {
             Panel::Measure => {
                 if self.measuring_topics.is_empty() {
                     "Go to Topics (1) and press 'm' to add topics | ?:help q:quit".to_string()
-                } else if self.recording_active {
-                    "j/k:select w:stop recording r:clear | [REC] ?:help q:quit".to_string()
+                } else if self.focus_pane == FocusPane::Detail {
+                    // Echo pane focused
+                    "j/k:scroll Ctrl-U/D:page g/G:top/tail h:back | ?:help q:quit".to_string()
                 } else {
-                    "j/k:select w:record r:clear | 1-3:panels ?:help q:quit".to_string()
+                    let rec = if self.recording_active {
+                        "w:stop[REC]"
+                    } else {
+                        "w:record"
+                    };
+                    format!("j/k:select l:echo {rec} r:clear | 1-4:panels ?:help q:quit")
                 }
             }
             _ => {

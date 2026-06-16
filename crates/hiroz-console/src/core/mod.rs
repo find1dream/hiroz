@@ -1,3 +1,4 @@
+pub mod echo;
 pub mod engine;
 pub mod events;
 pub mod logger;

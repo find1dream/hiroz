@@ -7,7 +7,14 @@ use std::{
     time::{Duration, SystemTime},
 };
 
-use hiroz::{Builder, context::ZContext, dynamic::DynSub, graph::Graph, node::ZNode};
+use hiroz::{
+    Builder,
+    context::ZContext,
+    dynamic::DynSub,
+    entity::{EndpointKind, entity_get_endpoint},
+    graph::Graph,
+    node::ZNode,
+};
 use parking_lot::Mutex;
 use tokio::sync::broadcast;
 
@@ -143,6 +150,52 @@ impl CoreEngine {
         self.node
             .create_dyn_sub_auto(topic, discovery_timeout)
             .await
+    }
+
+    /// Create a dynamic subscriber for echoing a topic's messages.
+    ///
+    /// Resolves the message schema from locally installed `.msg` files
+    /// (`$AMENT_PREFIX_PATH`) first — this works for any type, including custom
+    /// messages, without the publisher exposing a type description service — and
+    /// subscribes using the publisher's RIHS hash already known from the graph
+    /// (the schema is used only for decoding). Falls back to runtime
+    /// type-description discovery when the definition isn't installed locally.
+    pub async fn create_echo_subscriber(
+        &self,
+        topic: &str,
+        discovery_timeout: Duration,
+    ) -> Result<DynSub, Box<dyn std::error::Error + Send + Sync>> {
+        if let Some((type_name, rihs_hash)) = self.lookup_topic_type(topic)
+            && let Some(schema) = hiroz::dynamic::load_schema_from_ament(&type_name)
+            && let Ok(sub) = self
+                .node
+                .create_dyn_sub_with_hash(topic, schema, &rihs_hash)
+                .build()
+        {
+            tracing::info!(
+                "[ECHO] Resolved schema for {} from local .msg files ({})",
+                topic,
+                type_name
+            );
+            return Ok(sub);
+        }
+
+        self.create_dynamic_subscriber(topic, discovery_timeout).await
+    }
+
+    /// Look up a topic's ROS type name and RIHS01 hash from the graph.
+    fn lookup_topic_type(&self, topic: &str) -> Option<(String, String)> {
+        let graph = self.graph.lock();
+        for kind in [EndpointKind::Publisher, EndpointKind::Subscription] {
+            for ent in graph.get_entities_by_topic(kind, topic) {
+                if let Some(ep) = entity_get_endpoint(&ent)
+                    && let Some(ti) = &ep.type_info
+                {
+                    return Some((ti.name.clone(), ti.hash.to_rihs_string()));
+                }
+            }
+        }
+        None
     }
 
     pub async fn start_monitoring(&self) {

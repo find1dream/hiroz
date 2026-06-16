@@ -20,7 +20,7 @@ use ratatui::{
     layout::{Alignment, Constraint, Direction, Layout, Margin, Position, Rect},
     style::{Color, Style},
     text::{Line, Span},
-    widgets::{Block, Borders, List, Paragraph, Scrollbar, ScrollbarOrientation},
+    widgets::{Block, Borders, List, Paragraph, Scrollbar, ScrollbarOrientation, Wrap},
 };
 
 use crate::app::App;
@@ -98,17 +98,33 @@ impl App {
             (chunks[2], 3)
         };
 
-        // Main content (split into list + detail)
-        let main_chunks = Layout::default()
-            .direction(Direction::Horizontal)
-            .constraints([
-                Constraint::Percentage(LIST_PANE_PERCENTAGE),
-                Constraint::Percentage(DETAIL_PANE_PERCENTAGE),
-            ])
-            .split(main_area);
+        // Main content. The Measure panel gets a third column for live message
+        // echo (list + sparklines + echo); every other panel is list + detail.
+        if self.current_panel == Panel::Measure {
+            let cols = Layout::default()
+                .direction(Direction::Horizontal)
+                .constraints([
+                    Constraint::Percentage(MEASURE_LIST_PERCENTAGE),
+                    Constraint::Percentage(MEASURE_GRAPH_PERCENTAGE),
+                    Constraint::Percentage(MEASURE_ECHO_PERCENTAGE),
+                ])
+                .split(main_area);
 
-        self.render_list(f, main_chunks[0]);
-        self.render_detail(f, main_chunks[1]);
+            self.render_list(f, cols[0]);
+            self.render_measurement_panel(f, cols[1]);
+            self.render_echo_panel(f, cols[2]);
+        } else {
+            let main_chunks = Layout::default()
+                .direction(Direction::Horizontal)
+                .constraints([
+                    Constraint::Percentage(LIST_PANE_PERCENTAGE),
+                    Constraint::Percentage(DETAIL_PANE_PERCENTAGE),
+                ])
+                .split(main_area);
+
+            self.render_list(f, main_chunks[0]);
+            self.render_detail(f, main_chunks[1]);
+        }
 
         // Build status message: use temp message if set, otherwise use focus-aware hints
         let status_text = if self.status_message_time.is_some() {
@@ -145,6 +161,9 @@ impl App {
         if self.show_help {
             self.render_help(f);
         }
+
+        // Capture a screenshot of the full frame if requested (S key)
+        self.maybe_capture_screenshot(f);
     }
 
     fn render_navigation(&self, f: &mut Frame, area: Rect) {
@@ -181,6 +200,11 @@ impl App {
             "  PgUp/PgDn       Page up/down in lists",
             "  Enter           Drill into item details",
             "  Esc             Go back / exit filter mode",
+            "",
+            "Measure echo pane (l to focus):",
+            "  j/k or up/down  Scroll echo buffer",
+            "  Ctrl+U/Ctrl+D   Half-page scroll",
+            "  g / G           Jump to top / follow newest",
             "",
             "Actions:",
             "  1-4             Jump to panel",
@@ -331,38 +355,51 @@ impl App {
                 self.render_scrollable_detail(f, area, &detail_text);
             }
         }
+    }
 
-        // Capture screenshot if requested
-        if self.take_screenshot {
-            let buffer = f.buffer_mut();
-            let mut screenshot = String::new();
-            for y in 0..buffer.area.height {
-                for x in 0..buffer.area.width {
-                    let cell = &buffer[(x, y)];
-                    screenshot.push_str(cell.symbol());
-                }
-                screenshot.push('\n');
+    /// Capture the whole rendered frame to a timestamped text file when the
+    /// user pressed `S`. Called at the end of `render` so it captures every
+    /// panel layout (including the 3-column Measure view).
+    fn maybe_capture_screenshot(&mut self, f: &mut Frame) {
+        if !self.take_screenshot {
+            return;
+        }
+
+        let buffer = f.buffer_mut();
+        let mut screenshot = String::new();
+        for y in 0..buffer.area.height {
+            for x in 0..buffer.area.width {
+                let cell = &buffer[(x, y)];
+                screenshot.push_str(cell.symbol());
             }
-            self.take_screenshot = false;
+            screenshot.push('\n');
+        }
+        self.take_screenshot = false;
 
-            // Save to timestamped file
-            let timestamp = chrono::Local::now().format("%Y%m%d_%H%M%S");
-            let filename = format!("hiroz-screenshot_{}.txt", timestamp);
-            match std::fs::write(&filename, &screenshot) {
-                Ok(()) => {
-                    self.set_temp_status(format!("Screenshot saved to {}", filename));
-                }
-                Err(e) => {
-                    self.set_temp_status(format!("Screenshot failed: {}", e));
-                }
+        // Save to timestamped file
+        let timestamp = chrono::Local::now().format("%Y%m%d_%H%M%S");
+        let filename = format!("hiroz-screenshot_{}.txt", timestamp);
+        match std::fs::write(&filename, &screenshot) {
+            Ok(()) => {
+                self.set_temp_status(format!("Screenshot saved to {}", filename));
+            }
+            Err(e) => {
+                self.set_temp_status(format!("Screenshot failed: {}", e));
             }
         }
     }
 
     fn render_scrollable_detail(&mut self, f: &mut Frame, area: Rect, detail_text: &str) {
-        let lines: Vec<&str> = detail_text.lines().collect();
-        let total_lines = lines.len();
         let visible_lines = area.height.saturating_sub(2) as usize;
+        let inner_width = area.width.saturating_sub(2).max(1) as usize;
+
+        // Estimate how many rows the text occupies once wrapped, so scrolling
+        // can reach content that wraps past the visible area. Long lines (e.g.
+        // type names + hashes, node paths) now wrap instead of being cut off.
+        let total_lines: usize = detail_text
+            .lines()
+            .map(|line| line.chars().count().max(1).div_ceil(inner_width))
+            .sum();
         let max_scroll = total_lines.saturating_sub(visible_lines);
 
         // Clamp scroll position
@@ -377,6 +414,7 @@ impl App {
                     .border_style(border_style(is_focused))
                     .border_type(border_type(is_focused)),
             )
+            .wrap(Wrap { trim: false })
             .scroll((self.detail_scroll as u16, 0));
 
         f.render_widget(detail, area);

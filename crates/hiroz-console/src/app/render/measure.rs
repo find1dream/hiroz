@@ -2,20 +2,24 @@
 
 use ratatui::{
     Frame,
-    layout::{Alignment, Constraint, Direction, Layout, Rect},
+    layout::{Alignment, Constraint, Direction, Layout, Margin, Rect},
     style::{Color, Modifier, Style},
     text::{Line, Span},
-    widgets::{Block, Borders, ListItem, Paragraph, Sparkline},
+    widgets::{
+        Block, Borders, ListItem, Paragraph, Scrollbar, ScrollbarOrientation, ScrollbarState,
+        Sparkline, Wrap,
+    },
 };
 
 use crate::app::App;
 use crate::app::state::*;
+use crate::core::echo::EchoStatus;
 
 use super::common::*;
 
 impl App {
     /// Get sorted list of measuring topics (ensures consistent ordering)
-    fn get_sorted_measuring_topics(&self) -> Vec<String> {
+    pub fn get_sorted_measuring_topics(&self) -> Vec<String> {
         let mut topics: Vec<_> = self.measuring_topics.iter().cloned().collect();
         topics.sort();
         topics
@@ -141,6 +145,133 @@ impl App {
         );
     }
 
+    /// Render the live message echo column for the selected Measure topic,
+    /// similar to `ros2 topic echo <topic>`. Messages are produced off-thread by
+    /// the echo worker into a capped scrollback buffer; here we render a window
+    /// of it. Focus this pane (`l`) and scroll with j/k, arrows, or Ctrl-U/D.
+    pub fn render_echo_panel(&mut self, f: &mut Frame, area: Rect) {
+        // Snapshot the shared state, then release the lock before rendering.
+        let (topic, type_name, status, msg_count, lines) = {
+            let st = self.echo_state.lock();
+            (
+                st.topic.clone(),
+                st.type_name.clone(),
+                st.status.clone(),
+                st.msg_count,
+                st.lines.iter().cloned().collect::<Vec<_>>(),
+            )
+        };
+
+        let inner_height = area.height.saturating_sub(2) as usize; // minus borders
+        self.echo_viewport = inner_height;
+
+        let is_focused = self.focus_pane == FocusPane::Detail;
+        let border_color = if matches!(status, EchoStatus::Error(_)) {
+            Color::Red
+        } else if is_focused {
+            Color::Cyan
+        } else {
+            Color::DarkGray
+        };
+
+        // Status-only states have no buffer to scroll yet.
+        let status_body = match &status {
+            EchoStatus::Idle => Some(
+                "Select a topic (j/k) to echo its messages.\n\nPress 'l' to focus this pane, \
+                 then j/k or ↑/↓ to scroll, Ctrl-U/Ctrl-D to page."
+                    .to_string(),
+            ),
+            EchoStatus::Discovering => Some(format!(
+                "{}\n\nDiscovering message schema...",
+                topic.as_deref().unwrap_or("")
+            )),
+            EchoStatus::NoData => Some(format!(
+                "{}\n\nWaiting for messages...",
+                type_name.as_deref().unwrap_or("")
+            )),
+            EchoStatus::Error(e) => Some(format!(
+                "Unable to echo this topic:\n  {e}\n\n\
+                 No type description service and no local .msg definition \
+                 ($AMENT_PREFIX_PATH) for this type."
+            )),
+            EchoStatus::Active => None,
+        };
+
+        if let Some(body) = status_body {
+            let para = Paragraph::new(body)
+                .block(
+                    Block::default()
+                        .title(" Echo ")
+                        .borders(Borders::ALL)
+                        .border_style(Style::default().fg(border_color)),
+                )
+                .wrap(Wrap { trim: false });
+            f.render_widget(para, area);
+            return;
+        }
+
+        // Wrap each buffered line to the column width so long values are fully
+        // visible on narrow windows. Wrapping into concrete display rows keeps
+        // scrolling exact (one display row == one screen row).
+        let inner_width = area.width.saturating_sub(2).max(1) as usize;
+        let display: Vec<String> = lines
+            .iter()
+            .flat_map(|l| wrap_to_width(l, inner_width))
+            .collect();
+
+        let total = display.len();
+        let max_scroll = total.saturating_sub(inner_height);
+        if self.echo_follow {
+            self.echo_scroll = max_scroll;
+        } else {
+            self.echo_scroll = self.echo_scroll.min(max_scroll);
+            if self.echo_scroll >= max_scroll {
+                // Scrolled back down to the bottom — resume following the tail.
+                self.echo_follow = true;
+            }
+        }
+
+        let start = self.echo_scroll.min(total);
+        let end = (start + inner_height).min(total);
+        let visible: Vec<Line> = display[start..end]
+            .iter()
+            .map(|l| Line::raw(l.clone()))
+            .collect();
+
+        let follow_tag = if self.echo_follow { "live" } else { "scroll" };
+        let title = format!(
+            " Echo: {} [{}/{} msgs:{} {}] ",
+            topic.as_deref().unwrap_or(""),
+            end,
+            total,
+            msg_count,
+            follow_tag
+        );
+
+        let para = Paragraph::new(visible).block(
+            Block::default()
+                .title(title)
+                .borders(Borders::ALL)
+                .border_style(Style::default().fg(border_color)),
+        );
+        f.render_widget(para, area);
+
+        // Scrollbar when the buffer exceeds the viewport.
+        if total > inner_height {
+            let mut sb_state = ScrollbarState::new(max_scroll).position(self.echo_scroll);
+            f.render_stateful_widget(
+                Scrollbar::new(ScrollbarOrientation::VerticalRight)
+                    .begin_symbol(Some("^"))
+                    .end_symbol(Some("v")),
+                area.inner(Margin {
+                    vertical: 1,
+                    horizontal: 0,
+                }),
+                &mut sb_state,
+            );
+        }
+    }
+
     /// Render a sparkline with Y-axis labels and X-axis time indicator
     fn render_sparkline_with_axes(
         &self,
@@ -251,4 +382,18 @@ impl App {
         ]);
         f.render_widget(x_axis, sparkline_chunks[1]);
     }
+}
+
+/// Hard-wrap a line to at most `width` characters per row, so long message
+/// values are fully visible in the (narrow) echo column. Returns one row when
+/// it already fits.
+fn wrap_to_width(line: &str, width: usize) -> Vec<String> {
+    if width == 0 || line.chars().count() <= width {
+        return vec![line.to_string()];
+    }
+    line.chars()
+        .collect::<Vec<_>>()
+        .chunks(width)
+        .map(|chunk| chunk.iter().collect::<String>())
+        .collect()
 }

@@ -7,7 +7,7 @@ homepage = "https://github.com/ZettaScaleLabs/hiroz"
 default-run = "hiroz-console"
 
 [dependencies]
-hiroz = { path = "../hiroz", features = ["ros2dds"] }
+hiroz = { path = "../hiroz", features = ["ros2dds", "dynamic-schema-loader"] }
 hiroz-msgs = { path = "../hiroz-msgs" }
 hiroz-protocol = { path = "../hiroz-protocol", features = ["ros2dds"] }
 clap = { workspace = true }

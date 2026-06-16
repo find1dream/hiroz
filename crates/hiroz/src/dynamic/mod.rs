@@ -75,6 +75,8 @@ pub use discovery::DiscoveredTopicSchema;
 pub use error::DynamicError;
 pub use message::{DynamicMessage, DynamicMessageBuilder};
 pub use registry::{SchemaRegistry, get_schema, has_schema, register_schema};
+#[cfg(feature = "dynamic-schema-loader")]
+pub use registry::load_schema_from_ament;
 pub use schema::{FieldSchema, FieldType, MessageSchema, MessageSchemaBuilder};
 pub use serdes::DynamicSerdeCdrSerdes;
 pub use serialization::SerializationFormat;

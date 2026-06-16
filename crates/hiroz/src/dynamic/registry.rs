@@ -188,3 +188,97 @@ fn convert_base_type(
 
     Ok(FieldType::Message(schema))
 }
+
+/// Resolve a message schema by ROS type name from locally installed `.msg`
+/// definitions, searching `$AMENT_PREFIX_PATH` — the same source `ros2 topic
+/// echo` uses. This works for arbitrary/custom message types as long as their
+/// package is sourced in the environment, without requiring the publisher to
+/// expose a type description service.
+///
+/// Accepts `"pkg/msg/Type"` or `"pkg/Type"`. Nested message fields are resolved
+/// recursively (bare references resolve within the same package). Returns
+/// `None` if the definition can't be found or parsed. Resolved schemas are
+/// cached in the global [`SchemaRegistry`].
+#[cfg(feature = "dynamic-schema-loader")]
+pub fn load_schema_from_ament(type_name: &str) -> Option<Arc<MessageSchema>> {
+    // Accept both ROS form ("pkg/msg/Type") and the DDS-mangled form the graph
+    // reports for rmw_zenoh ("pkg::msg::dds_::Type_").
+    let ros_name = super::type_info::ros_type_name_from_dds(type_name);
+    let (package, name) = split_ros_type_name(&ros_name)?;
+    let canonical = format!("{package}/msg/{name}");
+
+    if let Some(existing) = get_schema(&canonical) {
+        return Some(existing);
+    }
+
+    let path = find_msg_file(&package, &name)?;
+    let mut parsed = hiroz_codegen::parser::msg::parse_msg_file(&path, &package).ok()?;
+
+    // Unqualified message references (e.g. a sibling type, not `pkg/Type`)
+    // resolve within the same package.
+    for field in &mut parsed.fields {
+        if field.field_type.package.is_none()
+            && field.field_type.string_bound.is_none()
+            && !is_primitive_field_type(&field.field_type.base_type)
+        {
+            field.field_type.package = Some(package.clone());
+        }
+    }
+
+    let resolver = |pkg: &str, base: &str| -> Option<Arc<MessageSchema>> {
+        load_schema_from_ament(&format!("{pkg}/msg/{base}"))
+    };
+
+    let schema = parsed_message_to_schema(&parsed, &resolver).ok()?;
+    Some(register_schema(schema))
+}
+
+/// Split `"pkg/msg/Type"` or `"pkg/Type"` into `(package, type_name)`.
+#[cfg(feature = "dynamic-schema-loader")]
+fn split_ros_type_name(type_name: &str) -> Option<(String, String)> {
+    let parts: Vec<&str> = type_name.split('/').filter(|s| !s.is_empty()).collect();
+    match parts.as_slice() {
+        [pkg, _msg, name] => Some((pkg.to_string(), name.to_string())),
+        [pkg, name] => Some((pkg.to_string(), name.to_string())),
+        _ => None,
+    }
+}
+
+/// Locate `<prefix>/share/<package>/msg/<name>.msg` across `$AMENT_PREFIX_PATH`.
+#[cfg(feature = "dynamic-schema-loader")]
+fn find_msg_file(package: &str, name: &str) -> Option<std::path::PathBuf> {
+    let prefixes = std::env::var("AMENT_PREFIX_PATH").ok()?;
+    for prefix in prefixes.split(':').filter(|s| !s.is_empty()) {
+        let candidate = std::path::Path::new(prefix)
+            .join("share")
+            .join(package)
+            .join("msg")
+            .join(format!("{name}.msg"));
+        if candidate.is_file() {
+            return Some(candidate);
+        }
+    }
+    None
+}
+
+#[cfg(feature = "dynamic-schema-loader")]
+fn is_primitive_field_type(base: &str) -> bool {
+    matches!(
+        base,
+        "bool"
+            | "int8"
+            | "byte"
+            | "int16"
+            | "int32"
+            | "int64"
+            | "uint8"
+            | "char"
+            | "uint16"
+            | "uint32"
+            | "uint64"
+            | "float32"
+            | "float64"
+            | "string"
+            | "wstring"
+    )
+}

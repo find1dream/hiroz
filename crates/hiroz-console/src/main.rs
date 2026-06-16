@@ -152,6 +152,9 @@ async fn run_tui_loop(
         app.update_metrics();
         app.update_multi_metrics();
 
+        // Keep the live echo following the selected Measure topic
+        app.sync_echo_subscription();
+
         // Render
         terminal.draw(|f| app.render(f))?;
 
@@ -219,6 +222,9 @@ async fn handle_key_event(
         KeyCode::Up | KeyCode::Char('k') => {
             if app.focus_pane == FocusPane::List {
                 app.select_previous();
+            } else if app.current_panel == Panel::Measure {
+                // Scroll the echo buffer up
+                app.echo_scroll_up(1);
             } else {
                 // Navigate sections in detail pane
                 app.detail_state.selected_section = match app.detail_state.selected_section {
@@ -232,6 +238,9 @@ async fn handle_key_event(
         KeyCode::Down | KeyCode::Char('j') => {
             if app.focus_pane == FocusPane::List {
                 app.select_next();
+            } else if app.current_panel == Panel::Measure {
+                // Scroll the echo buffer down
+                app.echo_scroll_down(1);
             } else {
                 // Navigate sections in detail pane
                 app.detail_state.selected_section = match app.detail_state.selected_section {
@@ -242,6 +251,35 @@ async fn handle_key_event(
                 app.scroll_detail_down();
             }
         }
+
+        // Vim-style half-page scroll for the echo pane (Measure, echo focused)
+        KeyCode::Char('u')
+            if key.modifiers.contains(KeyModifiers::CONTROL)
+                && app.current_panel == Panel::Measure
+                && app.focus_pane == FocusPane::Detail =>
+        {
+            let n = app.echo_half_page();
+            app.echo_scroll_up(n);
+        }
+        KeyCode::Char('d')
+            if key.modifiers.contains(KeyModifiers::CONTROL)
+                && app.current_panel == Panel::Measure
+                && app.focus_pane == FocusPane::Detail =>
+        {
+            let n = app.echo_half_page();
+            app.echo_scroll_down(n);
+        }
+        // Jump to top / bottom (follow tail) of the echo buffer
+        KeyCode::Char('g')
+            if app.current_panel == Panel::Measure && app.focus_pane == FocusPane::Detail =>
+        {
+            app.echo_scroll_up(usize::MAX);
+        }
+        KeyCode::Char('G')
+            if app.current_panel == Panel::Measure && app.focus_pane == FocusPane::Detail =>
+        {
+            app.echo_follow = true;
+        }
         KeyCode::Left | KeyCode::Char('h') if app.focus_pane == FocusPane::Detail => {
             app.focus_pane = FocusPane::List;
         }
@@ -251,20 +289,28 @@ async fn handle_key_event(
 
         // Page navigation
         KeyCode::PageUp => {
-            for _ in 0..PAGE_SCROLL_AMOUNT {
-                if app.focus_pane == FocusPane::List {
-                    app.select_previous();
-                } else {
-                    app.scroll_detail_up();
+            if app.current_panel == Panel::Measure && app.focus_pane == FocusPane::Detail {
+                app.echo_scroll_up(app.echo_viewport.max(1));
+            } else {
+                for _ in 0..PAGE_SCROLL_AMOUNT {
+                    if app.focus_pane == FocusPane::List {
+                        app.select_previous();
+                    } else {
+                        app.scroll_detail_up();
+                    }
                 }
             }
         }
         KeyCode::PageDown => {
-            for _ in 0..PAGE_SCROLL_AMOUNT {
-                if app.focus_pane == FocusPane::List {
-                    app.select_next();
-                } else {
-                    app.scroll_detail_down();
+            if app.current_panel == Panel::Measure && app.focus_pane == FocusPane::Detail {
+                app.echo_scroll_down(app.echo_viewport.max(1));
+            } else {
+                for _ in 0..PAGE_SCROLL_AMOUNT {
+                    if app.focus_pane == FocusPane::List {
+                        app.select_next();
+                    } else {
+                        app.scroll_detail_down();
+                    }
                 }
             }
         }
@@ -285,41 +331,27 @@ async fn handle_key_event(
 
         // Panel switching
         KeyCode::Tab => {
-            app.current_panel = match app.current_panel {
+            let next = match app.current_panel {
                 Panel::Topics => Panel::Services,
                 Panel::Services => Panel::Nodes,
                 Panel::Nodes => Panel::Measure,
                 Panel::Measure => Panel::Topics,
             };
-            app.selected_index = 0;
-            app.detail_scroll = 0;
+            app.set_panel(next);
         }
         KeyCode::BackTab => {
-            app.current_panel = match app.current_panel {
+            let prev = match app.current_panel {
                 Panel::Topics => Panel::Measure,
                 Panel::Services => Panel::Topics,
                 Panel::Nodes => Panel::Services,
                 Panel::Measure => Panel::Nodes,
             };
-            app.selected_index = 0;
-            app.detail_scroll = 0;
+            app.set_panel(prev);
         }
-        KeyCode::Char('1') => {
-            app.current_panel = Panel::Topics;
-            app.selected_index = 0;
-        }
-        KeyCode::Char('2') => {
-            app.current_panel = Panel::Services;
-            app.selected_index = 0;
-        }
-        KeyCode::Char('3') => {
-            app.current_panel = Panel::Nodes;
-            app.selected_index = 0;
-        }
-        KeyCode::Char('4') => {
-            app.current_panel = Panel::Measure;
-            app.selected_index = 0;
-        }
+        KeyCode::Char('1') => app.set_panel(Panel::Topics),
+        KeyCode::Char('2') => app.set_panel(Panel::Services),
+        KeyCode::Char('3') => app.set_panel(Panel::Nodes),
+        KeyCode::Char('4') => app.set_panel(Panel::Measure),
 
         // Detail section expansion (Enter or Space)
         KeyCode::Enter | KeyCode::Char(' ') => {
