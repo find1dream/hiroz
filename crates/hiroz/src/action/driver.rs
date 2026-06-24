@@ -110,7 +110,12 @@ pub(crate) async fn run_driver_loop<A, F, Fut>(
 
             // 6. Result Requests
             query = inner.result_server.queue().recv_async() => {
-                handle_result_request(&inner, query).await;
+                let inner = inner.clone();
+                // Spawn: the result wait blocks until the goal ends; awaiting it
+                // inline would park the loop and starve cancel requests.
+                goal_tasks.spawn(async move {
+                    handle_result_request(&inner, query).await;
+                });
             }
         }
     }
