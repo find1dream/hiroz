@@ -150,16 +150,25 @@ impl App {
     /// the echo worker into a capped scrollback buffer; here we render a window
     /// of it. Focus this pane (`l`) and scroll with j/k, arrows, or Ctrl-U/D.
     pub fn render_echo_panel(&mut self, f: &mut Frame, area: Rect) {
-        // Snapshot the shared state, then release the lock before rendering.
+        // Snapshot the selected topic's buffer, then release the lock before
+        // rendering. Every measured topic has its own buffer collected in the
+        // background; here we show whichever topic is currently selected.
+        let selected_topic = self
+            .get_sorted_measuring_topics()
+            .get(self.measure_selected_index)
+            .cloned();
         let (topic, type_name, status, msg_count, lines) = {
-            let st = self.echo_state.lock();
-            (
-                st.topic.clone(),
-                st.type_name.clone(),
-                st.status.clone(),
-                st.msg_count,
-                st.lines.iter().cloned().collect::<Vec<_>>(),
-            )
+            let states = self.echo_states.lock();
+            match selected_topic.as_ref().and_then(|t| states.get(t)) {
+                Some(st) => (
+                    st.topic.clone(),
+                    st.type_name.clone(),
+                    st.status.clone(),
+                    st.msg_count,
+                    st.lines.iter().cloned().collect::<Vec<_>>(),
+                ),
+                None => (None, None, EchoStatus::Idle, 0, Vec::new()),
+            }
         };
 
         let inner_height = area.height.saturating_sub(2) as usize; // minus borders

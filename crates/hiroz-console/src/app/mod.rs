@@ -97,11 +97,14 @@ pub struct App {
     pub recording_active: bool,
     pub recording_id: Option<i64>,
 
-    // Live message echo for the selected Measure topic
-    pub echo_state: Arc<Mutex<EchoState>>,
-    echo_tx: watch::Sender<Option<String>>,
-    /// Last topic pushed to the echo worker, to avoid redundant notifications.
-    last_echo_request: Option<String>,
+    // Live message echo: one buffer per measured topic, all collected in the
+    // background so switching the selected topic just changes which is shown.
+    pub echo_states: Arc<Mutex<HashMap<String, EchoState>>>,
+    echo_tx: watch::Sender<Vec<String>>,
+    /// Last topic set pushed to the echo worker, to avoid redundant notifications.
+    last_echo_topics: Vec<String>,
+    /// Last selected echo topic, to reset scroll only when the selection moves.
+    last_selected_echo_topic: Option<String>,
     /// Top visible line of the echo scrollback (clamped during render).
     pub echo_scroll: usize,
     /// When true, the echo view stays pinned to the newest line (tail).
@@ -168,12 +171,13 @@ impl App {
         // Load configuration
         let config = Self::load_config();
 
-        // Spawn the background echo worker that follows the selected Measure topic.
-        let echo_state = Arc::new(Mutex::new(EchoState::default()));
-        let (echo_tx, echo_rx) = watch::channel(None);
+        // Spawn the background echo worker that keeps a per-topic buffer for
+        // every measured topic, collected continuously regardless of selection.
+        let echo_states = Arc::new(Mutex::new(HashMap::new()));
+        let (echo_tx, echo_rx) = watch::channel(Vec::new());
         tokio::spawn(run_echo_worker(
             core.clone(),
-            echo_state.clone(),
+            echo_states.clone(),
             echo_rx,
         ));
 
@@ -215,30 +219,38 @@ impl App {
             multi_metrics_last_update: Instant::now(),
             recording_active: false,
             recording_id: None,
-            echo_state,
+            echo_states,
             echo_tx,
-            last_echo_request: None,
+            last_echo_topics: Vec::new(),
+            last_selected_echo_topic: None,
             echo_scroll: 0,
             echo_follow: true,
             echo_viewport: 0,
         })
     }
 
-    /// Tell the echo worker which topic to follow: the selected Measure topic,
-    /// or nothing when the Measure panel isn't active. Cheap to call every frame.
+    /// Keep the echo worker's subscriber set in sync with the measured topics
+    /// (collected continuously in the background), and reset the echo view to the
+    /// tail whenever the *selected* topic changes. Cheap to call every frame.
     pub fn sync_echo_subscription(&mut self) {
-        let desired = if self.current_panel == Panel::Measure {
+        // The worker echoes every measured topic, independent of the active panel.
+        let topics = self.get_sorted_measuring_topics();
+        if topics != self.last_echo_topics {
+            let _ = self.echo_tx.send(topics.clone());
+            self.last_echo_topics = topics;
+        }
+
+        // When the selected topic changes, jump to that topic's tail rather than
+        // carrying over the previous topic's scroll position.
+        let selected = if self.current_panel == Panel::Measure {
             self.get_sorted_measuring_topics()
                 .get(self.measure_selected_index)
                 .cloned()
         } else {
             None
         };
-
-        if desired != self.last_echo_request {
-            let _ = self.echo_tx.send(desired.clone());
-            self.last_echo_request = desired;
-            // New topic → fresh buffer, jump back to following the tail.
+        if selected != self.last_selected_echo_topic {
+            self.last_selected_echo_topic = selected;
             self.echo_scroll = 0;
             self.echo_follow = true;
         }
